@@ -1,0 +1,440 @@
+{
+  "version": "1.1",
+  "updated_utc": "2025-12-29T07:13:00Z",
+  "total_scripts": 68,
+  "coverage": "100%",
+  "files": {
+    "core/chain_constitution.py": {
+      "state": "FROZEN",
+      "settled": true,
+      "reason": "Merkle/chain constitution ? critical integrity surface",
+      "sha256": "d348a20b25fd99825169b5e17c603af62a6e4e8072741833badcc95dd3e481cc",
+      "last_verified_utc": "2025-12-28T07:10:35Z",
+      "last_verified_sid": "S_20251228T065835Z_ARKV0"
+    },
+    "scripts/validate_receipt.py": {
+      "state": "STABLE",
+      "settled": true,
+      "sha256": "f515ecc65a6f06c2829d95689b2fa0aced7b82d03e7db1e894adda3b8d5b2bcb",
+      "last_verified": "2025-12-28",
+      "reason": "Sovereign receipt validator - recreated from RECEIPT_SCHEMAS.md",
+      "allowed_changes": [
+        "documentation_comments",
+        "additional_receipt_types"
+      ],
+      "forbidden_changes": [
+        "validation_logic_changes",
+        "schema_version_changes"
+      ]
+    },
+    "tools/cli/mw.py": {
+      "state": "HOLSTERED",
+      "settled": false,
+      "reason": "CLI routing is evolving; actively being extended",
+      "allowed_changes": [
+        "error_handling",
+        "subcommand_routing",
+        "logging_additions"
+      ]
+    },
+    "docs/ENCODING_CONSTITUTION.md": {
+      "state": "STABLE",
+      "settled": true,
+      "reason": "Constitution ? edits only by consent",
+      "sha256": "bf80ede7696818e45bd683c302708537e477b32db054ad590b06ab3daeafa516",
+      "last_verified_utc": "2025-12-28T07:21:39Z",
+      "last_verified_sid": "S_20251228T065835Z_ARKV0"
+    },
+    "docs/STATE_HISTORY.md": {
+      "state": "HOLSTERED",
+      "settled": false,
+      "reason": "Formatting improvements pending; actively updated with state transitions"
+    },
+    "tools/court_sweep.py": {
+      "state": "STABLE",
+      "settled": true,
+      "reason": "Production audit tool - 9 checks including script_state_lookout",
+      "sha256": "1ede71b370bcc0e56017a68c852e730a1a8eeca0cbb9241cd9d6fd54680d2d8e"
+    },
+    "tools/script_state_lookout.py": {
+      "state": "STABLE",
+      "settled": true,
+      "reason": "Proactive governance monitoring - NEW in V0",
+      "sha256": "a675a162f37fe223bccb939ebdb14e978cb7d725485507263d722f49881db835"
+    },
+    "tools/script_state_check.py": {
+      "state": "STABLE",
+      "settled": true,
+      "reason": "Script governance verification",
+      "sha256": "0dbd9dcadce58d560b45456e799096a3dbb8514572d99d840c99d58644c72b54"
+    },
+    "tools/verify_witness_epoch.py": {
+      "state": "STABLE",
+      "settled": true,
+      "reason": "Witness epoch compliance verification",
+      "sha256": "f17a9f309aa5e1960c374540c19ebfd1ef32aa1b75d72333f31db85e5a12c891"
+    },
+    "tools/validate_state_history_format.py": {
+      "state": "STABLE",
+      "settled": true,
+      "reason": "State history format validator",
+      "sha256": "405996cb2670c866fb7a44fba58dbb163357f3f5e7bf47a4e72088101be0b14e"
+    },
+    "tools/format_state_history.py": {
+      "state": "OBSERVE",
+      "settled": false,
+      "reason": "State history formatting utility"
+    },
+    "tools/audit_encoding_repo.py": {
+      "state": "OBSERVE",
+      "settled": true,
+      "reason": "Encoding hygiene audit"
+    },
+    "tools/compile_audit.py": {
+      "state": "OBSERVE",
+      "settled": true,
+      "reason": "Python syntax compilation check"
+    },
+    "scripts/log_state_transition.py": {
+      "state": "STABLE",
+      "settled": true,
+      "reason": "Canonical state transition helper - enforces format",
+      "sha256": "4be9b18b7871ddd3b97ec06adbe60dc8634e77fd141b274daf09c4b84f2d215f"
+    },
+    "scripts/log_changelog.py": {
+      "state": "STABLE",
+      "settled": true,
+      "reason": "Canonical changelog entry helper",
+      "sha256": "ad9c68caec68887a9ba7d5f67ecade900db290a8662ff85fe856911a4782f0a2"
+    },
+    "scripts/validate_receipt_v2.py": {
+      "state": "STABLE",
+      "settled": true,
+      "reason": "V2 receipt schema validator",
+      "sha256": "709e9e6ad8b70391e597c40e43392aa0793d3273b2c1973fa7c26968fc549158"
+    },
+    "scripts/register_anchors_from_registry.py": {
+      "state": "STABLE",
+      "settled": true,
+      "reason": "Anchor registration from canonical registry",
+      "sha256": "276b0fe014f4e9277a5fe5f5e51b5b9f27581a59a15a997aeac18aac91fc6df5"
+    },
+    "scripts/import_lexicon_chunks_v1_1.py": {
+      "state": "STABLE",
+      "settled": true,
+      "reason": "Lexicon ingestion with row index derivation",
+      "sha256": "f826d540cd3d5f8b863ec700d2c29ac671453a3c656bf62ca4a0e754394dcc44"
+    },
+    "scripts/chunk_bos_pages_pilot.py": {
+      "state": "STABLE",
+      "settled": true,
+      "reason": "Book of Solobility PDF page chunking",
+      "sha256": "220901015a5e105ac967946048b56f1e05b2b66d6ab7660f5460bf1eee6249f8"
+    },
+    "scripts/ritual_engine.py": {
+      "state": "STABLE",
+      "settled": true,
+      "reason": "Config-driven ritual engine framework",
+      "sha256": "35092c2ce26beeb16310729c6cb0eb8fee622361aa9aee13b2600bd01616144b"
+    },
+    "scripts/prosecutor_emit_evidence_bundle.py": {
+      "state": "STABLE",
+      "settled": true,
+      "reason": "V2 evidence bundle generation",
+      "sha256": "d54e944f47e83a8cc78dc710fe6f711958d811829e68fa376925631d6e468fb3"
+    },
+    "scripts/prosecutor_verify_evidence_bundle.py": {
+      "state": "STABLE",
+      "settled": true,
+      "reason": "Evidence bundle verification",
+      "sha256": "abfc2c7b69ddee1c0d06c9d4c217fdfa16f9931e3d3e89201d03c9104c21481d"
+    },
+    "scripts/prosecutor_upgrade_bundles_v2.py": {
+      "state": "STABLE",
+      "settled": true,
+      "reason": "V1 to V2 bundle migration",
+      "sha256": "e42dfaf4ef2148f7a32b616f7bd33a520cd56b5c692b60d7cdb82bcc7863c564"
+    },
+    "scripts/prosecutor_consolidate_lexicon_bundle.py": {
+      "state": "STABLE",
+      "settled": true,
+      "reason": "Lexicon evidence consolidation",
+      "sha256": "2c084a1090779240edcbc1e75b8333b9afa79a4c6f63efa5320c677d3689237e"
+    },
+    "scripts/prosecutor_db_checkpoint.py": {
+      "state": "OBSERVE",
+      "settled": false,
+      "reason": "Database checkpoint utility"
+    },
+    "scripts/upgrade_receipts_to_v2.py": {
+      "state": "OBSERVE",
+      "settled": true,
+      "reason": "Receipt V1 to V2 migration (historical)"
+    },
+    "scripts/emit_weekly_evidence_bundle.py": {
+      "state": "OBSERVE",
+      "settled": true,
+      "reason": "Weekly evidence aggregation"
+    },
+    "scripts/audit_ingestion_trail.py": {
+      "state": "OBSERVE",
+      "settled": true,
+      "reason": "Ingestion forensics and reconstruction"
+    },
+    "scripts/audit_lexicon_counts.py": {
+      "state": "OBSERVE",
+      "settled": true,
+      "reason": "Lexicon chunk count verification"
+    },
+    "scripts/pre_ingestion_audit.py": {
+      "state": "OBSERVE",
+      "settled": true,
+      "reason": "Pre-ingestion system check"
+    },
+    "scripts/pre_ingestion_audit_ext.py": {
+      "state": "OBSERVE",
+      "settled": false,
+      "reason": "Extended pre-ingestion audit"
+    },
+    "scripts/post_ingestion_audit_ext.py": {
+      "state": "OBSERVE",
+      "settled": false,
+      "reason": "Extended post-ingestion audit"
+    },
+    "scripts/preflight_balance_check.py": {
+      "state": "OBSERVE",
+      "settled": true,
+      "reason": "Preflight system integrity check"
+    },
+    "scripts/sanity_check.py": {
+      "state": "OBSERVE",
+      "settled": true,
+      "reason": "Basic system sanity check"
+    },
+    "scripts/sanity_check_post_ingestion.py": {
+      "state": "OBSERVE",
+      "settled": true,
+      "reason": "Post-ingestion sanity verification"
+    },
+    "scripts/create_xl_capsule.py": {
+      "state": "OBSERVE",
+      "settled": true,
+      "reason": "XL context capsule generator"
+    },
+    "scripts/create_mini_capsule.py": {
+      "state": "OBSERVE",
+      "settled": true,
+      "reason": "Mini context capsule generator"
+    },
+    "scripts/gen_legacy_addendum.py": {
+      "state": "OBSERVE",
+      "settled": true,
+      "reason": "Legacy state history addendum generator"
+    },
+    "scripts/gen_coverage_ledger.py": {
+      "state": "OBSERVE",
+      "settled": false,
+      "reason": "Coverage ledger generator"
+    },
+    "scripts/generate_coherence_report.py": {
+      "state": "OBSERVE",
+      "settled": false,
+      "reason": "Coherence reporting utility"
+    },
+    "scripts/evidence_index.py": {
+      "state": "OBSERVE",
+      "settled": true,
+      "reason": "Evidence index generator"
+    },
+    "scripts/cartographer_emit_anchors_map.py": {
+      "state": "OBSERVE",
+      "settled": true,
+      "reason": "Anchor registry map generator"
+    },
+    "scripts/codebase_diff_report.py": {
+      "state": "OBSERVE",
+      "settled": false,
+      "reason": "Codebase differential reporting"
+    },
+    "scripts/codebase_fingerprint.py": {
+      "state": "OBSERVE",
+      "settled": false,
+      "reason": "Codebase fingerprinting utility"
+    },
+    "scripts/schema_fingerprint.py": {
+      "state": "OBSERVE",
+      "settled": false,
+      "reason": "Schema fingerprinting utility"
+    },
+    "scripts/invariants_fingerprint.py": {
+      "state": "OBSERVE",
+      "settled": false,
+      "reason": "Invariants fingerprinting utility"
+    },
+    "scripts/state_history_note.py": {
+      "state": "OBSERVE",
+      "settled": false,
+      "reason": "State history annotation utility"
+    },
+    "scripts/naming_guard.py": {
+      "state": "OBSERVE",
+      "settled": false,
+      "reason": "Naming convention enforcement"
+    },
+    "scripts/state_guard.py": {
+      "state": "OBSERVE",
+      "settled": false,
+      "reason": "State discipline guard"
+    },
+    "scripts/registry_validator.py": {
+      "state": "OBSERVE",
+      "settled": false,
+      "reason": "Registry validation utility"
+    },
+    "scripts/init_db.py": {
+      "state": "OBSERVE",
+      "settled": true,
+      "reason": "Database initialization"
+    },
+    "scripts/add_anchor.py": {
+      "state": "OBSERVE",
+      "settled": false,
+      "reason": "Manual anchor addition utility"
+    },
+    "scripts/register_missing_anchors.py": {
+      "state": "OBSERVE",
+      "settled": false,
+      "reason": "Missing anchor registration utility"
+    },
+    "scripts/inspect_anchor_chunks.py": {
+      "state": "OBSERVE",
+      "settled": false,
+      "reason": "Anchor chunk inspection utility"
+    },
+    "scripts/snapshot_anchors.py": {
+      "state": "OBSERVE",
+      "settled": false,
+      "reason": "Anchor snapshot utility"
+    },
+    "scripts/hard_check_lexicon.py": {
+      "state": "OBSERVE",
+      "settled": false,
+      "reason": "Lexicon integrity hard check"
+    },
+    "scripts/lexicon_stamp_row_index.py": {
+      "state": "OBSERVE",
+      "settled": false,
+      "reason": "Lexicon row index stamping"
+    },
+    "scripts/seal_checkpoint.py": {
+      "state": "OBSERVE",
+      "settled": false,
+      "reason": "Checkpoint sealing utility"
+    },
+    "scripts/run_recorded.py": {
+      "state": "OBSERVE",
+      "settled": false,
+      "reason": "Recorded command execution wrapper"
+    },
+    "scripts/session_lock.py": {
+      "state": "OBSERVE",
+      "settled": false,
+      "reason": "Session locking mechanism"
+    },
+    "scripts/hash_utils.py": {
+      "state": "OBSERVE",
+      "settled": true,
+      "reason": "SHA256 hashing utilities"
+    },
+    "scripts/ops_log.py": {
+      "state": "OBSERVE",
+      "settled": false,
+      "reason": "Operations logging utility"
+    },
+    "scripts/print_recorded_env.py": {
+      "state": "OBSERVE",
+      "settled": false,
+      "reason": "Recorded environment printer"
+    },
+    "scripts/state_transition.py": {
+      "state": "OBSERVE",
+      "settled": false,
+      "reason": "State transition utility (legacy, use log_state_transition.py)"
+    },
+    "modules/base_module.py": {
+      "state": "STABLE",
+      "settled": true,
+      "reason": "Ritual engine base module abstraction",
+      "sha256": "c8be833af2192cca1ea4cbc8512db98ed11e351af63694444ccd05fe7bab504f"
+    },
+    "modules/json_ingestion.py": {
+      "state": "STABLE",
+      "settled": true,
+      "reason": "JSON ingestion module for ritual engine",
+      "sha256": "6e7bc94b87b24f0bf110ac7f3c4c1230ff3b4fda2479f19b02fafb80bb1c0211"
+    },
+    "modules/lexicon_ingestion.py": {
+      "state": "STABLE",
+      "settled": true,
+      "reason": "Lexicon ingestion module for ritual engine",
+      "sha256": "44e4268fbfc59e0b0bd0ee020903b231335daf01c186a673b89daa9937cceab1"
+    },
+    "modules/pdf_ingestion.py": {
+      "state": "STABLE",
+      "settled": true,
+      "reason": "PDF ingestion module for ritual engine",
+      "sha256": "74edd46f1068434301f3e62ee562b47bc221678e5a4d3a059f8b36a987699801"
+    },
+    "modules/registry_ingestion.py": {
+      "state": "STABLE",
+      "settled": true,
+      "reason": "Registry ingestion module for ritual engine",
+      "sha256": "9b120e5c920664b8b8af3cc05ab40fd9ba38c53a72b7f553efe0727ca0f7ecb0"
+    },
+    "modules/__init__.py": {
+      "state": "OBSERVE",
+      "settled": true,
+      "reason": "Python package initialization"
+    },
+    "scripts/update_registry_sha256.py": {
+      "state": "OBSERVE",
+      "settled": true,
+      "reason": "Helper script to calculate SHA256 hashes for STABLE scripts"
+    },
+    "scripts/create_genesis_receipt.py": {
+      "state": "STABLE",
+      "settled": true,
+      "reason": "Genesis receipt creation for Merkle chain initialization - uses FROZEN chain_constitution.py",
+      "sha256": "440b860900ad3e1e272459a184966d92622d1709be8a38f72aaa697ce3f4180e"
+    },
+    "tools/verify_chain_integrity.py": {
+      "state": "STABLE",
+      "settled": true,
+      "reason": "Chain integrity verification - validates Merkle chain linkage using FROZEN hash function",
+      "sha256": "c06af738cf2e4cc27eb02df69b4215140c6f32a9588f9aa2dc277eff308eebc4"
+    },
+    "tools/full_court_press.py": {
+      "state": "STABLE",
+      "settled": true,
+      "reason": "Production audit tool - chain verification (CRITICAL first check) + 9 court sweep checks",
+      "sha256": "d337f721bd0b1476e54cbcd38fa494dfaaab0c16e2c44f1d49d886f0cae265a5"
+    },
+    "tools/verify_evidence_vault.py": {
+      "state": "STABLE",
+      "settled": true,
+      "reason": "Evidence vault verification - primary tamper detection via file hash verification",
+      "sha256": "86c33132aabc548188014bf289e6df0cf1e7d27857f60e3bc931258eb99f4379"
+    },
+    "scripts/init_evidence_vault.py": {
+      "state": "OBSERVE",
+      "settled": true,
+      "reason": "Helper script to initialize evidence vault with genesis bundle hashes"
+    },
+    "scripts/run_full_court_press.py": {
+      "state": "STABLE",
+      "settled": true,
+      "reason": "Python wrapper to run Full Court Press with proper UTF-8 handling for Windows console",
+      "sha256": "deb4c1ce2be00d87a909dbc793d56217dfd13e740aca7318c111480eabd3f525"
+    }
+  }
+}

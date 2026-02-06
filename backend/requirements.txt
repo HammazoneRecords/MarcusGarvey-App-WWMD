@@ -1,0 +1,10 @@
+# WhirlwindDB Backend API
+# Install from backend folder: pip install -r requirements.txt
+
+# API server
+flask>=3.0.0
+flask-cors>=4.0.0
+
+# RAG/ingestion (used by api/server.py via ragbox/scripts)
+# Install full RAG stack from: pip install -r ragbox/requirements.txt
+pymupdf>=1.22.0

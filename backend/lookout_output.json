@@ -1,0 +1,406 @@
+{
+  "ts_utc": "2025-12-29T07:11:45Z",
+  "status": "WARN",
+  "reason": "65 warning(s) - Script drift or unauthorized scripts detected",
+  "summary": {
+    "frozen_scripts_checked": 1,
+    "frozen_scripts_verified": 1,
+    "stable_scripts_checked": 2,
+    "stable_scripts_verified": 2,
+    "unauthorized_scripts": 65,
+    "critical_alerts": 0,
+    "warn_alerts": 65
+  },
+  "alerts": [
+    {
+      "severity": "WARN",
+      "script": "scripts\\add_anchor.py",
+      "issue": "Script not in governance registry",
+      "remediation": "Review script purpose and add to registry with appropriate state (FROZEN/STABLE/OBSERVE/HOLSTERED)"
+    },
+    {
+      "severity": "WARN",
+      "script": "scripts\\audit_ingestion_trail.py",
+      "issue": "Script not in governance registry",
+      "remediation": "Review script purpose and add to registry with appropriate state (FROZEN/STABLE/OBSERVE/HOLSTERED)"
+    },
+    {
+      "severity": "WARN",
+      "script": "scripts\\audit_lexicon_counts.py",
+      "issue": "Script not in governance registry",
+      "remediation": "Review script purpose and add to registry with appropriate state (FROZEN/STABLE/OBSERVE/HOLSTERED)"
+    },
+    {
+      "severity": "WARN",
+      "script": "scripts\\cartographer_emit_anchors_map.py",
+      "issue": "Script not in governance registry",
+      "remediation": "Review script purpose and add to registry with appropriate state (FROZEN/STABLE/OBSERVE/HOLSTERED)"
+    },
+    {
+      "severity": "WARN",
+      "script": "scripts\\chunk_bos_pages_pilot.py",
+      "issue": "Script not in governance registry",
+      "remediation": "Review script purpose and add to registry with appropriate state (FROZEN/STABLE/OBSERVE/HOLSTERED)"
+    },
+    {
+      "severity": "WARN",
+      "script": "scripts\\codebase_diff_report.py",
+      "issue": "Script not in governance registry",
+      "remediation": "Review script purpose and add to registry with appropriate state (FROZEN/STABLE/OBSERVE/HOLSTERED)"
+    },
+    {
+      "severity": "WARN",
+      "script": "scripts\\codebase_fingerprint.py",
+      "issue": "Script not in governance registry",
+      "remediation": "Review script purpose and add to registry with appropriate state (FROZEN/STABLE/OBSERVE/HOLSTERED)"
+    },
+    {
+      "severity": "WARN",
+      "script": "scripts\\create_mini_capsule.py",
+      "issue": "Script not in governance registry",
+      "remediation": "Review script purpose and add to registry with appropriate state (FROZEN/STABLE/OBSERVE/HOLSTERED)"
+    },
+    {
+      "severity": "WARN",
+      "script": "scripts\\create_xl_capsule.py",
+      "issue": "Script not in governance registry",
+      "remediation": "Review script purpose and add to registry with appropriate state (FROZEN/STABLE/OBSERVE/HOLSTERED)"
+    },
+    {
+      "severity": "WARN",
+      "script": "scripts\\emit_weekly_evidence_bundle.py",
+      "issue": "Script not in governance registry",
+      "remediation": "Review script purpose and add to registry with appropriate state (FROZEN/STABLE/OBSERVE/HOLSTERED)"
+    },
+    {
+      "severity": "WARN",
+      "script": "scripts\\evidence_index.py",
+      "issue": "Script not in governance registry",
+      "remediation": "Review script purpose and add to registry with appropriate state (FROZEN/STABLE/OBSERVE/HOLSTERED)"
+    },
+    {
+      "severity": "WARN",
+      "script": "scripts\\generate_coherence_report.py",
+      "issue": "Script not in governance registry",
+      "remediation": "Review script purpose and add to registry with appropriate state (FROZEN/STABLE/OBSERVE/HOLSTERED)"
+    },
+    {
+      "severity": "WARN",
+      "script": "scripts\\gen_coverage_ledger.py",
+      "issue": "Script not in governance registry",
+      "remediation": "Review script purpose and add to registry with appropriate state (FROZEN/STABLE/OBSERVE/HOLSTERED)"
+    },
+    {
+      "severity": "WARN",
+      "script": "scripts\\gen_legacy_addendum.py",
+      "issue": "Script not in governance registry",
+      "remediation": "Review script purpose and add to registry with appropriate state (FROZEN/STABLE/OBSERVE/HOLSTERED)"
+    },
+    {
+      "severity": "WARN",
+      "script": "scripts\\hard_check_lexicon.py",
+      "issue": "Script not in governance registry",
+      "remediation": "Review script purpose and add to registry with appropriate state (FROZEN/STABLE/OBSERVE/HOLSTERED)"
+    },
+    {
+      "severity": "WARN",
+      "script": "scripts\\hash_utils.py",
+      "issue": "Script not in governance registry",
+      "remediation": "Review script purpose and add to registry with appropriate state (FROZEN/STABLE/OBSERVE/HOLSTERED)"
+    },
+    {
+      "severity": "WARN",
+      "script": "scripts\\import_lexicon_chunks_v1_1.py",
+      "issue": "Script not in governance registry",
+      "remediation": "Review script purpose and add to registry with appropriate state (FROZEN/STABLE/OBSERVE/HOLSTERED)"
+    },
+    {
+      "severity": "WARN",
+      "script": "scripts\\init_db.py",
+      "issue": "Script not in governance registry",
+      "remediation": "Review script purpose and add to registry with appropriate state (FROZEN/STABLE/OBSERVE/HOLSTERED)"
+    },
+    {
+      "severity": "WARN",
+      "script": "scripts\\inspect_anchor_chunks.py",
+      "issue": "Script not in governance registry",
+      "remediation": "Review script purpose and add to registry with appropriate state (FROZEN/STABLE/OBSERVE/HOLSTERED)"
+    },
+    {
+      "severity": "WARN",
+      "script": "scripts\\invariants_fingerprint.py",
+      "issue": "Script not in governance registry",
+      "remediation": "Review script purpose and add to registry with appropriate state (FROZEN/STABLE/OBSERVE/HOLSTERED)"
+    },
+    {
+      "severity": "WARN",
+      "script": "scripts\\lexicon_stamp_row_index.py",
+      "issue": "Script not in governance registry",
+      "remediation": "Review script purpose and add to registry with appropriate state (FROZEN/STABLE/OBSERVE/HOLSTERED)"
+    },
+    {
+      "severity": "WARN",
+      "script": "scripts\\log_changelog.py",
+      "issue": "Script not in governance registry",
+      "remediation": "Review script purpose and add to registry with appropriate state (FROZEN/STABLE/OBSERVE/HOLSTERED)"
+    },
+    {
+      "severity": "WARN",
+      "script": "scripts\\log_state_transition.py",
+      "issue": "Script not in governance registry",
+      "remediation": "Review script purpose and add to registry with appropriate state (FROZEN/STABLE/OBSERVE/HOLSTERED)"
+    },
+    {
+      "severity": "WARN",
+      "script": "scripts\\naming_guard.py",
+      "issue": "Script not in governance registry",
+      "remediation": "Review script purpose and add to registry with appropriate state (FROZEN/STABLE/OBSERVE/HOLSTERED)"
+    },
+    {
+      "severity": "WARN",
+      "script": "scripts\\ops_log.py",
+      "issue": "Script not in governance registry",
+      "remediation": "Review script purpose and add to registry with appropriate state (FROZEN/STABLE/OBSERVE/HOLSTERED)"
+    },
+    {
+      "severity": "WARN",
+      "script": "scripts\\post_ingestion_audit_ext.py",
+      "issue": "Script not in governance registry",
+      "remediation": "Review script purpose and add to registry with appropriate state (FROZEN/STABLE/OBSERVE/HOLSTERED)"
+    },
+    {
+      "severity": "WARN",
+      "script": "scripts\\preflight_balance_check.py",
+      "issue": "Script not in governance registry",
+      "remediation": "Review script purpose and add to registry with appropriate state (FROZEN/STABLE/OBSERVE/HOLSTERED)"
+    },
+    {
+      "severity": "WARN",
+      "script": "scripts\\pre_ingestion_audit.py",
+      "issue": "Script not in governance registry",
+      "remediation": "Review script purpose and add to registry with appropriate state (FROZEN/STABLE/OBSERVE/HOLSTERED)"
+    },
+    {
+      "severity": "WARN",
+      "script": "scripts\\pre_ingestion_audit_ext.py",
+      "issue": "Script not in governance registry",
+      "remediation": "Review script purpose and add to registry with appropriate state (FROZEN/STABLE/OBSERVE/HOLSTERED)"
+    },
+    {
+      "severity": "WARN",
+      "script": "scripts\\print_recorded_env.py",
+      "issue": "Script not in governance registry",
+      "remediation": "Review script purpose and add to registry with appropriate state (FROZEN/STABLE/OBSERVE/HOLSTERED)"
+    },
+    {
+      "severity": "WARN",
+      "script": "scripts\\prosecutor_consolidate_lexicon_bundle.py",
+      "issue": "Script not in governance registry",
+      "remediation": "Review script purpose and add to registry with appropriate state (FROZEN/STABLE/OBSERVE/HOLSTERED)"
+    },
+    {
+      "severity": "WARN",
+      "script": "scripts\\prosecutor_db_checkpoint.py",
+      "issue": "Script not in governance registry",
+      "remediation": "Review script purpose and add to registry with appropriate state (FROZEN/STABLE/OBSERVE/HOLSTERED)"
+    },
+    {
+      "severity": "WARN",
+      "script": "scripts\\prosecutor_emit_evidence_bundle.py",
+      "issue": "Script not in governance registry",
+      "remediation": "Review script purpose and add to registry with appropriate state (FROZEN/STABLE/OBSERVE/HOLSTERED)"
+    },
+    {
+      "severity": "WARN",
+      "script": "scripts\\prosecutor_upgrade_bundles_v2.py",
+      "issue": "Script not in governance registry",
+      "remediation": "Review script purpose and add to registry with appropriate state (FROZEN/STABLE/OBSERVE/HOLSTERED)"
+    },
+    {
+      "severity": "WARN",
+      "script": "scripts\\prosecutor_verify_evidence_bundle.py",
+      "issue": "Script not in governance registry",
+      "remediation": "Review script purpose and add to registry with appropriate state (FROZEN/STABLE/OBSERVE/HOLSTERED)"
+    },
+    {
+      "severity": "WARN",
+      "script": "scripts\\register_anchors_from_registry.py",
+      "issue": "Script not in governance registry",
+      "remediation": "Review script purpose and add to registry with appropriate state (FROZEN/STABLE/OBSERVE/HOLSTERED)"
+    },
+    {
+      "severity": "WARN",
+      "script": "scripts\\register_missing_anchors.py",
+      "issue": "Script not in governance registry",
+      "remediation": "Review script purpose and add to registry with appropriate state (FROZEN/STABLE/OBSERVE/HOLSTERED)"
+    },
+    {
+      "severity": "WARN",
+      "script": "scripts\\registry_validator.py",
+      "issue": "Script not in governance registry",
+      "remediation": "Review script purpose and add to registry with appropriate state (FROZEN/STABLE/OBSERVE/HOLSTERED)"
+    },
+    {
+      "severity": "WARN",
+      "script": "scripts\\ritual_engine.py",
+      "issue": "Script not in governance registry",
+      "remediation": "Review script purpose and add to registry with appropriate state (FROZEN/STABLE/OBSERVE/HOLSTERED)"
+    },
+    {
+      "severity": "WARN",
+      "script": "scripts\\run_recorded.py",
+      "issue": "Script not in governance registry",
+      "remediation": "Review script purpose and add to registry with appropriate state (FROZEN/STABLE/OBSERVE/HOLSTERED)"
+    },
+    {
+      "severity": "WARN",
+      "script": "scripts\\sanity_check.py",
+      "issue": "Script not in governance registry",
+      "remediation": "Review script purpose and add to registry with appropriate state (FROZEN/STABLE/OBSERVE/HOLSTERED)"
+    },
+    {
+      "severity": "WARN",
+      "script": "scripts\\sanity_check_post_ingestion.py",
+      "issue": "Script not in governance registry",
+      "remediation": "Review script purpose and add to registry with appropriate state (FROZEN/STABLE/OBSERVE/HOLSTERED)"
+    },
+    {
+      "severity": "WARN",
+      "script": "scripts\\schema_fingerprint.py",
+      "issue": "Script not in governance registry",
+      "remediation": "Review script purpose and add to registry with appropriate state (FROZEN/STABLE/OBSERVE/HOLSTERED)"
+    },
+    {
+      "severity": "WARN",
+      "script": "scripts\\seal_checkpoint.py",
+      "issue": "Script not in governance registry",
+      "remediation": "Review script purpose and add to registry with appropriate state (FROZEN/STABLE/OBSERVE/HOLSTERED)"
+    },
+    {
+      "severity": "WARN",
+      "script": "scripts\\session_lock.py",
+      "issue": "Script not in governance registry",
+      "remediation": "Review script purpose and add to registry with appropriate state (FROZEN/STABLE/OBSERVE/HOLSTERED)"
+    },
+    {
+      "severity": "WARN",
+      "script": "scripts\\snapshot_anchors.py",
+      "issue": "Script not in governance registry",
+      "remediation": "Review script purpose and add to registry with appropriate state (FROZEN/STABLE/OBSERVE/HOLSTERED)"
+    },
+    {
+      "severity": "WARN",
+      "script": "scripts\\state_guard.py",
+      "issue": "Script not in governance registry",
+      "remediation": "Review script purpose and add to registry with appropriate state (FROZEN/STABLE/OBSERVE/HOLSTERED)"
+    },
+    {
+      "severity": "WARN",
+      "script": "scripts\\state_history_note.py",
+      "issue": "Script not in governance registry",
+      "remediation": "Review script purpose and add to registry with appropriate state (FROZEN/STABLE/OBSERVE/HOLSTERED)"
+    },
+    {
+      "severity": "WARN",
+      "script": "scripts\\state_transition.py",
+      "issue": "Script not in governance registry",
+      "remediation": "Review script purpose and add to registry with appropriate state (FROZEN/STABLE/OBSERVE/HOLSTERED)"
+    },
+    {
+      "severity": "WARN",
+      "script": "scripts\\upgrade_receipts_to_v2.py",
+      "issue": "Script not in governance registry",
+      "remediation": "Review script purpose and add to registry with appropriate state (FROZEN/STABLE/OBSERVE/HOLSTERED)"
+    },
+    {
+      "severity": "WARN",
+      "script": "scripts\\validate_receipt_v2.py",
+      "issue": "Script not in governance registry",
+      "remediation": "Review script purpose and add to registry with appropriate state (FROZEN/STABLE/OBSERVE/HOLSTERED)"
+    },
+    {
+      "severity": "WARN",
+      "script": "tools\\audit_encoding_repo.py",
+      "issue": "Script not in governance registry",
+      "remediation": "Review script purpose and add to registry with appropriate state (FROZEN/STABLE/OBSERVE/HOLSTERED)"
+    },
+    {
+      "severity": "WARN",
+      "script": "tools\\compile_audit.py",
+      "issue": "Script not in governance registry",
+      "remediation": "Review script purpose and add to registry with appropriate state (FROZEN/STABLE/OBSERVE/HOLSTERED)"
+    },
+    {
+      "severity": "WARN",
+      "script": "tools\\court_sweep.py",
+      "issue": "Script not in governance registry",
+      "remediation": "Review script purpose and add to registry with appropriate state (FROZEN/STABLE/OBSERVE/HOLSTERED)"
+    },
+    {
+      "severity": "WARN",
+      "script": "tools\\format_state_history.py",
+      "issue": "Script not in governance registry",
+      "remediation": "Review script purpose and add to registry with appropriate state (FROZEN/STABLE/OBSERVE/HOLSTERED)"
+    },
+    {
+      "severity": "WARN",
+      "script": "tools\\script_state_check.py",
+      "issue": "Script not in governance registry",
+      "remediation": "Review script purpose and add to registry with appropriate state (FROZEN/STABLE/OBSERVE/HOLSTERED)"
+    },
+    {
+      "severity": "WARN",
+      "script": "tools\\script_state_lookout.py",
+      "issue": "Script not in governance registry",
+      "remediation": "Review script purpose and add to registry with appropriate state (FROZEN/STABLE/OBSERVE/HOLSTERED)"
+    },
+    {
+      "severity": "WARN",
+      "script": "tools\\validate_state_history_format.py",
+      "issue": "Script not in governance registry",
+      "remediation": "Review script purpose and add to registry with appropriate state (FROZEN/STABLE/OBSERVE/HOLSTERED)"
+    },
+    {
+      "severity": "WARN",
+      "script": "tools\\verify_witness_epoch.py",
+      "issue": "Script not in governance registry",
+      "remediation": "Review script purpose and add to registry with appropriate state (FROZEN/STABLE/OBSERVE/HOLSTERED)"
+    },
+    {
+      "severity": "WARN",
+      "script": "modules\\base_module.py",
+      "issue": "Script not in governance registry",
+      "remediation": "Review script purpose and add to registry with appropriate state (FROZEN/STABLE/OBSERVE/HOLSTERED)"
+    },
+    {
+      "severity": "WARN",
+      "script": "modules\\json_ingestion.py",
+      "issue": "Script not in governance registry",
+      "remediation": "Review script purpose and add to registry with appropriate state (FROZEN/STABLE/OBSERVE/HOLSTERED)"
+    },
+    {
+      "severity": "WARN",
+      "script": "modules\\lexicon_ingestion.py",
+      "issue": "Script not in governance registry",
+      "remediation": "Review script purpose and add to registry with appropriate state (FROZEN/STABLE/OBSERVE/HOLSTERED)"
+    },
+    {
+      "severity": "WARN",
+      "script": "modules\\pdf_ingestion.py",
+      "issue": "Script not in governance registry",
+      "remediation": "Review script purpose and add to registry with appropriate state (FROZEN/STABLE/OBSERVE/HOLSTERED)"
+    },
+    {
+      "severity": "WARN",
+      "script": "modules\\registry_ingestion.py",
+      "issue": "Script not in governance registry",
+      "remediation": "Review script purpose and add to registry with appropriate state (FROZEN/STABLE/OBSERVE/HOLSTERED)"
+    },
+    {
+      "severity": "WARN",
+      "script": "modules\\__init__.py",
+      "issue": "Script not in governance registry",
+      "remediation": "Review script purpose and add to registry with appropriate state (FROZEN/STABLE/OBSERVE/HOLSTERED)"
+    }
+  ]
+}

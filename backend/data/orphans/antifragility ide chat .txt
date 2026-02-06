@@ -1,0 +1,167 @@
+FiX Indentation Error
+
+
+Explain what this problem is and help me fix it: IndentationError: unindent does not match any outer indentation level (file:///c%3A/Users/Owner/Desktop/PROJECTS%20IN%20MOTION/solob-wrapper/scripts/run_recorded.py, line 55) 
+run_recorded.py#L55
+
+Thought for <1s
+
+
+
+
+Analyzed
+run_recorded.py#L1-76
+
+Thought for 9s
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+The IndentationError: unindent does not match any outer indentation level on line 55 of 
+run_recorded.py
+ typically means that the line is not aligned with any of the previous blocks (like the start of the 
+main()
+ function or its contents). In Python, this is often caused by a mix of tabs and spaces or a single stray space that makes the visual alignment tricky.
+
+Explanation of the Error
+In your code, line 55 (log_event() is supposed to be at the same indentation level as line 53 (db_sha_after = ...). However, if line 55 has, for example, 3 spaces or 5 spaces while the rest uses 4, Python won't know which "parent" block it belongs to, resulting in this error.
+
+The Fix
+I will rewrite the block from line 53 to line 66 to ensure that every line uses consistent 4-space indentation.
+
+Recent actions
+You are operating under STGRAIL. Do not modify, create, or delete any project files. No formatting, no auto-fixes, no ?helpful? edits.
+Your job is to execute the first recorded initialization sequence and then report exactly what happened using only evidence from logs/artifacts.
+
+0) Preconditions (verify only)
+
+Confirm docs/STATE.json exists and that "state" is exactly "RECORD".
+
+Confirm these files exist:
+
+scripts/run_recorded.py
+
+scripts/snapshot_anchors.py
+
+scripts/init_db.py
+
+data/schema.sql
+
+Confirm anchors/ folder exists and is not empty.
+
+If any precondition fails: STOP and report which check failed. Do not fix it.
+
+1) Run the FIRST RECORDED SHUFFLE ? Snapshot anchors
+
+From repo root, run:
+
+Windows:
+
+python scripts/run_recorded.py --intent "RECORD READ-ONLY SNAPSHOT OF anchors/ BEFORE ANY DB INIT" scripts/snapshot_anchors.py
+
+
+If python is not valid, try:
+
+py scripts/run_recorded.py --intent "RECORD READ-ONLY SNAPSHOT OF anchors/ BEFORE ANY DB INIT" scripts/snapshot_anchors.py
+
+2) Verify artifacts after snapshot (read-only)
+
+Confirm the following exist (do not edit them):
+
+data/snapshots/anchors_manifest_*.json (new file created)
+
+logs/ops_ledger.jsonl
+
+logs/snapshot_anchors.stdout.log
+
+logs/snapshot_anchors.stderr.log
+
+Also open/read:
+
+the newest anchors_manifest_*.json and report:
+
+ts_utc
+
+root
+
+number of entries in files
+
+the last line of logs/ops_ledger.jsonl and report:
+
+action
+
+human_intent
+
+artifacts.exit_code
+
+artifacts.manifest_path
+
+3) Initialize DB from schema (still recorded, still no ingestion)
+
+Run:
+
+python scripts/run_recorded.py --intent "INITIALIZE SQLITE SPINE FROM data/schema.sql (NO INGESTION)" scripts/init_db.py
+
+
+(or py if needed)
+
+4) Verify artifacts after init_db (read-only)
+
+Confirm:
+
+data/memory.db now exists
+
+logs/init_db.stdout.log
+
+logs/init_db.stderr.log
+
+a new line was appended to logs/ops_ledger.jsonl
+
+Report:
+
+file size of data/memory.db
+
+the last line of logs/ops_ledger.jsonl (same fields as step 2)
+
+stdout text from logs/init_db.stdout.log (verbatim)
+
+5) Optional (only if memory.db exists): sanity check
+
+Run:
+
+python scripts/run_recorded.py --intent "VERIFY EMPTY DB COHERENCE (TABLES+CONSTRAINTS ONLY)" scripts/sanity_check.py
+
+
+Then report:
+
+stdout/stderr log files
+
+whether it passed or failed, and the exact error message if failed
+
+Output format required
+
+Return a single report with these sections:
+
+Preconditions
+
+Command Transcript (exact commands run)
+
+Artifacts Created (paths)
+
+Ledger Evidence (last line(s) summary)
+
+DB Status (exists? size? tables check outcome if ran)
+
+Errors / Deviations (none unless proven)
+
+Remember: NO FILE CHANGES. EXECUTION + REPORT ONLY.

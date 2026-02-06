@@ -1,0 +1,14 @@
+{
+  "receipt_version": "V2",
+  "intent": "MARCUS_APP_INGESTION",
+  "anchor_id": "marcus_garvey_unia_papers",
+  "source_path": "anchors/canon/Marcus BOX/marcus g unia papers 1910-1920 vol 11.pdf",
+  "manifest_entry_sha256": "b36894aed9a49c3c10bc469fe21ed9080197bfbe34381d27fb994693ad4d0f1e",
+  "import_session_id": "S_20251230T004902Z_MARCUS_GARVEY_BASELINE",
+  "generated_utc": "2026-02-01T22:14:46Z",
+  "pdf": {
+    "pages_total": 113,
+    "pages_inserted": 0
+  },
+  "db_delta": 0
+}

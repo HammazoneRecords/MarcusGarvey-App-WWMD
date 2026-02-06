@@ -1,0 +1,14 @@
+{
+  "receipt_version": "V2",
+  "intent": "MARCUS_APP_INGESTION",
+  "anchor_id": "marcus_garvey_message_to_people",
+  "source_path": "anchors/canon/Marcus BOX/message-to-the-people_-the-course-of-afric-marcus-garvey.pdf",
+  "manifest_entry_sha256": "5e5cd9a2d7422857a9a3547091fbd5de094c82608c7a9f73fe17ef87a2ff2be1",
+  "import_session_id": "S_20251230T004902Z_MARCUS_GARVEY_BASELINE",
+  "generated_utc": "2026-02-01T22:14:46Z",
+  "pdf": {
+    "pages_total": 244,
+    "pages_inserted": 0
+  },
+  "db_delta": 0
+}

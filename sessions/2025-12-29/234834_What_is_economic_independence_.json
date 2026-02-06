@@ -1,0 +1,69 @@
+{
+  "query": "What is economic independence?",
+  "mode": "garvey_lens",
+  "answer": "Economic independence, as articulated by the Voice of the Marcus Garvey ARK, is the crucial and sole solution to the great problem facing the Negro race, without which they face economic disaster and starvation. It is achieved through:\n\n*   **Higher Industrialization:** The development of robust industries, including the establishment of steamships and factories, to create their own economic base.\n*   **Self-sufficiency:** Preparing industrially and economically for the future, enabling the race to protect its own interests and not rely on the help or economic opportunities provided by other races.\n*   **Financial Prudence:** Learning from past mistakes of squandering earnings on luxuries and instead adopting practices of saving and investing, similar to other successful groups.\n*   **Foundation for Political Status:** Recognizing that industry must be the bedrock of political status, as \"politics without industry means insecurity.\"\n*   **Creation of Own Opportunities:** Building industrial and economic opportunities, particularly through the program of the Universal Negro Improvement Association, which includes the vision of building Liberia, West Africa.\n*   **A Separate Existence:** Ultimately, the founding of a Negro nation in Africa to ensure a separate existence and civilization, free from industrial and political competition, prejudice, and economic subjugation within the countries of other races.\n\nIt signifies a state where the Negro race is no longer an \"industrial peon\" or \"serf,\" but is capable of sustaining itself, protecting its collective interests, and determining its own economic destiny through its own efforts and initiatives.",
+  "citations": [
+    {
+      "excerpt": "is to prepare economically for our future, and that is the program of the",
+      "loc": "pdf:page:0099:line:18",
+      "source_id": "marcus_garvey_selected_writings",
+      "score": 8,
+      "match_type": "partial_ngram"
+    },
+    {
+      "excerpt": "Negroes now is opening up industrial and economic opportunities",
+      "loc": "pdf:page:0059:line:19",
+      "source_id": "marcus_garvey_selected_writings",
+      "score": 6,
+      "match_type": "partial_ngram"
+    },
+    {
+      "excerpt": "Universal Negro Improvement Association program, caring not what others",
+      "loc": "pdf:page:0099:line:34",
+      "source_id": "marcus_garvey_selected_writings",
+      "score": 5,
+      "match_type": "partial_ngram"
+    },
+    {
+      "excerpt": "why, visionaries as we are in the Universal Negro Improvement",
+      "loc": "pdf:page:0028:line:10",
+      "source_id": "marcus_garvey_selected_writings",
+      "score": 3,
+      "match_type": "partial_ngram"
+    },
+    {
+      "excerpt": "have a separate existence and civilization all its own without courting",
+      "loc": "pdf:page:0028:line:13",
+      "source_id": "marcus_garvey_selected_writings",
+      "score": 3,
+      "match_type": "partial_ngram"
+    },
+    {
+      "excerpt": "the city in the countries of white men, is like waiting on the devil and his",
+      "loc": "pdf:page:0028:line:21",
+      "source_id": "marcus_garvey_selected_writings",
+      "score": 3,
+      "match_type": "partial_ngram"
+    },
+    {
+      "excerpt": "alone; you have to live on industry; industry must be the foundation of your",
+      "loc": "pdf:page:0099:line:23",
+      "source_id": "marcus_garvey_selected_writings",
+      "score": 2,
+      "match_type": "partial_ngram"
+    },
+    {
+      "excerpt": "Some people do not understand the program of the Universal Negro",
+      "loc": "pdf:page:0099:line:28",
+      "source_id": "marcus_garvey_selected_writings",
+      "score": 2,
+      "match_type": "partial_ngram"
+    }
+  ],
+  "meta": {
+    "chunks_found": 15,
+    "citation_search_space": 430,
+    "timestamp": "2025-12-29T23:48:34.982748-05:00",
+    "latency_ms": 7232
+  }
+}

@@ -1,0 +1,232 @@
+{
+  "type": "court_sweep",
+  "ts_utc": "20251230T010709Z",
+  "mode": "OBSERVE",
+  "bundle_version": "V2",
+  "checks": {
+    "db_counts": {
+      "status": "PASS",
+      "db": "C:\\Users\\Owner\\Desktop\\PROJECTS IN MOTION\\MarcusGarvey App WWMD\\src\\solob wrapper ARK v0\\solob-wrapper after abc real4plus\\data\\memory.db",
+      "anchors": 8,
+      "chunks": 704
+    },
+    "state_history_witness": {
+      "status": "FAIL",
+      "reason": "missing docs/STATE_HISTORY.md"
+    },
+    "evidence_index": {
+      "status": "FAIL",
+      "reason": "missing evidence/INDEX.json"
+    },
+    "bundle_uniformity": {
+      "status": "WARN",
+      "reason": "no bundles found"
+    },
+    "encoding_reports_present": {
+      "status": "FAIL",
+      "reason": "missing evidence/audits"
+    },
+    "receipt_validation": {
+      "status": "FAIL",
+      "total_receipts": 9,
+      "validated": 0,
+      "invalid": [
+        {
+          "cmd": [
+            "C:\\Users\\Owner\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+            "-X",
+            "utf8",
+            "C:\\Users\\Owner\\Desktop\\PROJECTS IN MOTION\\MarcusGarvey App WWMD\\src\\solob wrapper ARK v0\\solob-wrapper after abc real4plus\\scripts\\validate_receipt_v2.py",
+            "C:\\Users\\Owner\\Desktop\\PROJECTS IN MOTION\\MarcusGarvey App WWMD\\src\\solob wrapper ARK v0\\solob-wrapper after abc real4plus\\evidence\\S_20251230T004902Z_MARCUS_GARVEY_BASELINE\\RECEIPTS\\RECEIPT_GENESIS_BASELINE_RESET.json"
+          ],
+          "returncode": 1,
+          "validator": "C:\\Users\\Owner\\Desktop\\PROJECTS IN MOTION\\MarcusGarvey App WWMD\\src\\solob wrapper ARK v0\\solob-wrapper after abc real4plus\\scripts\\validate_receipt_v2.py",
+          "validator_sha256": "709e9e6ad8b70391e597c40e43392aa0793d3273b2c1973fa7c26968fc549158",
+          "receipt": "C:\\Users\\Owner\\Desktop\\PROJECTS IN MOTION\\MarcusGarvey App WWMD\\src\\solob wrapper ARK v0\\solob-wrapper after abc real4plus\\evidence\\S_20251230T004902Z_MARCUS_GARVEY_BASELINE\\RECEIPTS\\RECEIPT_GENESIS_BASELINE_RESET.json",
+          "receipt_sha256": "e7c4704e50146e549eb80dbaf55bdbe34840e6317505c6dc834c1b648c0bac7e",
+          "cwd": "C:\\Users\\Owner\\Desktop\\PROJECTS IN MOTION\\MarcusGarvey App WWMD\\src\\solob wrapper ARK v0\\solob-wrapper after abc real4plus",
+          "stdout_file": "evidence\\audits\\validation_debug\\20251230T010709Z\\val_b77260b0.stdout.txt",
+          "stderr_file": "evidence\\audits\\validation_debug\\20251230T010709Z\\val_b77260b0.stderr.txt",
+          "error_head": "\r\n[INVALID] Receipt has schema violations:\r\n\r\n  1. Missing required field: anchor_id\r\n  2. Missing required field: source_path\r\n  3. Missing required field: manifest_entry_sha256\r\n  4. Missing required field: strict_rules\r\n  5. Missing required field: db.delta\r\nTotal errors: 5\r\n\r\nSee docs/RECEIPT_SCHEMA_V2.md for specification.\r\n"
+        },
+        {
+          "cmd": [
+            "C:\\Users\\Owner\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+            "-X",
+            "utf8",
+            "C:\\Users\\Owner\\Desktop\\PROJECTS IN MOTION\\MarcusGarvey App WWMD\\src\\solob wrapper ARK v0\\solob-wrapper after abc real4plus\\scripts\\validate_receipt_v2.py",
+            "C:\\Users\\Owner\\Desktop\\PROJECTS IN MOTION\\MarcusGarvey App WWMD\\src\\solob wrapper ARK v0\\solob-wrapper after abc real4plus\\evidence\\S_20251230T004902Z_MARCUS_GARVEY_BASELINE\\RECEIPTS\\RECEIPT_marcus_garvey_article.json"
+          ],
+          "returncode": 1,
+          "validator": "C:\\Users\\Owner\\Desktop\\PROJECTS IN MOTION\\MarcusGarvey App WWMD\\src\\solob wrapper ARK v0\\solob-wrapper after abc real4plus\\scripts\\validate_receipt_v2.py",
+          "validator_sha256": "709e9e6ad8b70391e597c40e43392aa0793d3273b2c1973fa7c26968fc549158",
+          "receipt": "C:\\Users\\Owner\\Desktop\\PROJECTS IN MOTION\\MarcusGarvey App WWMD\\src\\solob wrapper ARK v0\\solob-wrapper after abc real4plus\\evidence\\S_20251230T004902Z_MARCUS_GARVEY_BASELINE\\RECEIPTS\\RECEIPT_marcus_garvey_article.json",
+          "receipt_sha256": "4098e0a1b77f70334dbbbad663d886025d31c4965fa29a3d008ac2bd5e01e8d8",
+          "cwd": "C:\\Users\\Owner\\Desktop\\PROJECTS IN MOTION\\MarcusGarvey App WWMD\\src\\solob wrapper ARK v0\\solob-wrapper after abc real4plus",
+          "stdout_file": "evidence\\audits\\validation_debug\\20251230T010709Z\\val_d1bace5d.stdout.txt",
+          "stderr_file": "evidence\\audits\\validation_debug\\20251230T010709Z\\val_d1bace5d.stderr.txt",
+          "error_head": "\r\n[INVALID] Receipt has schema violations:\r\n\r\n  1. Missing required field: db\r\n  2. Missing required field: strict_rules\r\nTotal errors: 2\r\n\r\nSee docs/RECEIPT_SCHEMA_V2.md for specification.\r\n"
+        },
+        {
+          "cmd": [
+            "C:\\Users\\Owner\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+            "-X",
+            "utf8",
+            "C:\\Users\\Owner\\Desktop\\PROJECTS IN MOTION\\MarcusGarvey App WWMD\\src\\solob wrapper ARK v0\\solob-wrapper after abc real4plus\\scripts\\validate_receipt_v2.py",
+            "C:\\Users\\Owner\\Desktop\\PROJECTS IN MOTION\\MarcusGarvey App WWMD\\src\\solob wrapper ARK v0\\solob-wrapper after abc real4plus\\evidence\\S_20251230T004902Z_MARCUS_GARVEY_BASELINE\\RECEIPTS\\RECEIPT_marcus_garvey_memorial_collection.json"
+          ],
+          "returncode": 1,
+          "validator": "C:\\Users\\Owner\\Desktop\\PROJECTS IN MOTION\\MarcusGarvey App WWMD\\src\\solob wrapper ARK v0\\solob-wrapper after abc real4plus\\scripts\\validate_receipt_v2.py",
+          "validator_sha256": "709e9e6ad8b70391e597c40e43392aa0793d3273b2c1973fa7c26968fc549158",
+          "receipt": "C:\\Users\\Owner\\Desktop\\PROJECTS IN MOTION\\MarcusGarvey App WWMD\\src\\solob wrapper ARK v0\\solob-wrapper after abc real4plus\\evidence\\S_20251230T004902Z_MARCUS_GARVEY_BASELINE\\RECEIPTS\\RECEIPT_marcus_garvey_memorial_collection.json",
+          "receipt_sha256": "673de3fc6d55f3eb72d7471e12a6b927ca957260b1033b9cc9674c6333699418",
+          "cwd": "C:\\Users\\Owner\\Desktop\\PROJECTS IN MOTION\\MarcusGarvey App WWMD\\src\\solob wrapper ARK v0\\solob-wrapper after abc real4plus",
+          "stdout_file": "evidence\\audits\\validation_debug\\20251230T010709Z\\val_15d278c3.stdout.txt",
+          "stderr_file": "evidence\\audits\\validation_debug\\20251230T010709Z\\val_15d278c3.stderr.txt",
+          "error_head": "\r\n[INVALID] Receipt has schema violations:\r\n\r\n  1. Missing required field: db\r\n  2. Missing required field: strict_rules\r\nTotal errors: 2\r\n\r\nSee docs/RECEIPT_SCHEMA_V2.md for specification.\r\n"
+        },
+        {
+          "cmd": [
+            "C:\\Users\\Owner\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+            "-X",
+            "utf8",
+            "C:\\Users\\Owner\\Desktop\\PROJECTS IN MOTION\\MarcusGarvey App WWMD\\src\\solob wrapper ARK v0\\solob-wrapper after abc real4plus\\scripts\\validate_receipt_v2.py",
+            "C:\\Users\\Owner\\Desktop\\PROJECTS IN MOTION\\MarcusGarvey App WWMD\\src\\solob wrapper ARK v0\\solob-wrapper after abc real4plus\\evidence\\S_20251230T004902Z_MARCUS_GARVEY_BASELINE\\RECEIPTS\\RECEIPT_marcus_garvey_message_to_people.json"
+          ],
+          "returncode": 1,
+          "validator": "C:\\Users\\Owner\\Desktop\\PROJECTS IN MOTION\\MarcusGarvey App WWMD\\src\\solob wrapper ARK v0\\solob-wrapper after abc real4plus\\scripts\\validate_receipt_v2.py",
+          "validator_sha256": "709e9e6ad8b70391e597c40e43392aa0793d3273b2c1973fa7c26968fc549158",
+          "receipt": "C:\\Users\\Owner\\Desktop\\PROJECTS IN MOTION\\MarcusGarvey App WWMD\\src\\solob wrapper ARK v0\\solob-wrapper after abc real4plus\\evidence\\S_20251230T004902Z_MARCUS_GARVEY_BASELINE\\RECEIPTS\\RECEIPT_marcus_garvey_message_to_people.json",
+          "receipt_sha256": "3871c6c92a2ce1680b8aba8fe2fa115cad16a7762cd64fe60ba9c573406cf5cf",
+          "cwd": "C:\\Users\\Owner\\Desktop\\PROJECTS IN MOTION\\MarcusGarvey App WWMD\\src\\solob wrapper ARK v0\\solob-wrapper after abc real4plus",
+          "stdout_file": "evidence\\audits\\validation_debug\\20251230T010709Z\\val_898c0822.stdout.txt",
+          "stderr_file": "evidence\\audits\\validation_debug\\20251230T010709Z\\val_898c0822.stderr.txt",
+          "error_head": "\r\n[INVALID] Receipt has schema violations:\r\n\r\n  1. Missing required field: db\r\n  2. Missing required field: strict_rules\r\nTotal errors: 2\r\n\r\nSee docs/RECEIPT_SCHEMA_V2.md for specification.\r\n"
+        },
+        {
+          "cmd": [
+            "C:\\Users\\Owner\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+            "-X",
+            "utf8",
+            "C:\\Users\\Owner\\Desktop\\PROJECTS IN MOTION\\MarcusGarvey App WWMD\\src\\solob wrapper ARK v0\\solob-wrapper after abc real4plus\\scripts\\validate_receipt_v2.py",
+            "C:\\Users\\Owner\\Desktop\\PROJECTS IN MOTION\\MarcusGarvey App WWMD\\src\\solob wrapper ARK v0\\solob-wrapper after abc real4plus\\evidence\\S_20251230T004902Z_MARCUS_GARVEY_BASELINE\\RECEIPTS\\RECEIPT_marcus_garvey_philosophy_opinions.json"
+          ],
+          "returncode": 1,
+          "validator": "C:\\Users\\Owner\\Desktop\\PROJECTS IN MOTION\\MarcusGarvey App WWMD\\src\\solob wrapper ARK v0\\solob-wrapper after abc real4plus\\scripts\\validate_receipt_v2.py",
+          "validator_sha256": "709e9e6ad8b70391e597c40e43392aa0793d3273b2c1973fa7c26968fc549158",
+          "receipt": "C:\\Users\\Owner\\Desktop\\PROJECTS IN MOTION\\MarcusGarvey App WWMD\\src\\solob wrapper ARK v0\\solob-wrapper after abc real4plus\\evidence\\S_20251230T004902Z_MARCUS_GARVEY_BASELINE\\RECEIPTS\\RECEIPT_marcus_garvey_philosophy_opinions.json",
+          "receipt_sha256": "8331b722e2f18b2eb39b5660073aa9043bf46aca17d08acfee31fad9da1db1e7",
+          "cwd": "C:\\Users\\Owner\\Desktop\\PROJECTS IN MOTION\\MarcusGarvey App WWMD\\src\\solob wrapper ARK v0\\solob-wrapper after abc real4plus",
+          "stdout_file": "evidence\\audits\\validation_debug\\20251230T010709Z\\val_97fa710b.stdout.txt",
+          "stderr_file": "evidence\\audits\\validation_debug\\20251230T010709Z\\val_97fa710b.stderr.txt",
+          "error_head": "\r\n[INVALID] Receipt has schema violations:\r\n\r\n  1. Missing required field: db\r\n  2. Missing required field: strict_rules\r\nTotal errors: 2\r\n\r\nSee docs/RECEIPT_SCHEMA_V2.md for specification.\r\n"
+        },
+        {
+          "cmd": [
+            "C:\\Users\\Owner\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+            "-X",
+            "utf8",
+            "C:\\Users\\Owner\\Desktop\\PROJECTS IN MOTION\\MarcusGarvey App WWMD\\src\\solob wrapper ARK v0\\solob-wrapper after abc real4plus\\scripts\\validate_receipt_v2.py",
+            "C:\\Users\\Owner\\Desktop\\PROJECTS IN MOTION\\MarcusGarvey App WWMD\\src\\solob wrapper ARK v0\\solob-wrapper after abc real4plus\\evidence\\S_20251230T004902Z_MARCUS_GARVEY_BASELINE\\RECEIPTS\\RECEIPT_marcus_garvey_selected_writings.json"
+          ],
+          "returncode": 1,
+          "validator": "C:\\Users\\Owner\\Desktop\\PROJECTS IN MOTION\\MarcusGarvey App WWMD\\src\\solob wrapper ARK v0\\solob-wrapper after abc real4plus\\scripts\\validate_receipt_v2.py",
+          "validator_sha256": "709e9e6ad8b70391e597c40e43392aa0793d3273b2c1973fa7c26968fc549158",
+          "receipt": "C:\\Users\\Owner\\Desktop\\PROJECTS IN MOTION\\MarcusGarvey App WWMD\\src\\solob wrapper ARK v0\\solob-wrapper after abc real4plus\\evidence\\S_20251230T004902Z_MARCUS_GARVEY_BASELINE\\RECEIPTS\\RECEIPT_marcus_garvey_selected_writings.json",
+          "receipt_sha256": "57d477e90b989fea38e7891f98fcd04ee65e752805ae24268a2b53f5f2ff775e",
+          "cwd": "C:\\Users\\Owner\\Desktop\\PROJECTS IN MOTION\\MarcusGarvey App WWMD\\src\\solob wrapper ARK v0\\solob-wrapper after abc real4plus",
+          "stdout_file": "evidence\\audits\\validation_debug\\20251230T010709Z\\val_8135041d.stdout.txt",
+          "stderr_file": "evidence\\audits\\validation_debug\\20251230T010709Z\\val_8135041d.stderr.txt",
+          "error_head": "\r\n[INVALID] Receipt has schema violations:\r\n\r\n  1. Missing required field: db\r\n  2. Missing required field: strict_rules\r\nTotal errors: 2\r\n\r\nSee docs/RECEIPT_SCHEMA_V2.md for specification.\r\n"
+        },
+        {
+          "cmd": [
+            "C:\\Users\\Owner\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+            "-X",
+            "utf8",
+            "C:\\Users\\Owner\\Desktop\\PROJECTS IN MOTION\\MarcusGarvey App WWMD\\src\\solob wrapper ARK v0\\solob-wrapper after abc real4plus\\scripts\\validate_receipt_v2.py",
+            "C:\\Users\\Owner\\Desktop\\PROJECTS IN MOTION\\MarcusGarvey App WWMD\\src\\solob wrapper ARK v0\\solob-wrapper after abc real4plus\\evidence\\S_20251230T004902Z_MARCUS_GARVEY_BASELINE\\RECEIPTS\\RECEIPT_marcus_garvey_teachers_notes.json"
+          ],
+          "returncode": 1,
+          "validator": "C:\\Users\\Owner\\Desktop\\PROJECTS IN MOTION\\MarcusGarvey App WWMD\\src\\solob wrapper ARK v0\\solob-wrapper after abc real4plus\\scripts\\validate_receipt_v2.py",
+          "validator_sha256": "709e9e6ad8b70391e597c40e43392aa0793d3273b2c1973fa7c26968fc549158",
+          "receipt": "C:\\Users\\Owner\\Desktop\\PROJECTS IN MOTION\\MarcusGarvey App WWMD\\src\\solob wrapper ARK v0\\solob-wrapper after abc real4plus\\evidence\\S_20251230T004902Z_MARCUS_GARVEY_BASELINE\\RECEIPTS\\RECEIPT_marcus_garvey_teachers_notes.json",
+          "receipt_sha256": "817eff2bd250301a8288136e3d948f19062b1a40c316ff689146f4a9e919625e",
+          "cwd": "C:\\Users\\Owner\\Desktop\\PROJECTS IN MOTION\\MarcusGarvey App WWMD\\src\\solob wrapper ARK v0\\solob-wrapper after abc real4plus",
+          "stdout_file": "evidence\\audits\\validation_debug\\20251230T010709Z\\val_a5e6069b.stdout.txt",
+          "stderr_file": "evidence\\audits\\validation_debug\\20251230T010709Z\\val_a5e6069b.stderr.txt",
+          "error_head": "\r\n[INVALID] Receipt has schema violations:\r\n\r\n  1. Missing required field: db\r\n  2. Missing required field: strict_rules\r\nTotal errors: 2\r\n\r\nSee docs/RECEIPT_SCHEMA_V2.md for specification.\r\n"
+        },
+        {
+          "cmd": [
+            "C:\\Users\\Owner\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+            "-X",
+            "utf8",
+            "C:\\Users\\Owner\\Desktop\\PROJECTS IN MOTION\\MarcusGarvey App WWMD\\src\\solob wrapper ARK v0\\solob-wrapper after abc real4plus\\scripts\\validate_receipt_v2.py",
+            "C:\\Users\\Owner\\Desktop\\PROJECTS IN MOTION\\MarcusGarvey App WWMD\\src\\solob wrapper ARK v0\\solob-wrapper after abc real4plus\\evidence\\S_20251230T004902Z_MARCUS_GARVEY_BASELINE\\RECEIPTS\\RECEIPT_marcus_garvey_timeline.json"
+          ],
+          "returncode": 1,
+          "validator": "C:\\Users\\Owner\\Desktop\\PROJECTS IN MOTION\\MarcusGarvey App WWMD\\src\\solob wrapper ARK v0\\solob-wrapper after abc real4plus\\scripts\\validate_receipt_v2.py",
+          "validator_sha256": "709e9e6ad8b70391e597c40e43392aa0793d3273b2c1973fa7c26968fc549158",
+          "receipt": "C:\\Users\\Owner\\Desktop\\PROJECTS IN MOTION\\MarcusGarvey App WWMD\\src\\solob wrapper ARK v0\\solob-wrapper after abc real4plus\\evidence\\S_20251230T004902Z_MARCUS_GARVEY_BASELINE\\RECEIPTS\\RECEIPT_marcus_garvey_timeline.json",
+          "receipt_sha256": "c98a4af1c3b970c75523673ca628860c6b47f1e763c9bfcbaee5f16c7c97af3f",
+          "cwd": "C:\\Users\\Owner\\Desktop\\PROJECTS IN MOTION\\MarcusGarvey App WWMD\\src\\solob wrapper ARK v0\\solob-wrapper after abc real4plus",
+          "stdout_file": "evidence\\audits\\validation_debug\\20251230T010709Z\\val_59dceff0.stdout.txt",
+          "stderr_file": "evidence\\audits\\validation_debug\\20251230T010709Z\\val_59dceff0.stderr.txt",
+          "error_head": "\r\n[INVALID] Receipt has schema violations:\r\n\r\n  1. Missing required field: db\r\n  2. Missing required field: strict_rules\r\nTotal errors: 2\r\n\r\nSee docs/RECEIPT_SCHEMA_V2.md for specification.\r\n"
+        },
+        {
+          "cmd": [
+            "C:\\Users\\Owner\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+            "-X",
+            "utf8",
+            "C:\\Users\\Owner\\Desktop\\PROJECTS IN MOTION\\MarcusGarvey App WWMD\\src\\solob wrapper ARK v0\\solob-wrapper after abc real4plus\\scripts\\validate_receipt_v2.py",
+            "C:\\Users\\Owner\\Desktop\\PROJECTS IN MOTION\\MarcusGarvey App WWMD\\src\\solob wrapper ARK v0\\solob-wrapper after abc real4plus\\evidence\\S_20251230T004902Z_MARCUS_GARVEY_BASELINE\\RECEIPTS\\RECEIPT_marcus_garvey_unia_papers.json"
+          ],
+          "returncode": 1,
+          "validator": "C:\\Users\\Owner\\Desktop\\PROJECTS IN MOTION\\MarcusGarvey App WWMD\\src\\solob wrapper ARK v0\\solob-wrapper after abc real4plus\\scripts\\validate_receipt_v2.py",
+          "validator_sha256": "709e9e6ad8b70391e597c40e43392aa0793d3273b2c1973fa7c26968fc549158",
+          "receipt": "C:\\Users\\Owner\\Desktop\\PROJECTS IN MOTION\\MarcusGarvey App WWMD\\src\\solob wrapper ARK v0\\solob-wrapper after abc real4plus\\evidence\\S_20251230T004902Z_MARCUS_GARVEY_BASELINE\\RECEIPTS\\RECEIPT_marcus_garvey_unia_papers.json",
+          "receipt_sha256": "d7e9e668f5f4fc4fb9f933ef1550239e3d520e1c44ff9ad98722995520bd88c6",
+          "cwd": "C:\\Users\\Owner\\Desktop\\PROJECTS IN MOTION\\MarcusGarvey App WWMD\\src\\solob wrapper ARK v0\\solob-wrapper after abc real4plus",
+          "stdout_file": "evidence\\audits\\validation_debug\\20251230T010709Z\\val_e07d42fb.stdout.txt",
+          "stderr_file": "evidence\\audits\\validation_debug\\20251230T010709Z\\val_e07d42fb.stderr.txt",
+          "error_head": "\r\n[INVALID] Receipt has schema violations:\r\n\r\n  1. Missing required field: db\r\n  2. Missing required field: strict_rules\r\nTotal errors: 2\r\n\r\nSee docs/RECEIPT_SCHEMA_V2.md for specification.\r\n"
+        }
+      ],
+      "errors": [],
+      "debug_dir": "evidence\\audits\\validation_debug\\20251230T010709Z",
+      "validator_sha256": "709e9e6ad8b70391e597c40e43392aa0793d3273b2c1973fa7c26968fc549158"
+    },
+    "orphan_chunks": {
+      "status": "PASS",
+      "orphan_chunks_null_sid": 0,
+      "samples": []
+    },
+    "bundle_layout": {
+      "status": "PASS",
+      "total_bundles": 0,
+      "v2_compliant": 0,
+      "v1_legacy": 0,
+      "court_sweep_skipped": 1,
+      "non_compliant": []
+    },
+    "state_history_format": {
+      "status": "FAIL",
+      "violations": 0,
+      "warnings": 0,
+      "exit_code": 2
+    },
+    "script_state_lookout": {
+      "status": "WARN",
+      "frozen_verified": 1,
+      "stable_verified": 27,
+      "unauthorized": 4,
+      "critical_alerts": 0,
+      "warn_alerts": 7,
+      "reason": "7 warning(s) - Script drift or unauthorized scripts detected"
+    }
+  },
+  "verdict": "NO-GO",
+  "verdict_reason": "Failures: state_history_witness, evidence_index, encoding_reports_present, receipt_validation, state_history_format | Warnings: bundle_uniformity, script_state_lookout"
+}

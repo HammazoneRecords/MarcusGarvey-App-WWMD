@@ -1,0 +1,14 @@
+{
+  "receipt_version": "V2",
+  "intent": "MARCUS_APP_INGESTION",
+  "anchor_id": "marcus_garvey_biography_site",
+  "source_path": "anchors/canon/Marcus BOX/Garvey_biography.com.pdf",
+  "manifest_entry_sha256": "5e3ac4e2c286beeb2bc5df2885de7eaa2471fefbacc75ca687b5f902b7d7a569",
+  "import_session_id": "S_20251230T004902Z_MARCUS_GARVEY_BASELINE",
+  "generated_utc": "2026-02-01T22:21:57Z",
+  "pdf": {
+    "pages_total": 11,
+    "pages_inserted": 11
+  },
+  "db_delta": 11
+}

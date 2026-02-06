@@ -1,0 +1,19 @@
+?
+branch state   recorded_at  
+------ -----   -----------  
+main   OBSERVE 2025-12-22...
+
+
+
+Letter     | JSON Count   | 
+DB Count     | Status
+TOTAL      | 1625         | 
+1625         | OK
+- DB anchors: `31`
+- Manifest files: `31`
+- Registry entries: `31`
+- OK: All DB anchors mapped 
+to manifest sha256 
+successfully.
+
+

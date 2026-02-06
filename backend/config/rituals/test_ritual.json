@@ -1,0 +1,38 @@
+{
+    "ritual_version": "1.0",
+    "ritual_name": "test_json_ingestion",
+    "intent": "TEST_JSON_INGESTION",
+    "anchor_id": "test_anchor_v1",
+    "source": {
+        "type": "json",
+        "path": "config/rituals/test_data.json",
+        "format": "test_entries"
+    },
+    "steps": [
+        {
+            "type": "validate_source"
+        },
+        {
+            "type": "validate_anchor"
+        },
+        {
+            "type": "ingest_chunks",
+            "chunk_id_template": "{anchor_id}:test:{row_index}",
+            "locator_template": "test:entry:{row_index}",
+            "truth_type": "test_record"
+        },
+        {
+            "type": "generate_receipt",
+            "receipt_version": "V2"
+        }
+    ],
+    "strict_rules": {
+        "chunk_collision": "STOP",
+        "missing_anchor": "STOP",
+        "schema_mismatch": "STOP"
+    },
+    "options": {
+        "dry_run": false,
+        "limit": 0
+    }
+}

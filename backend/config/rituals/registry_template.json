@@ -1,0 +1,28 @@
+{
+    "ritual_version": "1.0",
+    "ritual_name": "anchor_registry_import",
+    "intent": "ANCHOR_REGISTRY_IMPORT",
+    "anchor_id": "",
+    "source": {
+        "type": "json",
+        "path": "anchors/anchors_registry.json",
+        "format": "anchor_registry"
+    },
+    "steps": [
+        {
+            "type": "validate_source"
+        },
+        {
+            "type": "ingest_chunks"
+        },
+        {
+            "type": "generate_receipt",
+            "receipt_version": "V2"
+        }
+    ],
+    "strict_rules": {
+        "anchor_collision": "WARN",
+        "missing_source_file": "STOP",
+        "duplicate_anchor_id": "WARN"
+    }
+}

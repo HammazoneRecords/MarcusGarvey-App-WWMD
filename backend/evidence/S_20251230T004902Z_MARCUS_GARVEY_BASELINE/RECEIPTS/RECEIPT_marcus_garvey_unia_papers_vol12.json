@@ -1,0 +1,14 @@
+{
+  "receipt_version": "V2",
+  "intent": "MARCUS_APP_INGESTION",
+  "anchor_id": "marcus_garvey_unia_papers_vol12",
+  "source_path": "anchors/canon/Marcus BOX/the-marcus-garvey-and-universal-negro-improvement-association-papers-volume-xii-the-caribbean-diaspora-1920-1921-9780822376187_compress.pdf",
+  "manifest_entry_sha256": "bd3c6b5d46cd60c1f74b0f436acd54a9549c7f590c2ba395a66edb97d758c1b1",
+  "import_session_id": "S_20251230T004902Z_MARCUS_GARVEY_BASELINE",
+  "generated_utc": "2026-02-01T22:22:02Z",
+  "pdf": {
+    "pages_total": 471,
+    "pages_inserted": 463
+  },
+  "db_delta": 463
+}

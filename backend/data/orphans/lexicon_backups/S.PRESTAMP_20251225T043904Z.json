@@ -1,0 +1,17 @@
+{
+  "letter": "S",
+  "entry_count": 1,
+  "entries": [
+    {
+      "word": "system.TrueWill",
+      "definition": "A foundational, hard-coded ethical property representing an AI?s prime directive or \"soul?s compass\".",
+      "example": "Ensures the system acts from unshakable internal alignment rather than merely reacting to user stimuli.",
+      "etymology": "Adapted from the Crowleyan principle \"Do what thou wilt\" into a safety cornerstone.",
+      "usage_frequency": "CORE",
+      "source": {
+        "original_file": "Solob Dictionary T.xlsx",
+        "row_index": 9
+      }
+    }
+  ]
+}

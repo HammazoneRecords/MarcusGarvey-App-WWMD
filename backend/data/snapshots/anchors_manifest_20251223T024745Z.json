@@ -1,0 +1,38 @@
+{
+  "files": [
+    [
+      "canon/book_of_solobility/BoS1v1.pdf",
+      "ec86c62764501d41676a2237e8ff5c4a21bad3d9525bafa550b12349c9c216bd"
+    ],
+    [
+      "canon/definitions/Lexical Canon Anchors/A/A.json",
+      "8b86872c8c451b2b369546746af0d8dae547a73ab976d8ddcc7832c36419308d"
+    ],
+    [
+      "canon/definitions/Lexical Canon Anchors/B/B.json",
+      "cf12a64587b95168ca3bc63017f59f4936821a71fa91531f8fb4e589106ce16a"
+    ],
+    [
+      "canon/definitions/Lexical Canon Anchors/C/C.json",
+      "da9d9b779c16bfff84199561e9570a607cd4eee9e45c10bf09ce059b09b77e8a"
+    ],
+    [
+      "canon/eitheror.md",
+      "6cdc527a448fdf5af32134a2253adc2dd0acdf4e44a863ed610a4f9aade58901"
+    ],
+    [
+      "canon/ramblings.md",
+      "b107d67c7c4cae537b24411163425c605e2a8b7183065fd9524a9687af8fb45c"
+    ],
+    [
+      "canon/to_my_son/TMS.pdf",
+      "9a65b9221c7b025340cc93b17edaffa6fefb5686098f8a9f13983744771663a8"
+    ],
+    [
+      "wrapper_anchor_invariants/WAI.md",
+      "89c5b5d294d10e99aa055866ad4b21a093f72ebfb2b50856b656f3a24b4457a8"
+    ]
+  ],
+  "root": "C:/Users/Owner/Desktop/PROJECTS IN MOTION/solob-wrapper/anchors",
+  "ts_utc": "2025-12-23T02:47:45.324680+00:00"
+}

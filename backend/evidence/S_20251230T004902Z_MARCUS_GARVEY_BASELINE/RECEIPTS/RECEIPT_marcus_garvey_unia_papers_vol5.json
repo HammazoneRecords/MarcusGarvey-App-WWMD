@@ -1,0 +1,14 @@
+{
+  "receipt_version": "V2",
+  "intent": "MARCUS_APP_INGESTION",
+  "anchor_id": "marcus_garvey_unia_papers_vol5",
+  "source_path": "anchors/canon/Marcus BOX/the-marcus-garvey-and-universal-negro-improvement-association-papers-volume-5-september-1922august-1924-reprint-2019nbsped-9780520342279_compress.pdf",
+  "manifest_entry_sha256": "3d9fbeba3151761c71c12c988eea99a2404b5781b04fdf5415625f704f73049c",
+  "import_session_id": "S_20251230T004902Z_MARCUS_GARVEY_BASELINE",
+  "generated_utc": "2026-02-01T22:22:01Z",
+  "pdf": {
+    "pages_total": 971,
+    "pages_inserted": 957
+  },
+  "db_delta": 957
+}

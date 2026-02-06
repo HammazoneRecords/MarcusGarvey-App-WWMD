@@ -1,0 +1,14 @@
+{
+  "receipt_version": "V2",
+  "intent": "MARCUS_APP_INGESTION",
+  "anchor_id": "marcus_garvey_teachers_notes",
+  "source_path": "anchors/canon/Marcus BOX/CC_MarcusGarvey_Teachers_Notes.pdf",
+  "manifest_entry_sha256": "f02b2df4e9ba475ba55270a78519a81d6c1b7cbee52b93fd9e2b9cd07d2b20b2",
+  "import_session_id": "S_20251230T004902Z_MARCUS_GARVEY_BASELINE",
+  "generated_utc": "2026-02-01T22:14:45Z",
+  "pdf": {
+    "pages_total": 5,
+    "pages_inserted": 0
+  },
+  "db_delta": 0
+}

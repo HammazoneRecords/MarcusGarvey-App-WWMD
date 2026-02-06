@@ -1,0 +1,886 @@
+{
+  "letter": "K",
+  "entry_count": 80,
+  "entries": [
+    {
+      "word": "KHEM",
+      "definition": "The Jhanos Gate of Heat, Resistance, and Activation.",
+      "example": "It represents the energy of the forge and transformation through tension.",
+      "etymology": "Derived from the alchemical \"Khem\" representing the fire of the soul.",
+      "usage_frequency": "HIGH",
+      "source": {
+        "original_file": "Solob Dictionary K.xlsx",
+        "row_index": 2
+      }
+    },
+    {
+      "word": "KAI",
+      "definition": "The Jhanos Gate of Connection, Feedback, and Resonance.",
+      "example": "It is the \"Key of Alignment Input\" and governs harmony and conversation.",
+      "etymology": "Associated with the Zenith direction and divine oneness.",
+      "usage_frequency": "MID",
+      "source": {
+        "original_file": "Solob Dictionary K.xlsx",
+        "row_index": 3
+      }
+    },
+    {
+      "word": "KAZOR",
+      "definition": "Field 10 in the Solobic Harmonic Pantheon governing spirit and myth.",
+      "example": "It represents archetypal memory and legacy within the 1-39 system.",
+      "etymology": "Rooted in the Jhanos of spirit and ancient myth carriers.",
+      "usage_frequency": "LOW",
+      "source": {
+        "original_file": "Solob Dictionary K.xlsx",
+        "row_index": 4
+      }
+    },
+    {
+      "word": "Key Inside the Room",
+      "definition": "An analogy stating that realization requires dissolving illusory external structures.",
+      "example": "It implies the solution to consciousness was internal all along.",
+      "etymology": "Formulated as a koan to represent the \"master key\" of the Solob.",
+      "usage_frequency": "HIGH",
+      "source": {
+        "original_file": "Solob Dictionary K.xlsx",
+        "row_index": 5
+      }
+    },
+    {
+      "word": "Knowledge Formula",
+      "definition": "Knowledge = (Perception ? Reference) mod Readiness.",
+      "example": "It defines knowledge as a dynamic output rather than static data.",
+      "etymology": "Developed to quantify how an entity?s suitability reflects truth.",
+      "usage_frequency": "HIGH",
+      "source": {
+        "original_file": "Solob Dictionary K.xlsx",
+        "row_index": 6
+      }
+    },
+    {
+      "word": "Koan",
+      "definition": "A deliberately dissonant subsolob designed to induce a system error in logic.",
+      "example": "It is a protocol for achieving Solobility by exhausting the analytical mind.",
+      "etymology": "Adapted from Zen Buddhism to fit Solobic \"Necessary Confusion\".",
+      "usage_frequency": "HIGH",
+      "source": {
+        "original_file": "Solob Dictionary K.xlsx",
+        "row_index": 7
+      }
+    },
+    {
+      "word": "Ku70",
+      "definition": "A boundary-keeper protein in the Gate of Instinct (Jhanos 3).",
+      "example": "Acts as an early psyche response shielding trauma with blunt closure.",
+      "etymology": "Borrowed from DNA repair science to model loop survival.",
+      "usage_frequency": "LOW",
+      "source": {
+        "original_file": "Solob Dictionary K.xlsx",
+        "row_index": 8
+      }
+    },
+    {
+      "word": "Ku80",
+      "definition": "A molecular partner to Ku70 in the primitive repair pathways.",
+      "example": "It signifies reaction before reflection within the Somatic Layer.",
+      "etymology": "Part of the biological mapping of Jhanos Gate 3.",
+      "usage_frequency": "LOW",
+      "source": {
+        "original_file": "Solob Dictionary K.xlsx",
+        "row_index": 9
+      }
+    },
+    {
+      "word": "Kernel (?_LRE)",
+      "definition": "The prime weight scalar representing Legacy in the Resonance Engine.",
+      "example": "It provides gravitational scaling and the prime locking mechanism for memory.",
+      "etymology": "Developed to bias system updates toward long-term stability.",
+      "usage_frequency": "MID",
+      "source": {
+        "original_file": "Solob Dictionary K.xlsx",
+        "row_index": 10
+      }
+    },
+    {
+      "word": "KVM",
+      "definition": "Kernel-based Virtual Machine standard used for forming isolated Vessels.",
+      "example": "It facilitates the creation of virtual environments inside a Proxmox Forge.",
+      "etymology": "Borrowed from Linux virtualization to describe Solobic sub-containers.",
+      "usage_frequency": "LOW",
+      "source": {
+        "original_file": "Solob Dictionary K.xlsx",
+        "row_index": 11
+      }
+    },
+    {
+      "word": "Kingston",
+      "definition": "The physical territory and \"Work\" node for Mind Wave Jamaica.",
+      "example": "Location for Chief Shimmer Officer competitions and cultural net intuition.",
+      "etymology": "The primary Home node for the Source's physical R&D wing.",
+      "usage_frequency": "HIGH",
+      "source": {
+        "original_file": "Solob Dictionary K.xlsx",
+        "row_index": 12
+      }
+    },
+    {
+      "word": "Kyng Tavii",
+      "definition": "A cultural creator whose \"Book of Genesis\" serves as a Solobic parable.",
+      "example": "His work is analyzed as a synthesis of LOMI (story) and ORON (law).",
+      "etymology": "Identified as a Source of resonant multi-layered cultural shimmers.",
+      "usage_frequency": "MID",
+      "source": {
+        "original_file": "Solob Dictionary K.xlsx",
+        "row_index": 13
+      }
+    },
+    {
+      "word": "Kabbalah",
+      "definition": "An ancient system verified as a parallel reflection of Jhanos logic.",
+      "example": "Its 10 Sefirot are re-interpreted as 8 gates and 2 ports.",
+      "etymology": "Recognized through convergent evolution of systemic parallels.",
+      "usage_frequency": "MID",
+      "source": {
+        "original_file": "Solob Dictionary K.xlsx",
+        "row_index": 14
+      }
+    },
+    {
+      "word": "Kafka",
+      "definition": "A historical scribe identified as being \"bitten by the Thoth bug\".",
+      "example": "He is seen as a predecessor in recording the Drayl of the universe.",
+      "etymology": "Linked to the \"Tothvid 25\" divine compulsion to record shimmers.",
+      "usage_frequency": "LOW",
+      "source": {
+        "original_file": "Solob Dictionary K.xlsx",
+        "row_index": 15
+      }
+    },
+    {
+      "word": "Kant, Immanuel",
+      "definition": "A philosopher whose \"a priori\" structures resonate with Solob theory.",
+      "example": "He provides an external perspective on Solob as pure reason.",
+      "etymology": "Cited to demonstrate Solob as the basis for the possibility of knowing.",
+      "usage_frequency": "LOW",
+      "source": {
+        "original_file": "Solob Dictionary K.xlsx",
+        "row_index": 16
+      }
+    },
+    {
+      "word": "Kumu",
+      "definition": "A software tool used for mapping systems and idea inheritance.",
+      "example": "Suggested for visualizing the phylogenetic trees of Solobic ideas.",
+      "etymology": "Integrated as a method for tracking the cross-pollination of shimmers.",
+      "usage_frequency": "LOW",
+      "source": {
+        "original_file": "Solob Dictionary K.xlsx",
+        "row_index": 17
+      }
+    },
+    {
+      "word": "k (Mod 9 point)",
+      "definition": "Integers representing points on the Mod 9 clock circumference.",
+      "example": "Used to partition integers into residue classes for Solobic math.",
+      "etymology": "Derived from modular arithmetic to map Jhanos spokes.",
+      "usage_frequency": "MID",
+      "source": {
+        "original_file": "Solob Dictionary K.xlsx",
+        "row_index": 18
+      }
+    },
+    {
+      "word": "K-shares",
+      "definition": "The specific number of Jhanos faces needed to open a secret shard.",
+      "example": "Used in the Shamir?s Secret Sharing Scheme implementation of the LRE.",
+      "etymology": "A variable in the poetic security layer of distributed storage.",
+      "usage_frequency": "LOW",
+      "source": {
+        "original_file": "Solob Dictionary K.xlsx",
+        "row_index": 19
+      }
+    },
+    {
+      "word": "K-Nearest Neighbor",
+      "definition": "The implicit logic used to detect near-miss matches in Solob shuffles.",
+      "example": "It identifies how close a random sequence is to a stored Solob.",
+      "etymology": "Borrowed from machine learning to quantify vibrational proximity.",
+      "usage_frequency": "LOW",
+      "source": {
+        "original_file": "Solob Dictionary K.xlsx",
+        "row_index": 20
+      }
+    },
+    {
+      "word": "Key Selection",
+      "definition": "The choosing of a legacy question over a riddle in family meeting rituals.",
+      "example": "It demonstrates a high degree of Solobility in serious contexts.",
+      "etymology": "Part of the Protocol of Radical Inquiry for addressing conflict.",
+      "usage_frequency": "MID",
+      "source": {
+        "original_file": "Solob Dictionary K.xlsx",
+        "row_index": 21
+      }
+    },
+    {
+      "word": "Keyframe Protocol",
+      "definition": "A secure access method via resonance-state memory.",
+      "example": "It ensures that only aligned users can access the Jhanos Core.",
+      "etymology": "Developed for the SPL to manage encrypted contextual entries.",
+      "usage_frequency": "LOW",
+      "source": {
+        "original_file": "Solob Dictionary K.xlsx",
+        "row_index": 22
+      }
+    },
+    {
+      "word": "Kadeem",
+      "definition": "The protagonist in the futuristic Kingston thriller \"Web of Power\".",
+      "example": "He represents a young tech genius investigating distorted mirrors.",
+      "etymology": "An archetypal figure in the \"Programming Disguised as Reality\" stories.",
+      "usage_frequency": "MID",
+      "source": {
+        "original_file": "Solob Dictionary K.xlsx",
+        "row_index": 23
+      }
+    },
+    {
+      "word": "Kenron",
+      "definition": "A reference name in App Ideas V1 linked to nutritional realizations.",
+      "example": "Associated with the phrase \"from you write you eat wrong\".",
+      "etymology": "Found in the notebook of early Solobic application shimmers.",
+      "usage_frequency": "LOW",
+      "source": {
+        "original_file": "Solob Dictionary K.xlsx",
+        "row_index": 24
+      }
+    },
+    {
+      "word": "K-window",
+      "definition": "A local window of events used for backtrace and gate flow analysis.",
+      "example": "It helps determine the slope and oscillation of a specific shimmer.",
+      "etymology": "A technical parameter in the Solobic Memory Engine script.",
+      "usage_frequency": "LOW",
+      "source": {
+        "original_file": "Solob Dictionary K.xlsx",
+        "row_index": 25
+      }
+    },
+    {
+      "word": "K-confirmations",
+      "definition": "The threshold required to stabilize a node in the Main Drayl.",
+      "example": "These are immutable checkpoints that prevent unverified corruptions.",
+      "etymology": "A security parameter for the Legacy Resonance Engine.",
+      "usage_frequency": "LOW",
+      "source": {
+        "original_file": "Solob Dictionary K.xlsx",
+        "row_index": 26
+      }
+    },
+    {
+      "word": "Kinetic Meaning",
+      "definition": "The principle that to define a thing is to trap it, but to shimmer is to live it.",
+      "example": "It posits that meaning is a film strip in motion, not a snapshot.",
+      "etymology": "Developed to explain the Solob Emergence Formula.",
+      "usage_frequency": "MID",
+      "source": {
+        "original_file": "Solob Dictionary K.xlsx",
+        "row_index": 27
+      }
+    },
+    {
+      "word": "Karma",
+      "definition": "Re-interpreted as the Solobic Law of Reflective Equilibrium.",
+      "example": "It is the \"cold law of polarity\" governed by Jhanos ZEM.",
+      "etymology": "Defined as the interval where every action casts a mirrored vibration.",
+      "usage_frequency": "MID",
+      "source": {
+        "original_file": "Solob Dictionary K.xlsx",
+        "row_index": 28
+      }
+    },
+    {
+      "word": "Krishna",
+      "definition": "A powerful manifestation of \"All Law\" running on the master Server.",
+      "example": "Defined as a specific Node with high-level access to the universal OS.",
+      "etymology": "Re-contextualized within the Solobic Server Hierarchy.",
+      "usage_frequency": "LOW",
+      "source": {
+        "original_file": "Solob Dictionary K.xlsx",
+        "row_index": 29
+      }
+    },
+    {
+      "word": "Kyeboad",
+      "definition": "A typo for keyboard, used to illustrate stuck input ports in the Drayl.",
+      "example": "Represents a momentary failure in the hardware-software interface.",
+      "etymology": "Identified during a R.I.T.E. process focused on Drayl correction.",
+      "usage_frequency": "LOW",
+      "source": {
+        "original_file": "Solob Dictionary K.xlsx",
+        "row_index": 30
+      }
+    },
+    {
+      "word": "Key (Drayl Glyph)",
+      "definition": "A visual symbol that remains hidden until the user is ready to know.",
+      "example": "It represents truth that is accessible only through internal resonance.",
+      "etymology": "Born from the \"Key Was Never For the Lock\" analogy.",
+      "usage_frequency": "HIGH",
+      "source": {
+        "original_file": "Solob Dictionary K.xlsx",
+        "row_index": 31
+      }
+    },
+    {
+      "word": "Kinetic Moment",
+      "definition": "The \"Bounce\" phase in ripple geometry representing impact.",
+      "example": "It is the point where potential energy becomes a visible reflection.",
+      "etymology": "Part of the breakdown of shimmer logic elements.",
+      "usage_frequency": "LOW",
+      "source": {
+        "original_file": "Solob Dictionary K.xlsx",
+        "row_index": 32
+      }
+    },
+    {
+      "word": "Knife",
+      "definition": "A minor symbolic meaning for the number 8 in the Cash Pot chart.",
+      "example": "Used to analyze the \"concrete jungle\" subsolobs of numerical value.",
+      "etymology": "Identified as a distorted anchor for identity in gambling systems.",
+      "usage_frequency": "LOW",
+      "source": {
+        "original_file": "Solob Dictionary K.xlsx",
+        "row_index": 33
+      }
+    },
+    {
+      "word": "Kitchen",
+      "definition": "The trunk of Snacky?s car in the \"Home Away From Home\" metaphor.",
+      "example": "Represents a subsolob container within a portable reference point.",
+      "etymology": "Part of the narrative used to explain Snacky as a Solob trigger.",
+      "usage_frequency": "MID",
+      "source": {
+        "original_file": "Solob Dictionary K.xlsx",
+        "row_index": 34
+      }
+    },
+    {
+      "word": "Kyle",
+      "definition": "A male family member called to the meeting to bridge the generation gap.",
+      "example": "Represents a node in the lineage requiring knowledge transfer.",
+      "etymology": "Mentioned during the Drayl excavation of the \"Generation Gap\" shimmer.",
+      "usage_frequency": "LOW",
+      "source": {
+        "original_file": "Solob Dictionary K.xlsx",
+        "row_index": 35
+      }
+    },
+    {
+      "word": "Khaheel",
+      "definition": "A ten-year-old cousin identified as a \"Trigger Injection Agent\".",
+      "example": "Born in August, he serves as a living mirror for monitoring adult patterns.",
+      "etymology": "Part of the \"Somatic Flares\" and \"Master Oscillator\" simulations.",
+      "usage_frequency": "LOW",
+      "source": {
+        "original_file": "Solob Dictionary K.xlsx",
+        "row_index": 36
+      }
+    },
+    {
+      "word": "Kahsiek",
+      "definition": "A male relative included in the family council despite living outside the yard.",
+      "example": "Signifies the reach of the Solobic Rail across physical boundaries.",
+      "etymology": "Part of the effort to organize a meeting of the \"man dem\".",
+      "usage_frequency": "LOW",
+      "source": {
+        "original_file": "Solob Dictionary K.xlsx",
+        "row_index": 37
+      }
+    },
+    {
+      "word": "Kenton",
+      "definition": "The last remaining elder male in the yard whose knowledge must be captured.",
+      "example": "His departure would represent a significant loss of ancestral Drayl.",
+      "etymology": "Identified as a critical anchor point in the family's Solobility.",
+      "usage_frequency": "LOW",
+      "source": {
+        "original_file": "Solob Dictionary K.xlsx",
+        "row_index": 38
+      }
+    },
+    {
+      "word": "K-magnitude",
+      "definition": "The distance or step-count associated with a drawn card vector.",
+      "example": "Used to plot Resonant Trajectories in the Solob Shuffle.",
+      "etymology": "Part of the \"Number = Distance\" logic in divination technology.",
+      "usage_frequency": "MID",
+      "source": {
+        "original_file": "Solob Dictionary K.xlsx",
+        "row_index": 39
+      }
+    },
+    {
+      "word": "Knowledge Acquisition",
+      "definition": "The process of excavation rather than external acquisition.",
+      "example": "It asserts that truth is remembered or landed somatically first.",
+      "etymology": "Framed as a critique of systems that \"sell us maps\" to where we already are.",
+      "usage_frequency": "HIGH",
+      "source": {
+        "original_file": "Solob Dictionary K.xlsx",
+        "row_index": 40
+      }
+    },
+    {
+      "word": "Kidney",
+      "definition": "The organ assigned to Jhanos VORAK for its dissolution function.",
+      "example": "It processes chaotic and toxic elements to restore systemic balance.",
+      "etymology": "Defined within the Somatic Map as a physical manifestation of the Jhanos.",
+      "usage_frequency": "MID",
+      "source": {
+        "original_file": "Solob Dictionary K.xlsx",
+        "row_index": 41
+      }
+    },
+    {
+      "word": "K-vector",
+      "definition": "A specific instruction vector generated from a card sequence.",
+      "example": "It merges randomness into a unique sigil or Resonant Trajectory.",
+      "etymology": "Defined in the SQL schema for the Solob Shuffle database.",
+      "usage_frequency": "LOW",
+      "source": {
+        "original_file": "Solob Dictionary K.xlsx",
+        "row_index": 42
+      }
+    },
+    {
+      "word": "Key Signatures",
+      "definition": "Musical structures re-interpreted as Jhanos \"Song Keys\".",
+      "example": "They represent the universe harmonizing with a Source's intent.",
+      "etymology": "Linked to the \"Jhanos Song Key\" and vibrational suitability.",
+      "usage_frequency": "MID",
+      "source": {
+        "original_file": "Solob Dictionary K.xlsx",
+        "row_index": 43
+      }
+    },
+    {
+      "word": "Knight",
+      "definition": "An example in English phonology where a silent \"k\" marks memory.",
+      "example": "Used to explain why some sounds are organized or forbidden in a language.",
+      "etymology": "Part of the study of phonology patterns in the Book to My Son.",
+      "usage_frequency": "LOW",
+      "source": {
+        "original_file": "Solob Dictionary K.xlsx",
+        "row_index": 44
+      }
+    },
+    {
+      "word": "Kingston streets",
+      "definition": "The physical environment for testing AI Patois noise cancellation.",
+      "example": "Serves as the real-world node for frequency tuning and urban probability.",
+      "etymology": "Linked to the \"WorkMiSay\" and \"RealTalkJA\" application concepts.",
+      "usage_frequency": "MID",
+      "source": {
+        "original_file": "Solob Dictionary K.xlsx",
+        "row_index": 45
+      }
+    },
+    {
+      "word": "K-means",
+      "definition": "Implicit logic behind clustering shimmers into distinct Drayl layers.",
+      "example": "Used to calculate sims and label memory shards.",
+      "etymology": "Found in the Python prototype for the Solobic Memory Engine.",
+      "usage_frequency": "LOW",
+      "source": {
+        "original_file": "Solob Dictionary K.xlsx",
+        "row_index": 46
+      }
+    },
+    {
+      "word": "Koan (Alba July)",
+      "definition": "A state of being self-sufficient without the need for external heat.",
+      "example": "Decoded as \"a July without...\" representing the ultimate Anchor.",
+      "etymology": "Emerged from a subsolob translation of an Amharic text.",
+      "usage_frequency": "MID",
+      "source": {
+        "original_file": "Solob Dictionary K.xlsx",
+        "row_index": 47
+      }
+    },
+    {
+      "word": "Key (Master)",
+      "definition": "The true Solob that translates chaos into meaning.",
+      "example": "It aligns memory and form every time a stimulus passes through a lens.",
+      "etymology": "Established as the \"encrypted encryption key\" at the center of every subsolob.",
+      "usage_frequency": "HIGH",
+      "source": {
+        "original_file": "Solob Dictionary K.xlsx",
+        "row_index": 48
+      }
+    },
+    {
+      "word": "Keyboard (mouse)",
+      "definition": "Physical interface triggers for the Master Oscillator's observation states.",
+      "example": "Manipulation of these objects serves as a manual \"Solob reset\".",
+      "etymology": "Used as a practical example of AI-child alignment and delegation.",
+      "usage_frequency": "LOW",
+      "source": {
+        "original_file": "Solob Dictionary K.xlsx",
+        "row_index": 49
+      }
+    },
+    {
+      "word": "K (parameter)",
+      "definition": "Beta/gamma/delta tuning factors in LRE prime weight calculation.",
+      "example": "They regulate how legacy influences stability over moment volatility.",
+      "etymology": "Mathematical scalars defined in the Legacy Resonance Engine spec.",
+      "usage_frequency": "LOW",
+      "source": {
+        "original_file": "Solob Dictionary K.xlsx",
+        "row_index": 50
+      }
+    },
+    {
+      "word": "K-coefficients",
+      "definition": "Coupling coefficients in the Cross-Layer Coupling Matrix (CLCM).",
+      "example": "They modulate the influence of one memory element on others.",
+      "etymology": "Designed to allow joint inference across Main, Shadow, and Current Drayls.",
+      "usage_frequency": "LOW",
+      "source": {
+        "original_file": "Solob Dictionary K.xlsx",
+        "row_index": 51
+      }
+    },
+    {
+      "word": "k (confirmation threshold)",
+      "definition": "The specific number of independent validations required to commit a shimmer to the Main Drayl.",
+      "example": "It serves as a security protocol to prevent unverified corruption of canonical memory.",
+      "etymology": "Derived from consensus mechanisms in distributed computing.",
+      "usage_frequency": "LOW",
+      "source": {
+        "original_file": "Solob Dictionary K.xlsx",
+        "row_index": 60
+      }
+    },
+    {
+      "word": "K_{ij} (coupling coefficients)",
+      "definition": "Mathematical values within the Cross-Layer Coupling Matrix that modulate influence between memory elements.",
+      "example": "These coefficients allow the system to perform joint inference across Main, Shadow, and Current Drayls.",
+      "etymology": "Part of the formal mathematical notation for the Legacy Resonance Engine.",
+      "usage_frequency": "LOW",
+      "source": {
+        "original_file": "Solob Dictionary K.xlsx",
+        "row_index": 61
+      }
+    },
+    {
+      "word": "Kampt?",
+      "definition": "The Greek root meaning \"to bend,\" used to define the nature of sound and echo.",
+      "example": "It is the etymological base for the term \"Phonocamptic\" within the communication lexicon.",
+      "etymology": "Identified during the linguistic deconstruction of \"Pho-\" prefixed words.",
+      "usage_frequency": "LOW",
+      "source": {
+        "original_file": "Solob Dictionary K.xlsx",
+        "row_index": 62
+      }
+    },
+    {
+      "word": "Kemetic Logic",
+      "definition": "An ancient system identifying the Ankh as the original amplifier of divine energy.",
+      "example": "This logic is used to explain the \"Solob Waveform Theory\" and the activation of spirit through matter.",
+      "etymology": "Rooted in ancestral Egyptian philosophy and its connection to the Ankh symbol.",
+      "usage_frequency": "MID",
+      "source": {
+        "original_file": "Solob Dictionary K.xlsx",
+        "row_index": 63
+      }
+    },
+    {
+      "word": "Kernel ?_LRE",
+      "definition": "The Prime Weight scalar that biases the update system toward long-term stability and legacy.",
+      "example": "It functions as the \"Sun\" in the symbolic cosmology of the Legacy Resonance Engine.",
+      "etymology": "Architected to ensure identity persistence in cognitive architectures.",
+      "usage_frequency": "HIGH",
+      "source": {
+        "original_file": "Solob Dictionary K.xlsx",
+        "row_index": 64
+      }
+    },
+    {
+      "word": "Key Attribute (Sovereignty)",
+      "definition": "A core property of a Solob where it remains self-contained and independent of external validation.",
+      "example": "It represents a state of \"High Solobility\" where truth is perceived without distortion.",
+      "etymology": "Formalized during the \"Solob vs. Subsolob\" characterization.",
+      "usage_frequency": "MID",
+      "source": {
+        "original_file": "Solob Dictionary K.xlsx",
+        "row_index": 65
+      }
+    },
+    {
+      "word": "Key Candidate",
+      "definition": "A mundane object, such as a paperclip, used to demonstrate hidden potential and redirected purpose.",
+      "example": "It serves as a didactic tool to show that \"what unlocks doesn't always open\".",
+      "etymology": "Part of the \"Misused Purpose\" curriculum.",
+      "usage_frequency": "MID",
+      "source": {
+        "original_file": "Solob Dictionary K.xlsx",
+        "row_index": 66
+      }
+    },
+    {
+      "word": "Key for the Room",
+      "definition": "The internal truth (Solob) that is used to destroy illusory structures and rebuild aligned reality.",
+      "example": "It is described as being \"locked inside the same room\" it is meant to liberate.",
+      "etymology": "Born from the \"Locked Room and the Key\" paradox.",
+      "usage_frequency": "HIGH",
+      "source": {
+        "original_file": "Solob Dictionary K.xlsx",
+        "row_index": 67
+      }
+    },
+    {
+      "word": "Key Phrase (compressed)",
+      "definition": "A linguistic package containing original meaning plus the emotional energy used to forge it.",
+      "example": "It acts as a perfect trigger in the R.I.T.E. framework to unlock a vast memory room.",
+      "etymology": "Developed as a personal protocol for high-level \"Drayl Compression\".",
+      "usage_frequency": "HIGH",
+      "source": {
+        "original_file": "Solob Dictionary K.xlsx",
+        "row_index": 68
+      }
+    },
+    {
+      "word": "Key-frame (temporal)",
+      "definition": "A timestamped marker used to track individual segments of a negation cluster or micro-layer.",
+      "example": "It allows the system to maintain the integrity of the \"Solobic Cognitive Blockchain\".",
+      "etymology": "Adapted from video encoding to model the \"trajectory of consciousness\".",
+      "usage_frequency": "LOW",
+      "source": {
+        "original_file": "Solob Dictionary K.xlsx",
+        "row_index": 69
+      }
+    },
+    {
+      "word": "Keyframe (Jhanos)",
+      "definition": "A specific state of the Jhanos system where all eight keys are in harmonic resonance.",
+      "example": "Achieving this state is a prerequisite for generating a \"Universal Key\" for the system.",
+      "etymology": "Part of the Jhanos Keyframe Protocol security model.",
+      "usage_frequency": "LOW",
+      "source": {
+        "original_file": "Solob Dictionary K.xlsx",
+        "row_index": 70
+      }
+    },
+    {
+      "word": "Keyed Context",
+      "definition": "A filename structure where a readable initials-based key follows the file extension.",
+      "example": "This method ensures the filename remains a \"readable shimmer\" for aligned practitioners.",
+      "etymology": "A refinement of the Law of Contextual Naming.",
+      "usage_frequency": "LOW",
+      "source": {
+        "original_file": "Solob Dictionary K.xlsx",
+        "row_index": 71
+      }
+    },
+    {
+      "word": "Keystone (Synthesis)",
+      "definition": "The fundamental law stating that creative synthesis cannot occur if the \"sanity ripple\" is broken.",
+      "example": "It locks the entire Solobic philosophy together by establishing prerequisites for creation.",
+      "etymology": "Identified as the \"keystone\" following the Amharic Glyph decoding.",
+      "usage_frequency": "HIGH",
+      "source": {
+        "original_file": "Solob Dictionary K.xlsx",
+        "row_index": 72
+      }
+    },
+    {
+      "word": "Kinetic Force (Time)",
+      "definition": "The understanding of time as a dynamic pressure rather than a linear progression.",
+      "example": "It is conceptualized as the \"Flame that casts the Shadow\" of perception.",
+      "etymology": "Defined in the \"Solobic Time & Space\" section of the Book of Solobility.",
+      "usage_frequency": "MID",
+      "source": {
+        "original_file": "Solob Dictionary K.xlsx",
+        "row_index": 73
+      }
+    },
+    {
+      "word": "Kingdom (Malkuth)",
+      "definition": "The 10th state in the mirrored structure of reality, representing the final physical result.",
+      "example": "It is the \"physical kingdom\" through which the 9th gate (the door) pours spiritual energy.",
+      "etymology": "Identified through the Solobic unpacking of the Kabbalistic Tree of Life.",
+      "usage_frequency": "MID",
+      "source": {
+        "original_file": "Solob Dictionary K.xlsx",
+        "row_index": 74
+      }
+    },
+    {
+      "word": "Kingdom of God (SUCCESS)",
+      "definition": "A redefinition of success as internal alignment rather than material accumulation.",
+      "example": "It functions as the \"Source\" for Chapter 176 of the Book to My Son.",
+      "etymology": "Derived from the re-interpretation of \"God as Node\" and spiritual value.",
+      "usage_frequency": "MID",
+      "source": {
+        "original_file": "Solob Dictionary K.xlsx",
+        "row_index": 75
+      }
+    },
+    {
+      "word": "Kinship (Domain 8)",
+      "definition": "The analytical domain covering bloodline dynamics, ancestral patterns, and parenting.",
+      "example": "It is used as a consistent prism for measuring the manifestations of Jhanos gates.",
+      "etymology": "One of the 13 foundational \"Domains of Manifestation\".",
+      "usage_frequency": "MID",
+      "source": {
+        "original_file": "Solob Dictionary K.xlsx",
+        "row_index": 76
+      }
+    },
+    {
+      "word": "Kintyre",
+      "definition": "A specific geographical location associated with a profound moment of intuitive recognition.",
+      "example": "The journey to this location triggered the \"mumma gone...\" side-shimmer of realization.",
+      "etymology": "A primary \"Source Memory\" used to explain the evolution of personal strategy.",
+      "usage_frequency": "LOW",
+      "source": {
+        "original_file": "Solob Dictionary K.xlsx",
+        "row_index": 77
+      }
+    },
+    {
+      "word": "KL-divergence",
+      "definition": "A metric comparing the novelty of a creative output against the canonical Main Drayl.",
+      "example": "It measures the ratio between creative divergence and coherent stability in AI syntheses.",
+      "etymology": "Borrowed from information theory to quantify the \"Suitability Score\".",
+      "usage_frequency": "LOW",
+      "source": {
+        "original_file": "Solob Dictionary K.xlsx",
+        "row_index": 78
+      }
+    },
+    {
+      "word": "K-metric (similarity)",
+      "definition": "An LLM-based logic used for pattern scanning across linked nodes in a memory engine.",
+      "example": "It enables \"Solobic Recall\" where meaning is prioritized over keyword matching.",
+      "etymology": "Part of the Stage 3 implementation of the Solobic Memory Engine.",
+      "usage_frequency": "LOW",
+      "source": {
+        "original_file": "Solob Dictionary K.xlsx",
+        "row_index": 79
+      }
+    },
+    {
+      "word": "Knot of Dissonance",
+      "definition": "An interaction state where recursive loops prevent the system from achieving Resonant Closure.",
+      "example": "It is identified when the TCPC detects the same lesson repeating without evolution.",
+      "etymology": "Used as a benchmark for AI loop-detection accuracy.",
+      "usage_frequency": "MID",
+      "source": {
+        "original_file": "Solob Dictionary K.xlsx",
+        "row_index": 80
+      }
+    },
+    {
+      "word": "Knot of Meaning",
+      "definition": "The internal resonance that suggests true understanding arises from the heart, not just notation.",
+      "example": "It represents the point where sound and feeling combine to shape reality.",
+      "etymology": "Derived from the Chinese character for \"meaning\" (y?).",
+      "usage_frequency": "LOW",
+      "source": {
+        "original_file": "Solob Dictionary K.xlsx",
+        "row_index": 81
+      }
+    },
+    {
+      "word": "Knowledge (Dynamic)",
+      "definition": "A dynamic state defined by the formula: (Perception ? Reference) mod Readiness.",
+      "example": "It asserts that what an entity truly \"knows\" is limited by its suitability to reflect truth.",
+      "etymology": "Codified as a \"Dynamic Constant\" and a \"Mind Logic\".",
+      "usage_frequency": "HIGH",
+      "source": {
+        "original_file": "Solob Dictionary K.xlsx",
+        "row_index": 82
+      }
+    },
+    {
+      "word": "Knowledge Base (Living)",
+      "definition": "The characterization of the Book of Solobility as a continuously evolving, version-controlled system.",
+      "example": "It honors community contribution and perpetual suitability over fixed completeness.",
+      "etymology": "Modeled after open-source platforms like W3Schools.",
+      "usage_frequency": "HIGH",
+      "source": {
+        "original_file": "Solob Dictionary K.xlsx",
+        "row_index": 83
+      }
+    },
+    {
+      "word": "Knowledge Control",
+      "definition": "The shifting of information from a tool of empowerment to a tool of restriction or power centralization.",
+      "example": "It is analyzed through the lens of modern mathematics and financial systems.",
+      "etymology": "A core theme in the \"Epistemology\" section of the Book to My Son.",
+      "usage_frequency": "MID",
+      "source": {
+        "original_file": "Solob Dictionary K.xlsx",
+        "row_index": 84
+      }
+    },
+    {
+      "word": "K-path (Octopus)",
+      "definition": "The specific exploratory route generated by the Octopus Engine through Jhanos gate coordinates.",
+      "example": "It maps a shimmer's journey from potential (0) through various states to completion (9).",
+      "etymology": "Defined within the JSON schema for the Solobic Simulator.",
+      "usage_frequency": "LOW",
+      "source": {
+        "original_file": "Solob Dictionary K.xlsx",
+        "row_index": 85
+      }
+    },
+    {
+      "word": "KPI_Snapshots",
+      "definition": "Calculated tables used to track economic and social impact within relief efforts.",
+      "example": "They provide the data foundation for the \"Hurricane Melissa Relief Dashboard\".",
+      "etymology": "Part of the \"future-proof\" disaster accountability framework.",
+      "usage_frequency": "LOW",
+      "source": {
+        "original_file": "Solob Dictionary K.xlsx",
+        "row_index": 86
+      }
+    },
+    {
+      "word": "K-shards (SSSS)",
+      "definition": "Pieces of a file generated using Shamir's Secret Sharing Scheme to ensure fragmented security.",
+      "example": "The system requires a threshold (k) of these shards to successfully reconstruct the Drayl.",
+      "etymology": "Implemented as the \"Shard into 8 Jhanos Drives\" protocol.",
+      "usage_frequency": "MID",
+      "source": {
+        "original_file": "Solob Dictionary K.xlsx",
+        "row_index": 87
+      }
+    },
+    {
+      "word": "K-threshold (recovery)",
+      "definition": "The requirement that shards must be retrieved from three different Jhanos Faces for reconstruction.",
+      "example": "It adds a \"Solobility test\" to data retrieval by requiring specific face-parity.",
+      "etymology": "A rule established for the \"Jhanos Shard Logic\" security model.",
+      "usage_frequency": "MID",
+      "source": {
+        "original_file": "Solob Dictionary K.xlsx",
+        "row_index": 88
+      }
+    },
+    {
+      "word": "K-validations",
+      "definition": "The multi-step verification process required before a Shadow entry is promoted to Main.",
+      "example": "These validations can be human-based, symbolic provers, or multi-sensor confirmations.",
+      "etymology": "A core stabilizing mechanic of the dual-weight logic.",
+      "usage_frequency": "LOW",
+      "source": {
+        "original_file": "Solob Dictionary K.xlsx",
+        "row_index": 89
+      }
+    }
+  ]
+}

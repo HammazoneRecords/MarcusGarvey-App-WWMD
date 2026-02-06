@@ -1,0 +1,12 @@
+{
+  "query": "What is the meaning of life?",
+  "mode": "garvey_lens",
+  "answer": "ERROR: Missing API Key",
+  "citations": [],
+  "meta": {
+    "chunks_found": 15,
+    "citation_search_space": 15,
+    "timestamp": "2026-01-21T00:53:04.678175-05:00",
+    "latency_ms": 24
+  }
+}

@@ -1,0 +1,12 @@
+[
+    {
+        "page": 1,
+        "title": "Test BOS Entry 1",
+        "content": "Sample content from Book of Solobility"
+    },
+    {
+        "page": 2,
+        "title": "Test BOS Entry 2",
+        "content": "Another sample entry"
+    }
+]

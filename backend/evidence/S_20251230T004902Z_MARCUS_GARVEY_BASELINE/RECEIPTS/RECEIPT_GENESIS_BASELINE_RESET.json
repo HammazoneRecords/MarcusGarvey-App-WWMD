@@ -1,0 +1,15 @@
+{
+  "receipt_version": "V2",
+  "intent": "GENESIS_BASELINE_RESET",
+  "generated_utc": "2025-12-30T00:49:02Z",
+  "import_session_id": "S_20251230T004902Z_MARCUS_GARVEY_BASELINE",
+  "action": "database_reset",
+  "db": {
+    "path": "data/memory.db",
+    "chunks_before": 3446,
+    "chunks_after": 0,
+    "anchors_before": 31,
+    "anchors_after": 0
+  },
+  "purpose": "Clean baseline for Marcus Garvey App corpus ingestion"
+}

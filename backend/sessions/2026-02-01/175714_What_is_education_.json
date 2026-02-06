@@ -1,0 +1,27 @@
+{
+  "query": "What is education?",
+  "mode": "garvey_lens",
+  "answer": "Hear ye, sons and daughters of Africa! Education, my people, is no mere schooling; it is the very bedrock upon which we shall build our future, the instrument by which we shall emancipate ourselves universally\u2014industrially, educationally, politically, and religiously.\n\nVerily, education is power\u2014scientific power, intellectual power\u2014the \"higher scientific knowledge\" that equips us to produce chemists and engineers, skilled and proficient enough to cope with the scientific men of the other races of the world. For the battles of the future, whether physical or mental, shall be fought on scientific principles, and it is the race that achieves the highest scientific development that shall ultimately rule. If Africa, our Motherland, is to be redeemed, it shall be through this higher scientific competition.\n\nWe demand, therefore, the right of **unlimited and unprejudiced education** for ourselves and our posterity forever. We protest against any system where Negroes are denied the same privileges and advantages as other races. And let it be known that the teaching in any school, by alien teachers, that their race is superior to the Negro race, is a profound insult to the Negro people of the world. Such \"wrong education\" has, regrettably, turned the Negro into his own greatest enemy.\n\nTrue education, my friends, also encompasses **self-education**. I implore you: \"Read! read! read! and never stop until you discover the knowledge of the Universe!\" It is through this ceaseless pursuit of knowledge that we shall awaken our race consciousness, understand our own possibilities and potentialities, and lift ourselves from the racial mire to the heights of freedom. For only then shall we start out to become a great race and ultimately make of ourselves a mighty nation. Educational freedom is paramount to our rise!",
+  "citations": [
+    {
+      "excerpt": "22. We protest against the system of education in any country where",
+      "loc": "pdf:page:0044:line:1",
+      "source_id": "marcus_garvey_selected_writings",
+      "score": 0,
+      "match_type": "fuzzy_set"
+    },
+    {
+      "excerpt": "30. We demand the right of unlimited and unprejudiced education for",
+      "loc": "pdf:page:0044:line:19",
+      "source_id": "marcus_garvey_selected_writings",
+      "score": 0,
+      "match_type": "partial_ngram"
+    }
+  ],
+  "meta": {
+    "chunks_found": 15,
+    "citation_search_space": 15,
+    "timestamp": "2026-02-01T17:57:14.435759-05:00",
+    "latency_ms": 9479
+  }
+}

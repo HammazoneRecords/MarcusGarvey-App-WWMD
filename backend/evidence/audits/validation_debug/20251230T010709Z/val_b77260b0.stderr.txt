@@ -1,0 +1,11 @@
+
+[INVALID] Receipt has schema violations:
+
+  1. Missing required field: anchor_id
+  2. Missing required field: source_path
+  3. Missing required field: manifest_entry_sha256
+  4. Missing required field: strict_rules
+  5. Missing required field: db.delta
+Total errors: 5
+
+See docs/RECEIPT_SCHEMA_V2.md for specification.

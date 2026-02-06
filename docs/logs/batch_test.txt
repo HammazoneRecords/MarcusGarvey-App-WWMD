@@ -1,0 +1,12 @@
+Searching ARK for: 'What is education?'...
+Found 15 relevant chunks.
+Consulting Gemini...
+  Attempting model: gemini-2.5-flash...
+
+============================================================
+WWMD ANSWER
+============================================================
+
+Marcus Garvey was an advocate of self-education, telling an audience in 1937 to "Read! read! read! and never stop until you discover the knowledge of the Universe" [Source: marcus_garvey_selected_writings, Locator: pdf:page:0007].
+
+============================================================

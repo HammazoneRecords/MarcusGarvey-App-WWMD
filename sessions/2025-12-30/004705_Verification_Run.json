@@ -1,0 +1,12 @@
+{
+  "query": "Verification Run",
+  "mode": "garvey_lens",
+  "answer": "ERROR: HTTP 429",
+  "citations": [],
+  "meta": {
+    "chunks_found": 15,
+    "citation_search_space": 493,
+    "timestamp": "2025-12-30T00:47:05.512449-05:00",
+    "latency_ms": 601
+  }
+}

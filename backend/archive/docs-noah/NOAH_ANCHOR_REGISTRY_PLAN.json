@@ -1,0 +1,281 @@
+[
+    {
+        "anchor_id": "lexicon_A",
+        "anchor_type": "lexicon",
+        "title": "Lexical Canon Anchors ? A",
+        "source_path": "anchors/canon/definitions/Lexical Canon Anchors/A/A.json",
+        "source_format": "json",
+        "status": "canon",
+        "provenance": "Canonical lexicon JSON (A). Treated as read-only anchor; referenced by anchors_manifest."
+    },
+    {
+        "anchor_id": "lexicon_B",
+        "anchor_type": "lexicon",
+        "title": "Lexical Canon Anchors ? B",
+        "source_path": "anchors/canon/definitions/Lexical Canon Anchors/B/B.json",
+        "source_format": "json",
+        "status": "canon",
+        "provenance": "Canonical lexicon JSON (B). Treated as read-only anchor; referenced by anchors_manifest."
+    },
+    {
+        "anchor_id": "lexicon_C",
+        "anchor_type": "lexicon",
+        "title": "Lexical Canon Anchors ? C",
+        "source_path": "anchors/canon/definitions/Lexical Canon Anchors/C/C.json",
+        "source_format": "json",
+        "status": "canon",
+        "provenance": "Canonical lexicon JSON (C). Treated as read-only anchor; referenced by anchors_manifest."
+    },
+    {
+        "anchor_id": "lexicon_D",
+        "anchor_type": "lexicon",
+        "title": "Lexical Canon Anchors ? D",
+        "source_path": "anchors/canon/definitions/Lexical Canon Anchors/D/D.json",
+        "source_format": "json",
+        "status": "canon",
+        "provenance": "Canonical lexicon JSON (D). Treated as read-only anchor; referenced by anchors_manifest."
+    },
+    {
+        "anchor_id": "lexicon_E",
+        "anchor_type": "lexicon",
+        "title": "Lexical Canon Anchors ? E",
+        "source_path": "anchors/canon/definitions/Lexical Canon Anchors/E/E.json",
+        "source_format": "json",
+        "status": "canon",
+        "provenance": "Canonical lexicon JSON (E). Treated as read-only anchor; referenced by anchors_manifest."
+    },
+    {
+        "anchor_id": "lexicon_F",
+        "anchor_type": "lexicon",
+        "title": "Lexical Canon Anchors ? F",
+        "source_path": "anchors/canon/definitions/Lexical Canon Anchors/F/F.json",
+        "source_format": "json",
+        "status": "canon",
+        "provenance": "Canonical lexicon JSON (F). Treated as read-only anchor; referenced by anchors_manifest."
+    },
+    {
+        "anchor_id": "lexicon_G",
+        "anchor_type": "lexicon",
+        "title": "Lexical Canon Anchors ? G",
+        "source_path": "anchors/canon/definitions/Lexical Canon Anchors/G/G.json",
+        "source_format": "json",
+        "status": "canon",
+        "provenance": "Canonical lexicon JSON (G). Treated as read-only anchor; referenced by anchors_manifest."
+    },
+    {
+        "anchor_id": "lexicon_H",
+        "anchor_type": "lexicon",
+        "title": "Lexical Canon Anchors ? H",
+        "source_path": "anchors/canon/definitions/Lexical Canon Anchors/H/H.json",
+        "source_format": "json",
+        "status": "canon",
+        "provenance": "Canonical lexicon JSON (H). Treated as read-only anchor; referenced by anchors_manifest."
+    },
+    {
+        "anchor_id": "lexicon_I",
+        "anchor_type": "lexicon",
+        "title": "Lexical Canon Anchors ? I",
+        "source_path": "anchors/canon/definitions/Lexical Canon Anchors/I/I.json",
+        "source_format": "json",
+        "status": "canon",
+        "provenance": "Canonical lexicon JSON (I). Treated as read-only anchor; referenced by anchors_manifest."
+    },
+    {
+        "anchor_id": "lexicon_J",
+        "anchor_type": "lexicon",
+        "title": "Lexical Canon Anchors ? J",
+        "source_path": "anchors/canon/definitions/Lexical Canon Anchors/J/J.json",
+        "source_format": "json",
+        "status": "canon",
+        "provenance": "Canonical lexicon JSON (J). Treated as read-only anchor; referenced by anchors_manifest."
+    },
+    {
+        "anchor_id": "lexicon_K",
+        "anchor_type": "lexicon",
+        "title": "Lexical Canon Anchors ? K",
+        "source_path": "anchors/canon/definitions/Lexical Canon Anchors/K/K.json",
+        "source_format": "json",
+        "status": "canon",
+        "provenance": "Canonical lexicon JSON (K). Treated as read-only anchor; referenced by anchors_manifest."
+    },
+    {
+        "anchor_id": "lexicon_L",
+        "anchor_type": "lexicon",
+        "title": "Lexical Canon Anchors ? L",
+        "source_path": "anchors/canon/definitions/Lexical Canon Anchors/L/L.json",
+        "source_format": "json",
+        "status": "canon",
+        "provenance": "Canonical lexicon JSON (L). Treated as read-only anchor; referenced by anchors_manifest."
+    },
+    {
+        "anchor_id": "lexicon_M",
+        "anchor_type": "lexicon",
+        "title": "Lexical Canon Anchors ? M",
+        "source_path": "anchors/canon/definitions/Lexical Canon Anchors/M/M.json",
+        "source_format": "json",
+        "status": "canon",
+        "provenance": "Canonical lexicon JSON (M). Treated as read-only anchor; referenced by anchors_manifest."
+    },
+    {
+        "anchor_id": "lexicon_N",
+        "anchor_type": "lexicon",
+        "title": "Lexical Canon Anchors ? N",
+        "source_path": "anchors/canon/definitions/Lexical Canon Anchors/N/N.json",
+        "source_format": "json",
+        "status": "canon",
+        "provenance": "Canonical lexicon JSON (N). Treated as read-only anchor; referenced by anchors_manifest."
+    },
+    {
+        "anchor_id": "lexicon_O",
+        "anchor_type": "lexicon",
+        "title": "Lexical Canon Anchors ? O",
+        "source_path": "anchors/canon/definitions/Lexical Canon Anchors/O/O.json",
+        "source_format": "json",
+        "status": "canon",
+        "provenance": "Canonical lexicon JSON (O). Treated as read-only anchor; referenced by anchors_manifest."
+    },
+    {
+        "anchor_id": "lexicon_P",
+        "anchor_type": "lexicon",
+        "title": "Lexical Canon Anchors ? P",
+        "source_path": "anchors/canon/definitions/Lexical Canon Anchors/P/P.json",
+        "source_format": "json",
+        "status": "canon",
+        "provenance": "Canonical lexicon JSON (P). Treated as read-only anchor; referenced by anchors_manifest."
+    },
+    {
+        "anchor_id": "lexicon_Q",
+        "anchor_type": "lexicon",
+        "title": "Lexical Canon Anchors ? Q",
+        "source_path": "anchors/canon/definitions/Lexical Canon Anchors/Q/Q.json",
+        "source_format": "json",
+        "status": "canon",
+        "provenance": "Canonical lexicon JSON (Q). Treated as read-only anchor; referenced by anchors_manifest."
+    },
+    {
+        "anchor_id": "lexicon_R",
+        "anchor_type": "lexicon",
+        "title": "Lexical Canon Anchors ? R",
+        "source_path": "anchors/canon/definitions/Lexical Canon Anchors/R/R.json",
+        "source_format": "json",
+        "status": "canon",
+        "provenance": "Canonical lexicon JSON (R). Treated as read-only anchor; referenced by anchors_manifest."
+    },
+    {
+        "anchor_id": "lexicon_S",
+        "anchor_type": "lexicon",
+        "title": "Lexical Canon Anchors ? S",
+        "source_path": "anchors/canon/definitions/Lexical Canon Anchors/S/S.json",
+        "source_format": "json",
+        "status": "canon",
+        "provenance": "Canonical lexicon JSON (S). Treated as read-only anchor; referenced by anchors_manifest."
+    },
+    {
+        "anchor_id": "lexicon_T",
+        "anchor_type": "lexicon",
+        "title": "Lexical Canon Anchors ? T",
+        "source_path": "anchors/canon/definitions/Lexical Canon Anchors/T/T.json",
+        "source_format": "json",
+        "status": "canon",
+        "provenance": "Canonical lexicon JSON (T). Treated as read-only anchor; referenced by anchors_manifest."
+    },
+    {
+        "anchor_id": "lexicon_U",
+        "anchor_type": "lexicon",
+        "title": "Lexical Canon Anchors ? U",
+        "source_path": "anchors/canon/definitions/Lexical Canon Anchors/U/U.json",
+        "source_format": "json",
+        "status": "canon",
+        "provenance": "Canonical lexicon JSON (U). Treated as read-only anchor; referenced by anchors_manifest."
+    },
+    {
+        "anchor_id": "lexicon_V",
+        "anchor_type": "lexicon",
+        "title": "Lexical Canon Anchors ? V",
+        "source_path": "anchors/canon/definitions/Lexical Canon Anchors/V/V.json",
+        "source_format": "json",
+        "status": "canon",
+        "provenance": "Canonical lexicon JSON (V). Treated as read-only anchor; referenced by anchors_manifest."
+    },
+    {
+        "anchor_id": "lexicon_W",
+        "anchor_type": "lexicon",
+        "title": "Lexical Canon Anchors ? W",
+        "source_path": "anchors/canon/definitions/Lexical Canon Anchors/W/W.json",
+        "source_format": "json",
+        "status": "canon",
+        "provenance": "Canonical lexicon JSON (W). Treated as read-only anchor; referenced by anchors_manifest."
+    },
+    {
+        "anchor_id": "lexicon_X",
+        "anchor_type": "lexicon",
+        "title": "Lexical Canon Anchors ? X",
+        "source_path": "anchors/canon/definitions/Lexical Canon Anchors/X/X.json",
+        "source_format": "json",
+        "status": "canon",
+        "provenance": "Canonical lexicon JSON (X). Treated as read-only anchor; referenced by anchors_manifest."
+    },
+    {
+        "anchor_id": "lexicon_Y",
+        "anchor_type": "lexicon",
+        "title": "Lexical Canon Anchors ? Y",
+        "source_path": "anchors/canon/definitions/Lexical Canon Anchors/Y/Y.json",
+        "source_format": "json",
+        "status": "canon",
+        "provenance": "Canonical lexicon JSON (Y). Treated as read-only anchor; referenced by anchors_manifest."
+    },
+    {
+        "anchor_id": "lexicon_Z",
+        "anchor_type": "lexicon",
+        "title": "Lexical Canon Anchors ? Z",
+        "source_path": "anchors/canon/definitions/Lexical Canon Anchors/Z/Z.json",
+        "source_format": "json",
+        "status": "canon",
+        "provenance": "Canonical lexicon JSON (Z). Treated as read-only anchor; referenced by anchors_manifest."
+    },
+    {
+        "anchor_id": "book_of_solobility_v1",
+        "anchor_type": "book",
+        "title": "The Book of Solobility ? BoS1v1",
+        "source_path": "anchors/canon/book_of_solobility/BoS1v1.pdf",
+        "source_format": "pdf",
+        "status": "canon",
+        "provenance": "Author PDF preserved as-is. Treated as canonical anchor; referenced by anchors_manifest."
+    },
+    {
+        "anchor_id": "to_my_son_v1",
+        "anchor_type": "book",
+        "title": "To My Son ? TMS",
+        "source_path": "anchors/canon/to_my_son/TMS.pdf",
+        "source_format": "pdf",
+        "status": "canon",
+        "provenance": "Author PDF preserved as-is. Treated as canonical anchor; referenced by anchors_manifest."
+    },
+    {
+        "anchor_id": "eitheror_md",
+        "anchor_type": "other",
+        "title": "eitheror.md",
+        "source_path": "anchors/canon/eitheror.md",
+        "source_format": "txt",
+        "status": "canon",
+        "provenance": "Markdown treated as txt for schema compatibility. Preserved as-is; referenced by anchors_manifest."
+    },
+    {
+        "anchor_id": "ramblings_md",
+        "anchor_type": "other",
+        "title": "ramblings.md",
+        "source_path": "anchors/canon/ramblings.md",
+        "source_format": "txt",
+        "status": "canon",
+        "provenance": "Markdown treated as txt for schema compatibility. Preserved as-is; referenced by anchors_manifest."
+    },
+    {
+        "anchor_id": "wai_invariants",
+        "anchor_type": "other",
+        "title": "Wrapper Anchor Invariants ? WAI",
+        "source_path": "anchors/wrapper_anchor_invariants/WAI.md",
+        "source_format": "txt",
+        "status": "canon",
+        "provenance": "Anchor invariants document. Markdown treated as txt for schema compatibility; referenced by anchors_manifest."
+    }
+]

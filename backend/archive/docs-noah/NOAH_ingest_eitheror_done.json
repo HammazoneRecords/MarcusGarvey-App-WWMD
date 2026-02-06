@@ -1,0 +1,30 @@
+{
+  "anchor_id": "eitheror_md",
+  "source_artifact": "anchors/canon/eitheror_md",
+  "output_artifacts": [
+    {
+      "path": "evidence/S_20251226T100000Z_INGEST_FINAL/INGESTION_REPORT_eitheror_md.json",
+      "sha256": "05041ff364e853496bd98d2a0722178705b0d0313a6d81f9bb8f7a00ae628f10",
+      "bytes": 191,
+      "mime": "application/json",
+      "role": "ingestion_report"
+    },
+    {
+      "path": "evidence/S_20251226T100000Z_INGEST_FINAL/memory_snapshot_eitheror_md.db",
+      "sha256": "5e49b579a46cd9fa59db104406d05e1b0658e1b6834e01ad9e5ac7f4826e42d1",
+      "bytes": 3563520,
+      "mime": "application/x-sqlite3",
+      "role": "db_checkpoint"
+    },
+    {
+      "path": "evidence/S_20251226T100000Z_INGEST_FINAL/memory_snapshot_eitheror_md.sha256",
+      "sha256": "08cfd151686068984cd38dabe38ed302cbd232fc64f2230b4ad8d51d47279633",
+      "bytes": 66,
+      "mime": "text/plain",
+      "role": "db_hash_receipt"
+    }
+  ],
+  "stats": {
+    "chunks_count": 3
+  }
+}

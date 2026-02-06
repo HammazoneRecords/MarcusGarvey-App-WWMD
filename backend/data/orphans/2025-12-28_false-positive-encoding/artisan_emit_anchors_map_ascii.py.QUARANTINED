@@ -1,0 +1,164 @@
+from __future__ import annotations
+
+import argparse
+import json
+import os
+import sqlite3
+from datetime import datetime, timezone
+from pathlib import Path
+from typing import Dict, List, Tuple, Any
+
+BASE_DIR = Path(__file__).resolve().parent.parent
+DB_PATH = BASE_DIR / "data" / "memory.db"
+
+def require_recorded_run() -> None:
+    if os.environ.get("SOLOB_RECORDED_RUN") != "1":
+        raise RuntimeError(
+            "BLOCKED: must run via scripts/run_recorded.py (recorded-only)."
+        )
+
+def utc_now_z() -> str:
+    return datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+
+def local_now_iso() -> str:
+    return datetime.now().astimezone().isoformat(timespec="seconds")
+
+# Common mojibake replacements (render-only, DB untouched)
+REPL = {
+    "â€”": " - ",
+    "â€“": " - ",
+    "â€˜": "'",
+    "â€™": "'",
+    "â€œ": '"',
+    "â€�": '"',
+    "Â": "",
+}
+
+def norm(s: Any) -> str:
+    if s is None:
+        return ""
+    out = str(s)
+    for k, v in REPL.items():
+        out = out.replace(k, v)
+    # Replace Unicode replacement char if present
+    out = out.replace("\uFFFD", "?")
+    return out
+
+def load_manifest(path: Path) -> Dict[str, str]:
+    d = json.loads(path.read_text(encoding="utf-8"))
+    files = d.get("files", [])
+    out: Dict[str, str] = {}
+    for rel_path, sha in files:
+        out[str(rel_path)] = str(sha)
+    return out
+
+def load_registry(path: Path) -> List[dict]:
+    d = json.loads(path.read_text(encoding="utf-8"))
+    if not isinstance(d, list):
+        raise ValueError("Registry must be a JSON array.")
+    return d
+
+def main() -> int:
+    require_recorded_run()
+
+    ap = argparse.ArgumentParser(description="ARTISAN: emit ASCII-safe ANCHORS_MAP (render-only).")
+    ap.add_argument("--registry", required=True)
+    ap.add_argument("--manifest", required=True)
+    ap.add_argument("--out", required=True)
+    args = ap.parse_args()
+
+    reg_path = (BASE_DIR / args.registry).resolve() if not Path(args.registry).is_absolute() else Path(args.registry)
+    man_path = (BASE_DIR / args.manifest).resolve() if not Path(args.manifest).is_absolute() else Path(args.manifest)
+    out_path = (BASE_DIR / args.out).resolve() if not Path(args.out).is_absolute() else Path(args.out)
+
+    if not reg_path.exists():
+        raise FileNotFoundError(f"Registry not found: {reg_path}")
+    if not man_path.exists():
+        raise FileNotFoundError(f"Manifest not found: {man_path}")
+    if not DB_PATH.exists():
+        raise FileNotFoundError(f"DB not found: {DB_PATH}")
+
+    manifest_map = load_manifest(man_path)
+    registry = load_registry(reg_path)
+
+    # registry lookup by anchor_id (for provenance sanity if you want later)
+    _reg_by_id = {str(x.get("anchor_id")): x for x in registry}
+
+    conn = sqlite3.connect(DB_PATH)
+    conn.execute("PRAGMA foreign_keys = ON;")
+    try:
+        rows = conn.execute(
+            """
+            SELECT
+              anchor_id, anchor_type, status, source_path,
+              source_format, title, import_session_id, created_at
+            FROM anchors
+            ORDER BY anchor_id;
+            """
+        ).fetchall()
+    finally:
+        conn.close()
+
+    # Build manifest rel_path mapping using source_path -> relative under anchors/
+    # Example DB source_path: anchors/canon/to_my_son/TMS.pdf
+    # Manifest rel_path: canon/to_my_son/TMS.pdf
+    def to_manifest_rel(source_path: str) -> str:
+        sp = source_path.replace("\\", "/")
+        if sp.startswith("anchors/"):
+            return sp[len("anchors/"):]
+        return sp
+
+    lines: List[str] = []
+    lines.append("# ANCHORS_MAP (ASCII SAFE)")
+    lines.append("")
+    lines.append("## Snapshot Context")
+    lines.append(f"- Generated (local): `{local_now_iso()}`")
+    lines.append(f"- Generated (UTC): `{utc_now_z()}`")
+    lines.append(f"- Manifest: `{man_path.as_posix()}`")
+    lines.append(f"- Registry: `{reg_path.as_posix()}`")
+    lines.append(f"- DB: `{DB_PATH.as_posix()}`")
+    lines.append("")
+    lines.append("## Anchors Table")
+    lines.append("")
+    lines.append("| anchor_id | type | status | source_path | manifest_rel_path | sha256 | format | title | import_session_id | created_at |")
+    lines.append("|---|---|---|---|---|---|---|---|---|---|")
+
+    missing = 0
+    for (anchor_id, anchor_type, status, source_path, source_format, title, sid, created_at) in rows:
+        rel = to_manifest_rel(str(source_path))
+        sha = manifest_map.get(rel, "(no match)")
+        if sha == "(no match)":
+            missing += 1
+        lines.append(
+            "| {aid} | {typ} | {st} | {sp} | {rel} | {sha} | {fmt} | {title} | {sid} | {ca} |".format(
+                aid=norm(anchor_id),
+                typ=norm(anchor_type),
+                st=norm(status),
+                sp=norm(source_path),
+                rel=norm(rel),
+                sha=norm(sha),
+                fmt=norm(source_format),
+                title=norm(title),
+                sid=norm(sid),
+                ca=norm(created_at),
+            )
+        )
+
+    lines.append("")
+    lines.append("## Integrity Notes")
+    lines.append("")
+    lines.append(f"- DB anchors: `{len(rows)}`")
+    lines.append(f"- Manifest files: `{len(manifest_map)}`")
+    lines.append(f"- Registry entries: `{len(registry)}`")
+    lines.append(f"- No-match rows: `{missing}`")
+    lines.append("")
+
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text("\n".join(lines) + "\n", encoding="utf-8")
+
+    print(f"OK: wrote {out_path.as_posix()}")
+    print(f"OK: db_anchors={len(rows)} manifest_files={len(manifest_map)} registry_entries={len(registry)} no_match={missing}")
+    return 0
+
+if __name__ == "__main__":
+    raise SystemExit(main())

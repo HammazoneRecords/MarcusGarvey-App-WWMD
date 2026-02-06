@@ -1,0 +1,12 @@
+{
+  "query": "what is the key to life",
+  "mode": "garvey_lens",
+  "answer": "ERROR: Missing API Key",
+  "citations": [],
+  "meta": {
+    "chunks_found": 15,
+    "citation_search_space": 359,
+    "timestamp": "2026-01-21T02:31:20.567098-05:00",
+    "latency_ms": 58
+  }
+}

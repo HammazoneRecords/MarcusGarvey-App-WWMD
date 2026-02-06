@@ -1,0 +1,129 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  .pb-safe {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+}
+
+@layer base {
+  :root {
+    /* Noir Light Theme (Default Light) */
+    --background: 210 40% 98%;
+    /* Slate-50 */
+    --foreground: 222 47% 11%;
+    /* Slate-900 */
+
+    --primary: 158 64% 52%;
+    /* Emerald-500 */
+    --primary-foreground: 222 47% 11%;
+
+    --secondary: 215 16% 47%;
+    /* Slate-500 */
+    --secondary-foreground: 210 40% 98%;
+
+    --accent: 215 25% 27%;
+    /* Slate-700 */
+    --accent-foreground: 210 40% 98%;
+
+    --card: 0 0% 100%;
+    /* White */
+    --card-foreground: 222 47% 11%;
+
+    --border: 214 32% 91%;
+    /* Slate-200 */
+    --ring: 158 64% 52%;
+    /* Emerald-500 */
+  }
+
+  .dark {
+    /* Pan-African Theme (Default Dark) */
+    --background: 0 0% 0%;
+    /* Pure Black */
+    --foreground: 0 0% 95%;
+    /* Off-White */
+
+    --primary: 348 83% 47%;
+    /* Red-600 (Pan-African Red) */
+    --primary-foreground: 0 0% 95%;
+
+    --secondary: 142 76% 36%;
+    /* Green-600 (Pan-African Green) */
+    --secondary-foreground: 0 0% 95%;
+
+    --accent: 24 5.4% 63.9%;
+    /* Zinc-400 */
+    --accent-foreground: 0 0% 98%;
+
+    --card: 240 10% 3.9%;
+    /* Zinc-950 */
+    --card-foreground: 0 0% 98%;
+
+    --border: 348 83% 47%;
+    /* Red-600 Borders */
+    --ring: 142 76% 36%;
+    /* Green-600 Rings */
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  /* Custom Scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply rounded-full bg-zinc-300 dark:bg-zinc-800;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-primary dark:bg-primary;
+  }
+
+  /* Firefox support */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: theme('colors.zinc.300') transparent;
+  }
+
+  .dark * {
+    scrollbar-color: theme('colors.zinc.800') transparent;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased selection:bg-primary/30;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-display font-bold tracking-tight;
+  }
+}
+
+/* .premium-card {
+  @apply bg-card text-card-foreground border border-border rounded-xl shadow-sm transition-all duration-300;
+} */
+
+.glass-nav {
+  @apply bg-zinc-200/90 dark:bg-background/80 backdrop-blur-lg border-t border-border pb-safe;
+}
+
+.tap-target {
+  @apply min-h-[44px] min-w-[44px] flex items-center justify-center;
+}

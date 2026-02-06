@@ -1,0 +1,69 @@
+{
+  "query": "What is the UNIA program?",
+  "mode": "garvey_lens",
+  "answer": "The program of the Universal Negro Improvement Association (UNIA) is multifaceted, focusing on the upliftment and self-determination of the Negro race.\n\nKey aspects of the UNIA program include:\n\n*   **Uniting the Negro Peoples and Establishing Their Own Country:** The foundational goal is to unite all Negro peoples of the world into one great body to establish a country and government absolutely their own, which involves redeeming Africa.\n*   **Economic and Industrial Development in Africa:** The UNIA seeks to raise significant funds (e.g., two million or ten million dollars) to put a line of steamships on the ocean. These ships would carry hundreds of men from various ports to Africa, specifically Liberia, West Africa, where they would build factories, mills, railroads, and other infrastructure. This development aims to find employment for hundreds of men and open up industrial and economic opportunities.\n*   **The Black Star Line:** The Black Star Line is an integral part of the UNIA's program. It was incorporated to buy ships and transport men and materials to Africa for development projects, offering a practical demonstration of the organization's utility.\n*   **Promoting Self-Determination and Independence:** The program aims to help Negroes become enterprising and politically independent by having a country of their own. Self-determination is described as Marcus Garvey's ultimate goal and essence.\n*   **Solving the Negro Problem:** The UNIA endeavors to assist in solving the Negro problem by creating opportunities and a homeland, serving as a solution to the challenges faced by the race worldwide.\n*   **Encouraging Investment and Support:** Members and those with faith in the UNIA are asked to support the program, including investing in Black Star Line shares or subscribing to the Liberian Construction Loan.\n*   **Mobilizing Members as Missionaries:** Members are encouraged to act as living missionaries to convince others to help and invest in the organization's initiatives.",
+  "citations": [
+    {
+      "excerpt": "women of the Negro race there is but one salvation for the Negro as I see it",
+      "loc": "pdf:page:0059:line:17",
+      "source_id": "marcus_garvey_selected_writings",
+      "score": 8,
+      "match_type": "partial_ngram"
+    },
+    {
+      "excerpt": "and others will do likewise $10,000,000 will be subscribed to buy ships and",
+      "loc": "pdf:page:0060:line:21",
+      "source_id": "marcus_garvey_selected_writings",
+      "score": 6,
+      "match_type": "partial_ngram"
+    },
+    {
+      "excerpt": "body to establish a country and government absolutely their own.\u201d11",
+      "loc": "pdf:page:0008:line:9",
+      "source_id": "marcus_garvey_selected_writings",
+      "score": 6,
+      "match_type": "partial_ngram"
+    },
+    {
+      "excerpt": "serious later on, and that is why the Universal Negro Improvement",
+      "loc": "pdf:page:0032:line:5",
+      "source_id": "marcus_garvey_selected_writings",
+      "score": 6,
+      "match_type": "partial_ngram"
+    },
+    {
+      "excerpt": "Association is endeavoring to assist you in solving the Negro problem by",
+      "loc": "pdf:page:0032:line:6",
+      "source_id": "marcus_garvey_selected_writings",
+      "score": 6,
+      "match_type": "partial_ngram"
+    },
+    {
+      "excerpt": "having a country of his own. If you follow me down the ages you will see",
+      "loc": "pdf:page:0032:line:8",
+      "source_id": "marcus_garvey_selected_writings",
+      "score": 6,
+      "match_type": "partial_ngram"
+    },
+    {
+      "excerpt": "and a fight will ensue. That is why the Universal Negro Improvement",
+      "loc": "pdf:page:0032:line:18",
+      "source_id": "marcus_garvey_selected_writings",
+      "score": 6,
+      "match_type": "partial_ngram"
+    },
+    {
+      "excerpt": "Association and the Black Star Line is the solution of the problem which",
+      "loc": "pdf:page:0032:line:27",
+      "source_id": "marcus_garvey_selected_writings",
+      "score": 6,
+      "match_type": "partial_ngram"
+    }
+  ],
+  "meta": {
+    "chunks_found": 15,
+    "citation_search_space": 355,
+    "timestamp": "2025-12-29T23:55:50.416735-05:00",
+    "latency_ms": 6630
+  }
+}

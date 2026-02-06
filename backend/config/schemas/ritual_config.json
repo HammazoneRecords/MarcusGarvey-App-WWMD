@@ -1,0 +1,179 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Ritual Config Schema",
+    "description": "Configuration schema for Solob Wrapper ritual-based ingestion",
+    "type": "object",
+    "required": [
+        "ritual_version",
+        "ritual_name",
+        "intent",
+        "anchor_id",
+        "source",
+        "steps",
+        "strict_rules"
+    ],
+    "properties": {
+        "ritual_version": {
+            "type": "string",
+            "description": "Ritual config version (e.g., '1.0')",
+            "pattern": "^\\d+\\.\\d+$"
+        },
+        "ritual_name": {
+            "type": "string",
+            "description": "Unique ritual identifier (e.g., 'lexicon_import_letter_a')",
+            "pattern": "^[a-z0-9_]+$"
+        },
+        "intent": {
+            "type": "string",
+            "description": "Human-readable intent (e.g., 'LEXICON_IMPORT_A')",
+            "minLength": 1
+        },
+        "anchor_id": {
+            "type": "string",
+            "description": "Anchor ID this ritual operates on",
+            "minLength": 1
+        },
+        "source": {
+            "type": "object",
+            "required": [
+                "type",
+                "path"
+            ],
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "enum": [
+                        "json",
+                        "pdf",
+                        "csv",
+                        "xml"
+                    ],
+                    "description": "Source file type"
+                },
+                "path": {
+                    "type": "string",
+                    "description": "Relative path to source file",
+                    "minLength": 1
+                },
+                "format": {
+                    "type": "string",
+                    "description": "Optional format hint (e.g., 'lexicon_entries')"
+                },
+                "manifest_path": {
+                    "type": "string",
+                    "description": "Optional manifest file for SHA256 verification"
+                }
+            }
+        },
+        "steps": {
+            "type": "array",
+            "description": "Ingestion steps to execute in order",
+            "minItems": 1,
+            "items": {
+                "type": "object",
+                "required": [
+                    "type"
+                ],
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "enum": [
+                            "validate_source",
+                            "validate_anchor",
+                            "ingest_chunks",
+                            "generate_receipt",
+                            "verify_manifest"
+                        ],
+                        "description": "Step type"
+                    },
+                    "schema": {
+                        "type": "string",
+                        "description": "Schema to validate against (for validate_source)"
+                    },
+                    "chunk_id_template": {
+                        "type": "string",
+                        "description": "Template for chunk IDs (e.g., '{anchor_id}:{letter}:{row_index}')"
+                    },
+                    "locator_template": {
+                        "type": "string",
+                        "description": "Template for chunk locators (e.g., 'lexicon:{letter}:row:{row_index}')"
+                    },
+                    "truth_type": {
+                        "type": "string",
+                        "description": "Truth type for chunks (e.g., 'definition', 'page', 'record')"
+                    },
+                    "receipt_version": {
+                        "type": "string",
+                        "description": "Receipt version (e.g., 'V2')"
+                    }
+                }
+            }
+        },
+        "strict_rules": {
+            "type": "object",
+            "description": "Strict failure rules",
+            "required": [
+                "chunk_collision",
+                "missing_anchor",
+                "schema_mismatch"
+            ],
+            "properties": {
+                "chunk_collision": {
+                    "type": "string",
+                    "enum": [
+                        "STOP",
+                        "WARN",
+                        "IGNORE"
+                    ],
+                    "description": "Action on chunk ID collision"
+                },
+                "missing_anchor": {
+                    "type": "string",
+                    "enum": [
+                        "STOP",
+                        "WARN",
+                        "IGNORE"
+                    ],
+                    "description": "Action when anchor not found"
+                },
+                "schema_mismatch": {
+                    "type": "string",
+                    "enum": [
+                        "STOP",
+                        "WARN",
+                        "IGNORE"
+                    ],
+                    "description": "Action on schema validation failure"
+                },
+                "manifest_sha_mismatch": {
+                    "type": "string",
+                    "enum": [
+                        "STOP",
+                        "WARN",
+                        "IGNORE"
+                    ],
+                    "description": "Action on SHA256 mismatch"
+                }
+            }
+        },
+        "options": {
+            "type": "object",
+            "description": "Optional runtime options",
+            "properties": {
+                "dry_run": {
+                    "type": "boolean",
+                    "description": "Preview without executing"
+                },
+                "limit": {
+                    "type": "integer",
+                    "description": "Limit number of items to process (0 = no limit)",
+                    "minimum": 0
+                },
+                "derive_row_index": {
+                    "type": "boolean",
+                    "description": "Derive row index from array position if missing"
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,14 @@
+{
+  "receipt_version": "V2",
+  "intent": "MARCUS_APP_INGESTION",
+  "anchor_id": "marcus_garvey_world_of",
+  "source_path": "anchors/canon/Marcus BOX/world-of-marcus-garvey-9780807112366-0807112364_compress.pdf",
+  "manifest_entry_sha256": "01d5bf3b2c50d4bc7dac70ae7adb9d139192abc27deb1c50fcc9510fac2afa1f",
+  "import_session_id": "S_20251230T004902Z_MARCUS_GARVEY_BASELINE",
+  "generated_utc": "2026-02-01T22:22:03Z",
+  "pdf": {
+    "pages_total": 318,
+    "pages_inserted": 318
+  },
+  "db_delta": 318
+}

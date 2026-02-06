@@ -1,0 +1,30 @@
+{
+  "anchor_id": "to_my_son_v1",
+  "source_artifact": "anchors/canon/to_my_son_v1",
+  "output_artifacts": [
+    {
+      "path": "evidence/S_20251226T100000Z_INGEST_FINAL/INGESTION_REPORT_to_my_son_v1.json",
+      "sha256": "8cfa1aea80d3393a2710b370d50bb27aadfb51e58f6252d62d4aca012b36175e",
+      "bytes": 192,
+      "mime": "application/json",
+      "role": "ingestion_report"
+    },
+    {
+      "path": "evidence/S_20251226T100000Z_INGEST_FINAL/memory_snapshot_to_my_son_v1.db",
+      "sha256": "3fd03c8cf50b8ed43f23281e8a64b3407996a0a06fae90e51178df9c628e0e29",
+      "bytes": 3571712,
+      "mime": "application/x-sqlite3",
+      "role": "db_checkpoint"
+    },
+    {
+      "path": "evidence/S_20251226T100000Z_INGEST_FINAL/memory_snapshot_to_my_son_v1.sha256",
+      "sha256": "d4084f223c367313019ec5440b2d896df2b875767ab4d3d7b09fd194a85490f2",
+      "bytes": 66,
+      "mime": "text/plain",
+      "role": "db_hash_receipt"
+    }
+  ],
+  "stats": {
+    "chunks_count": 0
+  }
+}

@@ -1,0 +1,32 @@
+======================================================================
+ENCODING ISSUES REPORT
+======================================================================
+
+FILE: scripts\artisan_emit_anchors_map_ascii.py
+  - Non-ASCII bytes: 4
+
+FILE: scripts\encoding_report.py
+  - Non-ASCII bytes: 42
+
+FILE: scripts\normalize_encodings.py
+  - Non-ASCII bytes: 3
+
+FILE: scripts\SCRIPT-LEVEL INVARIANTS.md
+  - Non-ASCII bytes: 12
+
+FILE: scripts\test_constitution_tripwire.py
+  - Non-ASCII bytes: 54
+
+FILE: scripts\test_no_unicode_internal.py
+  - Non-ASCII bytes: 3
+
+FILE: scripts\_clean_unicode.py
+  - Non-ASCII bytes: 180
+
+FILE: utils\ingest_flow_check.py
+  - Non-ASCII bytes: 6
+
+======================================================================
+Files scanned: 75
+Files flagged: 8
+======================================================================

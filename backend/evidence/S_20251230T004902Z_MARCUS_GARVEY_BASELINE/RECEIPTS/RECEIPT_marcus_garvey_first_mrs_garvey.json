@@ -1,0 +1,14 @@
+{
+  "receipt_version": "V2",
+  "intent": "MARCUS_APP_INGESTION",
+  "anchor_id": "marcus_garvey_first_mrs_garvey",
+  "source_path": "anchors/canon/Marcus BOX/The-first-Mrs-Garvey.pdf",
+  "manifest_entry_sha256": "080e6cece9eda53f3c6d56950d26f3d70ef064a565cc3c94a6bbb5dffa64add0",
+  "import_session_id": "S_20251230T004902Z_MARCUS_GARVEY_BASELINE",
+  "generated_utc": "2026-02-01T22:22:04Z",
+  "pdf": {
+    "pages_total": 20,
+    "pages_inserted": 20
+  },
+  "db_delta": 20
+}

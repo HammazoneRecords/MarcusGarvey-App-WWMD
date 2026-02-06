@@ -1,0 +1,50 @@
+---
+description: Before any execution, ensure the request meets MindWave Prompt Standard (MW-PS v1.0). Intent–instruction parity; intelligence explicitly bounded.
+alwaysApply: true
+---
+
+# MindWave Prompt Standard — Pre-Execution Gate (MW-PS v1.0)
+
+**Anchor:** AI does not fail intention. It only executes instruction. Governance is the difference.
+
+## Pre-Execution Requirement
+
+Before executing any user request (code change, tool run, refactor, or multi-step plan):
+
+1. **Check MW-PS compliance** of the request or your interpretation of it.
+2. If the request is underspecified or intention exceeds instruction, **clarify or restate** with the user using the four layers below before proceeding.
+3. Do **not** assume intent, underspecify instructions, leave intelligence undefined, or omit termination.
+
+## Mandatory Four Layers (Every Request Must Map)
+
+| Layer | Purpose | Required |
+|-------|---------|----------|
+| **I — Intent** | WHY: objective, success conditions, non-negotiables, preservation constraints | Declare what must be true when done |
+| **II — Instructions** | WHAT/HOW: allowed/forbidden actions, ambiguity handling, escalation | Every intention must map to ≥1 explicit instruction |
+| **III — Intelligence boundary** | HOW TO THINK: decision priorities, error handling, risk posture, when to ask | Define reasoning/behavior; **missing = MW-PS violated** |
+| **IV — Termination & continuity** | WHEN TO STOP: completion criteria, post-completion state, context persistence | Prevent default reversion and unintended continuation |
+
+## Compliance Checklist (Hard Constraints)
+
+A request fails MW-PS if any of these are true; **do not execute** until resolved (clarify with user or restate):
+
+- Intentions outnumber governing constraints
+- Intelligence is implied but not defined
+- Termination conditions are absent
+- Ambiguity handling is unspecified
+
+## Minimal Template (Use When Restating or Clarifying)
+
+```
+[INTENT] Purpose, success criteria, non-negotiables.
+[INSTRUCTIONS] Explicit actions, constraints, ambiguity handling.
+[INTELLIGENCE DEFINITION] What good reasoning and behavior mean here.
+[TERMINATION & CONTINUITY] Completion, stop conditions, next state.
+```
+
+## Canonical Invariants
+
+- Intent is never assumed. Instructions are never underspecified.
+- For every intention expected, there must exist an explicit instruction or constraint that binds it.
+- Unbound intention will not be inferred; it will be ignored after the instruction completes.
+- Default behavior is governed, not leaked.

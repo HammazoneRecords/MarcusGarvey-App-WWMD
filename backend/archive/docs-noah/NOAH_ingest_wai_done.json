@@ -1,0 +1,30 @@
+{
+  "anchor_id": "wai_invariants",
+  "source_artifact": "anchors/canon/wai_invariants",
+  "output_artifacts": [
+    {
+      "path": "evidence/S_20251226T100000Z_INGEST_FINAL/INGESTION_REPORT_wai_invariants.json",
+      "sha256": "808795dd91f1f5b8cbbdd97889870b8c9ad228c5af280faca21b70ea6395d69f",
+      "bytes": 195,
+      "mime": "application/json",
+      "role": "ingestion_report"
+    },
+    {
+      "path": "evidence/S_20251226T100000Z_INGEST_FINAL/memory_snapshot_wai_invariants.db",
+      "sha256": "06b6075eb264aaae9e7085f10fd23f3fbfefc0abb2a37bd9048d27d1c580bbbf",
+      "bytes": 3600384,
+      "mime": "application/x-sqlite3",
+      "role": "db_checkpoint"
+    },
+    {
+      "path": "evidence/S_20251226T100000Z_INGEST_FINAL/memory_snapshot_wai_invariants.sha256",
+      "sha256": "91b8d6f2c5802b243d6bfcf34308034019a368abf1915206c3dc8b65ae07484b",
+      "bytes": 66,
+      "mime": "text/plain",
+      "role": "db_hash_receipt"
+    }
+  ],
+  "stats": {
+    "chunks_count": 98
+  }
+}

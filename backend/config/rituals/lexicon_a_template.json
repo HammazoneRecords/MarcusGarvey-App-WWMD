@@ -1,0 +1,40 @@
+{
+    "ritual_version": "1.0",
+    "ritual_name": "lexicon_import_letter_test",
+    "intent": "LEXICON_IMPORT_TEST",
+    "anchor_id": "lexicon_a_v1",
+    "source": {
+        "type": "json",
+        "path": "data/lexicon/A.json",
+        "format": "lexicon_entries",
+        "letter": "A"
+    },
+    "steps": [
+        {
+            "type": "validate_source"
+        },
+        {
+            "type": "validate_anchor"
+        },
+        {
+            "type": "ingest_chunks",
+            "letter": "A",
+            "chunk_id_template": "{anchor_id}:{letter}:{row_index}",
+            "locator_template": "lexicon:{letter}:row:{row_index}",
+            "truth_type": "definition"
+        },
+        {
+            "type": "generate_receipt",
+            "receipt_version": "V2"
+        }
+    ],
+    "strict_rules": {
+        "chunk_collision": "STOP",
+        "missing_anchor": "STOP",
+        "schema_mismatch": "STOP"
+    },
+    "options": {
+        "derive_row_index": true,
+        "limit": 0
+    }
+}

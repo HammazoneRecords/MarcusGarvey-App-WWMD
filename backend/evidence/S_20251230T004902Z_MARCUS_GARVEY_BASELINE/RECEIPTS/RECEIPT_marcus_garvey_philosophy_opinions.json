@@ -1,0 +1,14 @@
+{
+  "receipt_version": "V2",
+  "intent": "MARCUS_APP_INGESTION",
+  "anchor_id": "marcus_garvey_philosophy_opinions",
+  "source_path": "anchors/canon/Marcus BOX/eBook Phil and Opinions.pdf",
+  "manifest_entry_sha256": "013a988a2b6fffe56eb1c611314d6edc8dd14399b041e762871ed998c59e4881",
+  "import_session_id": "S_20251230T004902Z_MARCUS_GARVEY_BASELINE",
+  "generated_utc": "2026-02-01T22:14:46Z",
+  "pdf": {
+    "pages_total": 63,
+    "pages_inserted": 0
+  },
+  "db_delta": 0
+}

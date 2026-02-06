@@ -1,0 +1,16 @@
+{
+  "chains": {
+    "ARK_MAIN": {
+      "created_utc": "2025-12-29T07:34:41Z",
+      "description": "Canonical ARK_MAIN chain",
+      "genesis_receipt_path": "evidence\\bundles\\GENESIS_ARK_MAIN\\GENESIS_RECEIPT.json",
+      "last_payload_hash": "515b9ad53470c6edd05ccc219018639c8507b3d4c96ebc341f0e146cc1eea7cd",
+      "last_receipt_id": "RCPT_ARK_MAIN_SEQ_0001",
+      "last_sequence": 1,
+      "status": "active"
+    }
+  },
+  "note": "Merkle chain state tracking. Each chain maintains last receipt info for proper linkage.",
+  "updated_utc": "2025-12-29T07:34:41Z",
+  "version": "1.0"
+}

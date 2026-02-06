@@ -1,0 +1,5 @@
+?- 2025-12-25T16:01:30-05:00 (UTC 2025-12-25T21:01:30Z) ??? RECORD ??? OBSERVE ??? Reality 5 seal: front-door coherence + A-Z ledger verified (sid=S_20251225T075155Z_STATE_RECORD)
+- 2025-12-25T16:06:29-05:00 (UTC 2025-12-25T21:06:29Z) ??? OBSERVE ??? RECORD ??? Reality 5: open legacy SID addendum epoch closure (sid=S_20251225T075155Z_STATE_RECORD)
+- 2025-12-25T16:06:00-05:00 (UTC 2025-12-25T21:06:00Z)  NOTE  SID Witness enforcement began on 2025-12-25. Transitions prior to this are documented in docs/STATE_HISTORY_LEGACY_SID_ADDENDUM.json.
+
+- 2025-12-25T16:06:54-05:00 (UTC 2025-12-25T21:06:54Z) ??? RECORD ??? OBSERVE ??? Reality 5: legacy transitions documented in STATE_HISTORY_LEGACY_SID_ADDENDUM.json; witness epoch governs closure (sid=S_20251225T075155Z_STATE_RECORD)

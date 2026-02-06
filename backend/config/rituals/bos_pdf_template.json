@@ -1,0 +1,36 @@
+{
+    "ritual_version": "1.0",
+    "ritual_name": "bos_pdf_ingestion",
+    "intent": "BOS_PDF_PAGE_INGESTION",
+    "anchor_id": "book_of_solobility_v1",
+    "source": {
+        "type": "pdf",
+        "path": "anchors/canon/book_of_solobility/BoS1v1.pdf",
+        "manifest_sha256": "ec86c62764501d41676a2237e8ff5c4a21bad3d9525bafa550b12349c9c216bd"
+    },
+    "steps": [
+        {
+            "type": "validate_source"
+        },
+        {
+            "type": "verify_manifest"
+        },
+        {
+            "type": "validate_anchor"
+        },
+        {
+            "type": "ingest_chunks",
+            "chunk_id_namespace": "SOLOB|V2|CHUNK|PDF_PAGE|BOOK_OF_SOLOBILITY",
+            "truth_type": "empirical"
+        },
+        {
+            "type": "generate_receipt",
+            "receipt_version": "V2"
+        }
+    ],
+    "strict_rules": {
+        "chunk_collision": "STOP",
+        "missing_anchor": "STOP",
+        "manifest_sha_mismatch": "STOP"
+    }
+}

@@ -1,0 +1,709 @@
+{
+    "sources": [
+        {
+            "id": "src-pao-1923",
+            "title": "Philosophy and Opinions of Marcus Garvey, Vol. 1",
+            "author": "Marcus Garvey (Amy Jacques Garvey, Ed.)",
+            "year": 1923,
+            "type": "book",
+            "excerpt": "A collection of Garvey's speeches, articles, and essays compiled by his wife, considered the primary source for his philosophical teachings.",
+            "url": "https://archive.org/details/philosophyopinio00garv",
+            "anchorId": "marcus_garvey_philosophy_opinions_amy_edit"
+        },
+        {
+            "id": "src-pao-1925",
+            "title": "Philosophy and Opinions of Marcus Garvey, Vol. 2",
+            "author": "Marcus Garvey (Amy Jacques Garvey, Ed.)",
+            "year": 1925,
+            "type": "book",
+            "excerpt": "The second volume containing additional speeches, letters, and philosophical writings from the height of the UNIA movement.",
+            "url": "https://archive.org/details/philosophyopinio00garv",
+            "anchorId": "marcus_garvey_philosophy_opinions_amy_edit"
+        },
+        {
+            "id": "src-mtp-1937",
+            "title": "Message to the People: The Course of African Philosophy",
+            "author": "Marcus Garvey",
+            "year": 1937,
+            "type": "book",
+            "excerpt": "22 lessons delivered in 1937 to UNIA organizers, representing Garvey's mature philosophy on leadership, education, and racial uplift.",
+            "url": "https://books.google.com/books?id=tMkPehHDd-wC",
+            "anchorId": "marcus_garvey_message_to_people"
+        },
+        {
+            "id": "src-unia-const",
+            "title": "UNIA Constitution and Book of Laws",
+            "author": "Universal Negro Improvement Association",
+            "year": 1918,
+            "type": "archive",
+            "excerpt": "The foundational document establishing the structure, aims, and governing principles of the UNIA.",
+            "url": "https://www.international.ucla.edu/africa/mgpp"
+        },
+        {
+            "id": "src-negro-world",
+            "title": "The Negro World",
+            "author": "UNIA Publication",
+            "year": 1920,
+            "type": "article",
+            "excerpt": "The official newspaper of the UNIA, with circulation reaching 50,000-200,000 readers globally by 1920.",
+            "url": "https://www.loc.gov/item/sn84037003/"
+        },
+        {
+            "id": "src-bsl-records",
+            "title": "Black Star Line Incorporation Records",
+            "author": "State of Delaware",
+            "year": 1919,
+            "type": "archive",
+            "excerpt": "Official incorporation documents for the Black Star Line steamship company, capitalized at $500,000.",
+            "url": "https://digitalcollections.nypl.org/items/df3d8d50-0ce5-0131-0284-58d385a7bbd0"
+        },
+        {
+            "id": "src-convention-1920",
+            "title": "Proceedings of the First International Convention of the Negro Peoples of the World",
+            "author": "UNIA",
+            "year": 1920,
+            "type": "archive",
+            "excerpt": "Records from the historic August 1920 convention at Madison Square Garden with 25,000 delegates.",
+            "url": "https://www.international.ucla.edu/africa/mgpp"
+        },
+        {
+            "id": "src-declaration-1920",
+            "title": "Declaration of Rights of the Negro Peoples of the World",
+            "author": "UNIA Convention",
+            "year": 1920,
+            "type": "archive",
+            "excerpt": "Adopted August 13, 1920, outlining 54 articles of demands for racial equality and self-determination.",
+            "url": "https://en.wikisource.org/wiki/The_Declaration_of_the_Rights_of_the_Negro_Peoples_of_the_World"
+        },
+        {
+            "id": "src-nfc-1920",
+            "title": "Negro Factories Corporation Charter",
+            "author": "UNIA",
+            "year": 1920,
+            "type": "archive",
+            "excerpt": "Incorporated January 23, 1920 as the business arm of the UNIA to foster Black economic independence.",
+            "url": "https://www.international.ucla.edu/africa/mgpp"
+        },
+        {
+            "id": "src-harlem-1919",
+            "title": "Liberty Hall Acquisition Records",
+            "author": "UNIA Archives",
+            "year": 1919,
+            "type": "archive",
+            "excerpt": "Documentation of Garvey's purchase of an auditorium in Harlem, establishing UNIA headquarters.",
+            "url": "https://archives.nypl.org/scm/20787"
+        }
+    ],
+    "facts": [
+        {
+            "id": "fact-bsl",
+            "claim": "The Black Star Line: A Bold Experiment in Black Economic Power",
+            "context": "In 1919, Marcus Garvey and the UNIA incorporated the Black Star Line, a steamship company headquartered in Delaware with a maximum capitalization of $500,000. Shares were sold at $5 each—affordable for working-class Black people—with individuals able to purchase up to 200 shares. Between 1919 and 1920, the UNIA raised over $800,000 for the venture. The company aimed to facilitate trade among the African diaspora and provide employment for Black seafarers.",
+            "impactTrail": [
+                "Demonstrated the feasibility of large-scale cooperative Black enterprise",
+                "Raised over $800,000 from Black investors worldwide",
+                "Employed Black captains and crew members in an era of extreme discrimination",
+                "Inspired future Black-owned shipping and business ventures"
+            ],
+            "categories": [
+                "Economics",
+                "Self-Reliance",
+                "History"
+            ],
+            "readingTimeSec": 150,
+            "confidence": "high",
+            "receiptIds": [
+                "src-bsl-records",
+                "src-negro-world"
+            ]
+        },
+        {
+            "id": "fact-ss-frederick-douglass",
+            "claim": "The S.S. Frederick Douglass Made History on October 31, 1919",
+            "context": "The Black Star Line's first vessel, the Yarmouth (renamed S.S. Frederick Douglass), made its inaugural sail from the 135th Street dock in Harlem on October 31, 1919. Though the 30-year-old ship had been used as a World War I freighter and faced mechanical issues, its launch represented a powerful symbol of Black self-determination. Thousands gathered to witness what many considered impossible: a Black-owned and Black-operated transatlantic steamship.",
+            "impactTrail": [
+                "First oceangoing vessel owned and operated by Black people in modern history",
+                "Symbolic voyages to Caribbean and Latin American ports celebrated Black unity",
+                "Demonstrated that Black enterprise could operate on a global scale"
+            ],
+            "categories": [
+                "History",
+                "Maritime",
+                "Self-Reliance"
+            ],
+            "readingTimeSec": 120,
+            "confidence": "high",
+            "receiptIds": [
+                "src-bsl-records"
+            ]
+        },
+        {
+            "id": "fact-unia-convention-1920",
+            "claim": "25,000 Delegates Gathered at Madison Square Garden in 1920",
+            "context": "In August 1920, the UNIA held its First International Convention of the Negro Peoples of the World at Madison Square Garden in New York City. With 25,000 delegates and observers in attendance, it was the largest gathering of Black people in history at that time. Garvey led an estimated 50,000 people in a parade through Harlem, showcasing the movement's unprecedented strength and global reach.",
+            "impactTrail": [
+                "Largest gathering of Black people in world history at that time",
+                "Adopted the Declaration of Rights of the Negro Peoples of the World",
+                "Introduced the Red, Black, and Green flag as the Pan-African symbol",
+                "Elected Garvey as Provisional President of Africa"
+            ],
+            "categories": [
+                "History",
+                "Organization",
+                "Pan-Africanism"
+            ],
+            "readingTimeSec": 130,
+            "confidence": "high",
+            "receiptIds": [
+                "src-convention-1920",
+                "src-declaration-1920"
+            ]
+        },
+        {
+            "id": "fact-pan-african-flag",
+            "claim": "The Red, Black, and Green Flag Was Adopted in 1920",
+            "context": "At the 1920 UNIA International Convention, the organization officially adopted what would become the Pan-African flag. Red represents the blood of the African people, Black represents the race itself, and Green represents the rich land of Africa. This flag has since been adopted by numerous African nations and remains a symbol of Black liberation worldwide.",
+            "impactTrail": [
+                "Standardized the visual language of African liberation",
+                "Influenced the design of flags for several independent African nations",
+                "Remains a unifying symbol for the African diaspora globally"
+            ],
+            "categories": [
+                "Culture",
+                "Symbols",
+                "Pan-Africanism"
+            ],
+            "readingTimeSec": 90,
+            "confidence": "high",
+            "receiptIds": [
+                "src-convention-1920",
+                "src-negro-world"
+            ]
+        },
+        {
+            "id": "fact-liberty-hall",
+            "claim": "Liberty Hall: The Heart of the Garvey Movement",
+            "context": "In 1919, Marcus Garvey purchased an auditorium in Harlem and named it Liberty Hall. Located at 54-56 West 135th Street, it became the central location for UNIA meetings, events, and the headquarters for both the organization and the Black Star Line offices. Liberty Hall served as a gathering place where thousands came to hear Garvey speak and participate in the movement.",
+            "impactTrail": [
+                "Provided a permanent institutional base for the UNIA",
+                "Hosted thousands of meetings, rallies, and cultural events",
+                "Served as the model for Liberty Halls established worldwide"
+            ],
+            "categories": [
+                "History",
+                "Organization",
+                "Harlem"
+            ],
+            "readingTimeSec": 100,
+            "confidence": "high",
+            "receiptIds": [
+                "src-harlem-1919",
+                "src-unia-const"
+            ]
+        },
+        {
+            "id": "fact-negro-world",
+            "claim": "The Negro World Reached 200,000 Readers Globally",
+            "context": "Founded in 1918, The Negro World became the official newspaper of the UNIA. By 1920, its circulation ranged from 50,000 to 200,000 readers, making it one of the most widely read Black publications in history. The paper was published in English, Spanish, and French, spreading Garvey's message across the Americas, the Caribbean, and Africa. Colonial governments in several countries banned its distribution.",
+            "impactTrail": [
+                "One of the most widely circulated Black newspapers in history",
+                "Published in three languages to reach the global diaspora",
+                "Banned in several colonial territories, proving its influence",
+                "Provided a platform for Black writers and intellectuals"
+            ],
+            "categories": [
+                "Media",
+                "Pan-Africanism",
+                "History"
+            ],
+            "readingTimeSec": 110,
+            "confidence": "high",
+            "receiptIds": [
+                "src-negro-world"
+            ]
+        },
+        {
+            "id": "fact-negro-factories",
+            "claim": "The Negro Factories Corporation Built Black Economic Infrastructure",
+            "context": "Incorporated on January 23, 1920, the Negro Factories Corporation (NFC) served as the business arm of the UNIA. It established grocery stores, restaurants, laundries, a doll factory, and a printing plant—all owned and operated by Black people. The corporation aimed to build a self-sufficient Black economy, demonstrating that collective economic action was possible.",
+            "impactTrail": [
+                "Created employment for Black workers in Black-owned businesses",
+                "Demonstrated the viability of cooperative economics",
+                "Produced the Black Cross Nurses' uniforms and UNIA publications",
+                "Served as a model for later Black economic movements"
+            ],
+            "categories": [
+                "Economics",
+                "Self-Reliance",
+                "Organization"
+            ],
+            "readingTimeSec": 120,
+            "confidence": "high",
+            "receiptIds": [
+                "src-nfc-1920",
+                "src-unia-const"
+            ]
+        },
+        {
+            "id": "fact-declaration-rights",
+            "claim": "54 Articles Demanding Rights for Black People Worldwide",
+            "context": "On August 13, 1920, the UNIA Convention adopted the 'Declaration of Rights of the Negro Peoples of the World.' This document contained 54 articles outlining the demands of Black people globally, including the right to self-determination, equal treatment under law, and freedom from colonial oppression. It predated the UN Universal Declaration of Human Rights by 28 years.",
+            "impactTrail": [
+                "First international declaration of Black rights",
+                "Influenced later civil rights and decolonization movements",
+                "Established a precedent for global Black political coordination",
+                "Predated the UN Declaration of Human Rights by 28 years"
+            ],
+            "categories": [
+                "Politics",
+                "Pan-Africanism",
+                "History"
+            ],
+            "readingTimeSec": 130,
+            "confidence": "high",
+            "receiptIds": [
+                "src-declaration-1920",
+                "src-convention-1920"
+            ]
+        },
+        {
+            "id": "fact-education-philosophy",
+            "claim": "Garvey's Philosophy on Education: The Foundation of Progress",
+            "context": "Marcus Garvey consistently stressed that education was the foundation of racial progress. He advocated for both vocational/industrial training and classical knowledge. In his 1937 'Message to the People' lectures, he taught: 'You must never stop learning. The world's greatest men and women were people who educated themselves outside of the university... One must never stop reading.'",
+            "impactTrail": [
+                "Established schools and training programs through the UNIA",
+                "Emphasized lifelong self-education as a path to liberation",
+                "Combined practical skills training with intellectual development",
+                "Inspired generations of Black educational initiatives"
+            ],
+            "categories": [
+                "Education",
+                "Philosophy",
+                "Self-Reliance"
+            ],
+            "readingTimeSec": 120,
+            "confidence": "high",
+            "receiptIds": [
+                "src-mtp-1937",
+                "src-pao-1923"
+            ]
+        },
+        {
+            "id": "fact-unia-membership",
+            "claim": "The UNIA Claimed Millions of Members Across 40 Countries",
+            "context": "At its peak in the early 1920s, the UNIA claimed a following of approximately two million members (though exact figures are debated by historians). What is undisputed is that it had over 1,000 branches and divisions across more than 40 countries by 1920, making it the largest Black organization in history. The movement spread from the United States to the Caribbean, Latin America, and Africa.",
+            "impactTrail": [
+                "Largest mass movement of Black people in history",
+                "Established over 1,000 branches worldwide",
+                "Created a global network of Black solidarity",
+                "Demonstrated the organizing capacity of the African diaspora"
+            ],
+            "categories": [
+                "Organization",
+                "Pan-Africanism",
+                "History"
+            ],
+            "readingTimeSec": 110,
+            "confidence": "high",
+            "receiptIds": [
+                "src-unia-const",
+                "src-negro-world"
+            ]
+        },
+        {
+            "id": "fact-red-summer",
+            "claim": "The Red Summer of 1919 Fueled UNIA Growth",
+            "context": "The 'Red Summer' of 1919 saw racial violence erupt across the United States, with race riots in over 25 cities. These attacks on Black communities, combined with the broken promises to Black soldiers returning from World War I, drove tens of thousands to join the UNIA. Garvey's message of Black self-reliance and international solidarity offered an alternative to waiting for white acceptance.",
+            "impactTrail": [
+                "UNIA membership surged dramatically after the riots",
+                "Demonstrated the failure of integrationist strategies",
+                "Galvanized Black communities toward self-defense and self-reliance",
+                "Shifted focus from domestic politics to international Black unity"
+            ],
+            "categories": [
+                "History",
+                "Politics",
+                "Self-Reliance"
+            ],
+            "readingTimeSec": 120,
+            "confidence": "high",
+            "receiptIds": [
+                "src-negro-world",
+                "src-pao-1923"
+            ]
+        },
+        {
+            "id": "fact-economic-independence",
+            "claim": "Race Economic Dependence Leads to Death, Garvey Warned",
+            "context": "One of Garvey's most consistent teachings was economic self-reliance. He taught: 'A race that is solely dependent upon another for economic existence sooner or later dies.' This principle drove the creation of the Black Star Line, the Negro Factories Corporation, and numerous other UNIA business ventures designed to build independent Black economic power.",
+            "impactTrail": [
+                "Established dozens of Black-owned businesses through the UNIA",
+                "Promoted 'Buy Black' economics decades before later movements",
+                "Influenced subsequent Black economic nationalism",
+                "Created a blueprint for building racial economic infrastructure"
+            ],
+            "categories": [
+                "Economics",
+                "Philosophy",
+                "Self-Reliance"
+            ],
+            "readingTimeSec": 110,
+            "confidence": "high",
+            "receiptIds": [
+                "src-mtp-1937",
+                "src-pao-1923"
+            ]
+        },
+        {
+            "id": "fact-leadership-training",
+            "claim": "22 Lessons to Train Future Leaders",
+            "context": "In 1937, near the end of his life, Garvey created 'Message to the People: The Course of African Philosophy'—22 lessons delivered to his most trusted UNIA organizers. These lectures covered universal knowledge, leadership, character, God, and the social system. Garvey believed that building a great movement required trained, visionary leaders who could continue the work after he was gone.",
+            "impactTrail": [
+                "Codified Garvey's leadership philosophy for future generations",
+                "Trained the next generation of UNIA organizers",
+                "Preserved his mature thinking on organization and leadership",
+                "Continues to influence Pan-African movements today"
+            ],
+            "categories": [
+                "Leadership",
+                "Education",
+                "Philosophy"
+            ],
+            "readingTimeSec": 130,
+            "confidence": "high",
+            "receiptIds": [
+                "src-mtp-1937"
+            ]
+        },
+        {
+            "id": "fact-provisional-president",
+            "claim": "Elected Provisional President of Africa in 1920",
+            "context": "At the August 1920 UNIA Convention, Marcus Garvey was elected 'Provisional President of Africa.' Though symbolic, this title represented the UNIA's ultimate goal: the establishment of an independent African nation-state led by and for African people. Garvey used this position to advocate for African independence at a time when virtually the entire continent was under European colonial rule.",
+            "impactTrail": [
+                "Symbolized Pan-African aspirations for continental independence",
+                "Gave international visibility to African liberation movements",
+                "Challenged the legitimacy of European colonial claims",
+                "Inspired later African independence leaders"
+            ],
+            "categories": [
+                "Politics",
+                "Pan-Africanism",
+                "History"
+            ],
+            "readingTimeSec": 100,
+            "confidence": "high",
+            "receiptIds": [
+                "src-convention-1920"
+            ]
+        },
+        {
+            "id": "fact-confidence-self",
+            "claim": "Self-Confidence as the Foundation of Success",
+            "context": "Garvey taught that psychological liberation must precede political or economic liberation. He stated: 'If you haven't confidence in self, you are twice defeated in the race of life. With confidence, you have won even before you have started.' This emphasis on mental emancipation influenced later movements including the Black Power and Afrocentric movements.",
+            "impactTrail": [
+                "Pioneered psychological approach to racial liberation",
+                "Influenced later Black Pride and Black Power movements",
+                "Emphasized mental decolonization as prerequisite to freedom",
+                "Encouraged Black people to reject inferiority narratives"
+            ],
+            "categories": [
+                "Philosophy",
+                "Self-Reliance",
+                "Psychology"
+            ],
+            "readingTimeSec": 100,
+            "confidence": "high",
+            "receiptIds": [
+                "src-pao-1923",
+                "src-mtp-1937"
+            ]
+        }
+    ],
+    "daily": [
+        {
+            "id": "daily-1",
+            "quote": "A people without the knowledge of their past history, origin and culture is like a tree without roots.",
+            "context": "From Philosophy and Opinions, emphasizing historical consciousness as the foundation of collective identity and progress.",
+            "reflectionQuestion": "What aspect of your history could you learn more about today?",
+            "sourceId": "src-pao-1923"
+        },
+        {
+            "id": "daily-2",
+            "quote": "Up, you mighty race, accomplish what you will.",
+            "context": "A recurring call to action used in UNIA conventions to inspire collective self-belief and action.",
+            "reflectionQuestion": "What will you accomplish today through your own effort?",
+            "sourceId": "src-convention-1920"
+        },
+        {
+            "id": "daily-3",
+            "quote": "Intelligence rules the world, ignorance carries the burden.",
+            "context": "From Message to the People, stressing the relationship between education and power.",
+            "reflectionQuestion": "What new knowledge can you acquire today to lighten your burden?",
+            "sourceId": "src-mtp-1937"
+        },
+        {
+            "id": "daily-4",
+            "quote": "If you haven't confidence in self, you are twice defeated in the race of life.",
+            "context": "Teaching on the foundational importance of self-belief for achievement.",
+            "reflectionQuestion": "Where does self-doubt hold you back, and how can you overcome it?",
+            "sourceId": "src-pao-1923"
+        },
+        {
+            "id": "daily-5",
+            "quote": "God and Nature first made us what we are, and then out of our own created genius we make ourselves what we want to be.",
+            "context": "From Philosophy and Opinions, on the power of human agency to shape destiny.",
+            "reflectionQuestion": "How are you actively shaping who you are becoming?",
+            "sourceId": "src-pao-1923"
+        },
+        {
+            "id": "daily-6",
+            "quote": "Let the sky and God be our limit and Eternity our measurement.",
+            "context": "Challenging limiting beliefs and encouraging boundless ambition.",
+            "reflectionQuestion": "Are your goals limited by what seems 'realistic' or by what is truly possible?",
+            "sourceId": "src-pao-1923"
+        },
+        {
+            "id": "daily-7",
+            "quote": "The Black skin is not a badge of shame, but rather a glorious symbol of national greatness.",
+            "context": "Reframing Black identity from stigma to source of pride and power.",
+            "reflectionQuestion": "How do you celebrate your identity as a source of strength?",
+            "sourceId": "src-pao-1923"
+        },
+        {
+            "id": "daily-8",
+            "quote": "We must realize that upon ourselves depend our destiny, our future; we must carve out that future, that destiny.",
+            "context": "Teaching on self-determination and personal responsibility.",
+            "reflectionQuestion": "What part of your destiny requires your active effort today?",
+            "sourceId": "src-pao-1923"
+        },
+        {
+            "id": "daily-9",
+            "quote": "Let us not try to be the best or worst of others, but let us make the effort to be the best of ourselves.",
+            "context": "On authentic self-development rather than comparison with others.",
+            "reflectionQuestion": "Are you measuring your progress against others or against your own potential?",
+            "sourceId": "src-pao-1923"
+        },
+        {
+            "id": "daily-10",
+            "quote": "The ends you serve that are selfish will take you no further than yourself; but the ends you serve that are for all, in common, will take you even into eternity.",
+            "context": "On the relationship between service to others and lasting legacy.",
+            "reflectionQuestion": "How does your work today serve purposes greater than yourself?",
+            "sourceId": "src-pao-1923"
+        },
+        {
+            "id": "daily-11",
+            "quote": "A race without authority and power, is a race without respect.",
+            "context": "On the necessity of building institutional power for collective respect.",
+            "reflectionQuestion": "What institutions are you building or strengthening?",
+            "sourceId": "src-pao-1925"
+        },
+        {
+            "id": "daily-12",
+            "quote": "Education is the medium by which a people are prepared for the creation of their own particular civilization.",
+            "context": "On education as the foundation of civilization-building.",
+            "reflectionQuestion": "What are you learning that prepares you to build something lasting?",
+            "sourceId": "src-pao-1923"
+        },
+        {
+            "id": "daily-13",
+            "quote": "You must never stop learning. The world's greatest men and women were people who educated themselves outside of the university.",
+            "context": "From Message to the People, emphasizing lifelong self-education.",
+            "reflectionQuestion": "What book, course, or skill is next on your learning journey?",
+            "sourceId": "src-mtp-1937"
+        },
+        {
+            "id": "daily-14",
+            "quote": "The man who is not able to develop and use his mind is bound to be the slave of the other man who uses his mind.",
+            "context": "On mental development as the key to freedom.",
+            "reflectionQuestion": "How are you developing your mental faculties today?",
+            "sourceId": "src-mtp-1937"
+        },
+        {
+            "id": "daily-15",
+            "quote": "A race that is solely dependent upon another for economic existence sooner or later dies.",
+            "context": "From Message to the People, on economic self-reliance.",
+            "reflectionQuestion": "What steps are you taking toward greater economic independence?",
+            "sourceId": "src-mtp-1937"
+        },
+        {
+            "id": "daily-16",
+            "quote": "A leader must strive to master his shortcomings. The greatest men and women in the world burn the midnight lamp.",
+            "context": "On the discipline and self-improvement required for leadership.",
+            "reflectionQuestion": "What weakness are you actively working to overcome?",
+            "sourceId": "src-mtp-1937"
+        },
+        {
+            "id": "daily-17",
+            "quote": "Lose not courage, lose not faith, go forward.",
+            "context": "Encouragement to persist despite obstacles and setbacks.",
+            "reflectionQuestion": "What challenge requires your renewed courage and faith today?",
+            "sourceId": "src-pao-1925"
+        },
+        {
+            "id": "daily-18",
+            "quote": "Get organized and you will compel the world to respect you.",
+            "context": "On the power of organization for collective advancement.",
+            "reflectionQuestion": "What organization or collective effort deserves your participation?",
+            "sourceId": "src-pao-1925"
+        },
+        {
+            "id": "daily-19",
+            "quote": "You must not mistake lip-service and noise for bravery and service.",
+            "context": "Warning against confusing words with action.",
+            "reflectionQuestion": "Is your service reflected in your actions or just your words?",
+            "sourceId": "src-pao-1925"
+        },
+        {
+            "id": "daily-20",
+            "quote": "Our union must know no clime, boundary, or nationality.",
+            "context": "On pan-African solidarity transcending borders.",
+            "reflectionQuestion": "How do you connect with the global community of African-descended people?",
+            "sourceId": "src-pao-1923"
+        },
+        {
+            "id": "daily-21",
+            "quote": "There is no strength but that which is destructive, because man has lost his virtues.",
+            "context": "Reflection on the need to rebuild moral foundations alongside material power.",
+            "reflectionQuestion": "What virtues are you cultivating alongside your ambitions?",
+            "sourceId": "src-pao-1925"
+        },
+        {
+            "id": "daily-22",
+            "quote": "Africa for the Africans—at home and abroad.",
+            "context": "The central slogan of the Garvey movement, unifying diaspora and continental Africans.",
+            "reflectionQuestion": "What does African unity mean to you in your daily life?",
+            "sourceId": "src-negro-world"
+        },
+        {
+            "id": "daily-23",
+            "quote": "Be not discouraged black women of the world, but push forward, regardless of the lack of appreciation shown you.",
+            "context": "Direct encouragement to Black women to persist despite obstacles.",
+            "reflectionQuestion": "How can you support and uplift others who are underappreciated?",
+            "sourceId": "src-negro-world"
+        },
+        {
+            "id": "daily-24",
+            "quote": "Read and study. One must never stop reading. Read everything that you can that is of standard knowledge.",
+            "context": "From the lessons to UNIA organizers on continuous education.",
+            "reflectionQuestion": "What quality reading material will you engage with today?",
+            "sourceId": "src-mtp-1937"
+        },
+        {
+            "id": "daily-25",
+            "quote": "With confidence, you have won even before you have started.",
+            "context": "On the power of self-belief as a precondition for victory.",
+            "reflectionQuestion": "What victory can you claim through confidence today?",
+            "sourceId": "src-pao-1923"
+        },
+        {
+            "id": "daily-26",
+            "quote": "Never forget that intelligence rules the world and ignorance carries the burden.",
+            "context": "Recurring theme on the relationship between knowledge and power.",
+            "reflectionQuestion": "What burden of ignorance can you lift through learning?",
+            "sourceId": "src-mtp-1937"
+        },
+        {
+            "id": "daily-27",
+            "quote": "Day by day we hear the cry of Africa for the Africans. This cry has become a positive, determined one.",
+            "context": "On the growing momentum of the Pan-African movement.",
+            "reflectionQuestion": "What positive, determined cry are you contributing to?",
+            "sourceId": "src-pao-1923"
+        },
+        {
+            "id": "daily-28",
+            "quote": "Keep separated and you will be exploited, you will be robbed, you will be killed.",
+            "context": "Stark warning about the consequences of disunity.",
+            "reflectionQuestion": "What separations can you bridge in your community?",
+            "sourceId": "src-pao-1925"
+        },
+        {
+            "id": "daily-29",
+            "quote": "We have the opportunity of doing the same thing the university student does—read and study.",
+            "context": "Democratizing education by emphasizing self-study.",
+            "reflectionQuestion": "Are you taking full advantage of your opportunity to learn?",
+            "sourceId": "src-mtp-1937"
+        },
+        {
+            "id": "daily-30",
+            "quote": "Remove yourself as far as possible from ignorance and seek as much as possible to be intelligent.",
+            "context": "Direct instruction on the priority of intellectual development.",
+            "reflectionQuestion": "What steps can you take today to increase your intelligence?",
+            "sourceId": "src-mtp-1937"
+        },
+        {
+            "id": "daily-31",
+            "quote": "It is unfortunate that we should find ourselves at this time the only disorganized group.",
+            "context": "Acknowledging the challenge while calling for organization.",
+            "reflectionQuestion": "What organization can you contribute to or build?",
+            "sourceId": "src-pao-1923"
+        }
+    ],
+    "templates": [
+        {
+            "id": "tpl-meeting",
+            "title": "Institutional Meeting Agenda",
+            "description": "Structured format for deliberative community assemblies based on UNIA organizational protocols.",
+            "markdown": "# Meeting Agenda\n\n**Date**: _____________\n**Location**: _____________\n**Presiding Officer**: _____________\n\n---\n\n## 1. Opening Ceremony\n- Call to order\n- Opening prayer/reflection (optional)\n- Reading of organizational creed or mission\n\n## 2. Roll Call & Minutes\n- Attendance record\n- Approval of previous meeting minutes\n- Corrections or amendments\n\n## 3. Reports\n\n### Executive Report\n_Summary of leadership activities since last meeting_\n\n### Financial Report\n_Current balance: $_______\n_Income this period: $_______\n_Expenses this period: $_______\n\n### Committee Reports\n- Committee A: _____________\n- Committee B: _____________\n- Committee C: _____________\n\n## 4. Old Business\n_Items tabled or continued from previous meeting_\n\n1. _____________\n2. _____________\n\n## 5. New Business\n_New items for discussion and decision_\n\n1. _____________\n2. _____________\n\n## 6. Announcements\n- Upcoming events\n- Community notices\n- Member celebrations\n\n## 7. Closing\n- Summary of action items\n- Next meeting date: _____________\n- Closing remarks\n- Adjournment\n\n---\n\n*\"Get organized and you will compel the world to respect you.\"* — Marcus Garvey",
+            "tags": [
+                "Organization",
+                "Governance",
+                "Leadership"
+            ]
+        },
+        {
+            "id": "tpl-charter",
+            "title": "Organizational Charter Structure",
+            "description": "Core roles, protocols, and bylaws for establishing a new chapter or organization.",
+            "markdown": "# [Organization Name] Charter\n\n**Established**: _____________\n**Location**: _____________\n\n---\n\n## Article I: Name and Purpose\n\n**Section 1.1 - Name**\nThis organization shall be known as [Full Legal Name].\n\n**Section 1.2 - Purpose**\nThe purpose of this organization shall be:\n1. _____________\n2. _____________\n3. _____________\n\n## Article II: Membership\n\n**Section 2.1 - Eligibility**\nMembership is open to all persons who:\n- Support the organization's mission\n- Agree to abide by this charter\n- Pay required dues (if applicable)\n\n**Section 2.2 - Dues**\nAnnual dues shall be: $_______\nPayable: _____________ (monthly/annually)\n\n## Article III: Leadership Structure\n\n**Section 3.1 - Executive Officers**\n\n| Role | Responsibilities | Term |\n|------|-----------------|------|\n| **President** | Strategic oversight, external representation | 2 years |\n| **Vice President** | Supports President, chairs committees | 2 years |\n| **Secretary** | Records, correspondence, archives | 2 years |\n| **Treasurer** | Financial management, reporting | 2 years |\n\n**Section 3.2 - Elections**\nElections shall be held: _____________\nVoting method: _____________\n\n## Article IV: Meetings\n\n**Section 4.1 - Regular Meetings**\nFrequency: _____________\nDay/Time: _____________\n\n**Section 4.2 - Quorum**\nA quorum shall consist of: _______ members\n\n## Article V: Finances\n\n**Section 5.1 - Fiscal Year**\nThe fiscal year shall begin: _____________\n\n**Section 5.2 - Financial Controls**\n- All expenditures over $_______ require membership approval\n- Two signatures required on checks over $_______\n- Quarterly financial reports to membership\n\n## Article VI: Amendments\n\nThis charter may be amended by:\n- Written proposal submitted 30 days in advance\n- Two-thirds (2/3) vote of members present at meeting with quorum\n\n---\n\n**Adopted**: _____________\n**Signatures of Founding Members**:\n\n1. _____________\n2. _____________\n3. _____________\n\n---\n\n*\"A race without authority and power, is a race without respect.\"* — Marcus Garvey",
+            "tags": [
+                "Organization",
+                "Governance",
+                "Structure"
+            ]
+        },
+        {
+            "id": "tpl-business",
+            "title": "Cooperative Business Proposal",
+            "description": "Framework for presenting a cooperative or community-owned business venture.",
+            "markdown": "# Business Proposal\n## [Business Name]\n\n**Prepared by**: _____________\n**Date**: _____________\n\n---\n\n## Executive Summary\n\n_2-3 sentence overview of the business concept and its community benefit_\n\n---\n\n## 1. Business Concept\n\n### What We Do\n_Description of products or services_\n\n### Community Need\n_What problem does this solve for our community?_\n\n### Our Difference\n_What makes this business unique?_\n\n## 2. Ownership Structure\n\n☐ Sole Proprietorship\n☐ Partnership\n☐ Cooperative\n☐ LLC\n☐ Corporation\n\n### Ownership Distribution\n| Owner/Member | Ownership % | Role |\n|--------------|-------------|------|\n| | | |\n\n## 3. Financial Projections\n\n### Startup Costs\n| Item | Cost |\n|------|------|\n| Equipment | $ |\n| Inventory | $ |\n| Licenses/Permits | $ |\n| Initial Marketing | $ |\n| Working Capital | $ |\n| **Total** | **$** |\n\n### Funding Sources\n| Source | Amount | Terms |\n|--------|--------|-------|\n| Owner Investment | $ | |\n| Community Shares | $ | |\n| Loans | $ | |\n| Grants | $ | |\n\n### Monthly Projections (Year 1)\n| Month | Revenue | Expenses | Profit |\n|-------|---------|----------|--------|\n| 1 | | | |\n| 6 | | | |\n| 12 | | | |\n\n## 4. Operations\n\n**Location**: _____________\n**Hours**: _____________\n**Employees Needed**: _____________\n\n## 5. Community Impact\n\n- Jobs created: _______\n- Local suppliers used: _______\n- Community benefit: _____________\n\n## 6. Action Plan\n\n| Task | Responsible | Deadline |\n|------|-------------|----------|\n| | | |\n| | | |\n| | | |\n\n---\n\n*\"A race that is solely dependent upon another for economic existence sooner or later dies.\"* — Marcus Garvey",
+            "tags": [
+                "Economics",
+                "Business",
+                "Self-Reliance"
+            ]
+        },
+        {
+            "id": "tpl-study-group",
+            "title": "Study Circle Curriculum",
+            "description": "Framework for organizing a study group focused on history, philosophy, or skill development.",
+            "markdown": "# Study Circle Plan\n## [Topic/Book Title]\n\n**Facilitator**: _____________\n**Duration**: _______ weeks\n**Meeting Day/Time**: _____________\n\n---\n\n## Purpose\n_What will participants learn or be able to do after completing this study?_\n\n---\n\n## Required Materials\n\n1. _____________\n2. _____________\n3. _____________\n\n## Weekly Schedule\n\n### Week 1: Introduction\n**Reading/Preparation**: _____________\n\n**Discussion Questions**:\n1. _____________\n2. _____________\n\n**Activity**: _____________\n\n---\n\n### Week 2: [Topic]\n**Reading/Preparation**: _____________\n\n**Discussion Questions**:\n1. _____________\n2. _____________\n\n**Activity**: _____________\n\n---\n\n### Week 3: [Topic]\n**Reading/Preparation**: _____________\n\n**Discussion Questions**:\n1. _____________\n2. _____________\n\n**Activity**: _____________\n\n---\n\n### Week 4: [Topic]\n**Reading/Preparation**: _____________\n\n**Discussion Questions**:\n1. _____________\n2. _____________\n\n**Activity**: _____________\n\n---\n\n### Week 5: [Topic]\n**Reading/Preparation**: _____________\n\n**Discussion Questions**:\n1. _____________\n2. _____________\n\n**Activity**: _____________\n\n---\n\n### Week 6: Synthesis & Application\n**Preparation**: Review all previous material\n\n**Discussion Questions**:\n1. How has this study changed your thinking?\n2. What will you do differently as a result?\n\n**Activity**: Create personal action plan\n\n---\n\n## Study Circle Guidelines\n\n1. **Prepare**: Complete readings before each session\n2. **Participate**: Share your thoughts and questions\n3. **Respect**: Listen actively to others\n4. **Apply**: Connect learning to action\n\n---\n\n*\"You must never stop learning. Read everything that you can that is of standard knowledge.\"* — Marcus Garvey",
+            "tags": [
+                "Education",
+                "Organization",
+                "Study"
+            ]
+        },
+        {
+            "id": "tpl-event",
+            "title": "Community Event Planning",
+            "description": "Comprehensive checklist for organizing community programs, celebrations, or educational events.",
+            "markdown": "# Event Planning Checklist\n## [Event Name]\n\n**Date**: _____________\n**Time**: _____________\n**Location**: _____________\n**Expected Attendance**: _______\n\n---\n\n## 1. Planning Phase (8-4 weeks before)\n\n### Core Team\n| Role | Person | Contact |\n|------|--------|--------|\n| Event Lead | | |\n| Logistics | | |\n| Program | | |\n| Communications | | |\n| Finance | | |\n\n### Budget\n| Category | Estimated | Actual |\n|----------|-----------|--------|\n| Venue | $ | $ |\n| Food/Refreshments | $ | $ |\n| Speakers/Performers | $ | $ |\n| Marketing | $ | $ |\n| Supplies | $ | $ |\n| Contingency (10%) | $ | $ |\n| **Total** | **$** | **$** |\n\n### Funding Sources\n☐ Ticket sales\n☐ Sponsorships\n☐ Organization funds\n☐ Donations\n☐ Vendor fees\n\n---\n\n## 2. Logistics (4-2 weeks before)\n\n### Venue\n☐ Venue booked and confirmed\n☐ Contract signed\n☐ Insurance requirements met\n☐ Setup/breakdown times confirmed\n☐ Parking arrangements made\n☐ Accessibility confirmed\n\n### Program\n☐ Speakers confirmed\n☐ Entertainment booked\n☐ Schedule finalized\n☐ MC/Host assigned\n☐ Audio/Visual needs listed\n\n### Supplies Needed\n☐ _____________\n☐ _____________\n☐ _____________\n☐ _____________\n\n---\n\n## 3. Promotion (3-1 weeks before)\n\n☐ Flyer/poster designed\n☐ Social media posts scheduled\n☐ Email invitations sent\n☐ Press release (if applicable)\n☐ Community partners notified\n☐ Registration/RSVP system set up\n\n---\n\n## 4. Week Of\n\n☐ Confirm all vendors and speakers\n☐ Print programs/materials\n☐ Prepare registration table\n☐ Test audio/visual equipment\n☐ Finalize volunteer assignments\n☐ Prepare emergency contacts list\n\n---\n\n## 5. Event Day\n\n### Setup Checklist\n☐ Signage posted\n☐ Registration table ready\n☐ Seating arranged\n☐ A/V tested\n☐ Food service ready\n☐ Photography arranged\n\n### During Event\n☐ Sign-in sheet at entrance\n☐ Photos being taken\n☐ Time management on track\n☐ Emergency contact available\n\n### Breakdown\n☐ All equipment collected\n☐ Venue cleaned\n☐ Lost and found checked\n☐ Thank you to venue staff\n\n---\n\n## 6. Post-Event (within 1 week)\n\n☐ Thank you notes to speakers/volunteers\n☐ Photos shared\n☐ Financial reconciliation completed\n☐ Lessons learned documented\n☐ Report to organization\n\n---\n\n*\"Get organized and you will compel the world to respect you.\"* — Marcus Garvey",
+            "tags": [
+                "Organization",
+                "Events",
+                "Community"
+            ]
+        },
+        {
+            "id": "tpl-newsletter",
+            "title": "Newsletter Template",
+            "description": "Structure for regular organizational communications inspired by The Negro World.",
+            "markdown": "# [Organization Name] Newsletter\n## Volume __, Issue __\n### [Month Year]\n\n---\n\n## FROM THE PRESIDENT'S DESK\n\n_Opening message from leadership (2-3 paragraphs)_\n\n---\n\n## THIS MONTH'S HIGHLIGHTS\n\n### [Event/Achievement 1]\n_Brief description with date and participants_\n\n### [Event/Achievement 2]\n_Brief description with date and participants_\n\n---\n\n## MEMBER SPOTLIGHT\n\n**Name**: _____________\n**Role**: _____________\n\n_Brief profile highlighting this member's contributions_\n\n---\n\n## UPCOMING EVENTS\n\n| Date | Event | Location |\n|------|-------|----------|\n| | | |\n| | | |\n| | | |\n\n---\n\n## COMMUNITY NEWS\n\n_Relevant news affecting our community_\n\n---\n\n## EDUCATIONAL CORNER\n\n### This Month in History\n_Historical event relevant to our mission_\n\n### Quote to Reflect On\n> _\"[Quote]\"_\n> — Marcus Garvey\n\n---\n\n## TREASURY REPORT\n\n**Current Balance**: $_______\n**Monthly Income**: $_______\n**Monthly Expenses**: $_______\n\n---\n\n## MEMBER ANNOUNCEMENTS\n\n- _____________\n- _____________\n- _____________\n\n---\n\n## HOW TO GET INVOLVED\n\n**Next Meeting**: _____________\n**Volunteer Opportunities**: _____________\n**Contact**: _____________\n\n---\n\n*\"The ends you serve that are for all, in common, will take you even into eternity.\"* — Marcus Garvey\n\n---\n\n[Organization Name]\n[Address]\n[Email] | [Phone]\n[Website/Social Media]",
+            "tags": [
+                "Communications",
+                "Media",
+                "Organization"
+            ]
+        }
+    ]
+}

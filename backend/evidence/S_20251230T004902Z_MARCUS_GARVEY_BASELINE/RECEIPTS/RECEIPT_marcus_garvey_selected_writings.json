@@ -1,0 +1,14 @@
+{
+  "receipt_version": "V2",
+  "intent": "MARCUS_APP_INGESTION",
+  "anchor_id": "marcus_garvey_selected_writings",
+  "source_path": "anchors/canon/Marcus BOX/Selected Writings and Speeches of Marcus Garvey (Marcus Garvey) (Z-Library).pdf",
+  "manifest_entry_sha256": "07790ab4e1bdcf9fe153f0dd3a0d5887e3445a7592a55ffd8a12704f7d7eb3f9",
+  "import_session_id": "S_20251230T004902Z_MARCUS_GARVEY_BASELINE",
+  "generated_utc": "2026-02-01T22:14:46Z",
+  "pdf": {
+    "pages_total": 282,
+    "pages_inserted": 0
+  },
+  "db_delta": 0
+}

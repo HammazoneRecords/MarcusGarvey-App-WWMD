@@ -1,0 +1,14 @@
+{
+  "receipt_version": "V2",
+  "intent": "MARCUS_APP_INGESTION",
+  "anchor_id": "marcus_garvey_more_philosophy",
+  "source_path": "anchors/canon/Marcus BOX/more-philosophy-and-opinions-of-marcus-garvey-9781136252259.pdf",
+  "manifest_entry_sha256": "5edf54e89a55031f2c0d2e89bec4da52368117665ecc4a4d5a4723031beb62fb",
+  "import_session_id": "S_20251230T004902Z_MARCUS_GARVEY_BASELINE",
+  "generated_utc": "2026-02-01T22:21:57Z",
+  "pdf": {
+    "pages_total": 563,
+    "pages_inserted": 559
+  },
+  "db_delta": 559
+}

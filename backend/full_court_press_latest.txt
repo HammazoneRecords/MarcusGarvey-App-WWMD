@@ -1,0 +1,30 @@
+Full Court Press Run - 2025-12-29 04:27:25
+======================================================================
+
+STDOUT:
+[FULL COURT PRESS] Three-layer defense audit
+[LAYERS] Evidence Vault -> Merkle Chain -> Court Sweep
+[BUNDLE] evidence\bundles\S_20251229T092722Z_FULL_COURT_PRESS
+
+[LAYER 1/3] Evidence Vault Verification (PRIMARY)...
+[PASS] Evidence vault intact
+
+[LAYER 2/3] Merkle Chain Verification (SECONDARY)...
+[PASS] Chain ARK_MAIN intact
+
+[LAYER 3/3] Court Sweep (9 checks)...
+
+[OK] Court sweep bundle: C:\Users\Owner\Desktop\PROJECTS IN MOTION\ARK V0\solob wrapper ARK v0\solob-wrapper after abc real4plus\evidence\bundles\S_20251229T092723Z_COURT_SWEEP
+[VERDICT] PASS
+[REASON]  All checks passed
+
+
+[BUNDLE] evidence\bundles\S_20251229T092722Z_FULL_COURT_PRESS
+[VERDICT] PASS
+[REASON]  All 3 layers passed (Vault + Chain + Court Sweep)
+
+
+STDERR:
+(none)
+
+EXIT CODE: 0

@@ -1,0 +1,14 @@
+{
+  "receipt_version": "V2",
+  "intent": "MARCUS_APP_INGESTION",
+  "anchor_id": "marcus_garvey_memorial_collection",
+  "source_path": "anchors/canon/Marcus BOX/garvey-amymemorialcollectiononmarcusgarvey1776-1971.pdf",
+  "manifest_entry_sha256": "05bfeeb14a434bdb3523c92c261543c91f9167be854bed285171655e06fcf3dd",
+  "import_session_id": "S_20251230T004902Z_MARCUS_GARVEY_BASELINE",
+  "generated_utc": "2026-02-01T22:21:56Z",
+  "pdf": {
+    "pages_total": 8,
+    "pages_inserted": 0
+  },
+  "db_delta": 0
+}

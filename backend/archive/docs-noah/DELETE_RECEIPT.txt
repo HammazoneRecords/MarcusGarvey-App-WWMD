@@ -1,0 +1,31 @@
+
+========================================================================
+TIME: 2025-12-27 21:19:42
+TARGET: C:\Users\Owner\Desktop\PROJECTS IN MOTION\solob-wrapper__encoding-noah__2025-12-27
+taskkill_explorer: exit_code=0
+rd_delete: exit_code=3221225725
+start_explorer: exit_code=0
+
+DATE: 2025-12-27
+EVENT: Recursive folder deletion (Encoding Hydra)
+
+TARGET
+C:\Users\Owner\Desktop\PROJECTS IN MOTION\solob-wrapper__encoding-noah__2025-12-27
+
+SYMPTOMS
+- Windows Explorer crashed when attempting delete.
+- Recursive backup loop created ~93,981 entries.
+
+ROOT CAUSE
+- Backup/normalization outputs were created inside the scan tree (backups-of-backups recursion).
+
+FIX
+- Deleted via PowerShell/CMD long-path delete (\\?\) and forced permissions where needed.
+while deleting in explorer and all kinda expirament
+PREVENTION RULES
+- Backups live outside repo.
+- orphans/ lives at repo root (never under /data).
+- Any future scan tool must exclude outputs (orphans, backups, data, node_modules).
+
+
+STARTING WITH WRAPER VERSION "solob-wrapper after abc real4plus"

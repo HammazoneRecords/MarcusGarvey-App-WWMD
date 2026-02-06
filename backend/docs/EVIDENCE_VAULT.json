@@ -1,0 +1,28 @@
+{
+  "version": "1.0",
+  "created_utc": "2025-12-29T08:00:00Z",
+  "updated_utc": "2025-12-29T08:00:00Z",
+  "note": "Evidence Vault - Primary tamper detection layer",
+  "entries": [
+    {
+      "entry_id": 1,
+      "timestamp": "2025-12-29T07:34:41Z",
+      "bundle_id": "GENESIS_ARK_MAIN",
+      "bundle_type": "genesis",
+      "receipt_id": "RCPT_ARK_MAIN_SEQ_0001",
+      "sequence": 1,
+      "files": {
+        "GENESIS_RECEIPT.json": "sha256:8eccb09b0a6cc1fa1299250cfb5e4e5eae720c6e568de88b5a6ad1ae744d942c",
+        "INDEX.json": "sha256:c97d94a7215dbbf0833e96cbdf015d39bd713624c6faaae8bc7853e0a8605761",
+        "REPORT.md": "sha256:e785d988582d3a9773f702a381ab84bd80b318810797168017097fa6d31406da"
+      },
+      "locked": true,
+      "recorded_run": "create_genesis_receipt.py",
+      "operator": "system"
+    }
+  ],
+  "vault_integrity": {
+    "total_entries": 1,
+    "total_files_tracked": 3
+  }
+}

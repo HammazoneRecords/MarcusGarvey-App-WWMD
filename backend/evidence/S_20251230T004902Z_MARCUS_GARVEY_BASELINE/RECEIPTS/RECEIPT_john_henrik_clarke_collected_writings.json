@@ -1,0 +1,14 @@
+{
+  "receipt_version": "V2",
+  "intent": "MARCUS_APP_INGESTION",
+  "anchor_id": "john_henrik_clarke_collected_writings",
+  "source_path": "anchors/canon/Marcus BOX/John-Henrik-Clarke-Collected-Writings-Of_-John-Henrik-Clarke_compressed.pdf",
+  "manifest_entry_sha256": "031ec65c0b2c73ae5855c68b907605f9ec6761af6b74f5fd8ff1547a0dc185d2",
+  "import_session_id": "S_20251230T004902Z_MARCUS_GARVEY_BASELINE",
+  "generated_utc": "2026-02-01T22:22:04Z",
+  "pdf": {
+    "pages_total": 333,
+    "pages_inserted": 291
+  },
+  "db_delta": 291
+}

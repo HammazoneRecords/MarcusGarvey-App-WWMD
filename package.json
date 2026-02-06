@@ -1,0 +1,14 @@
+{
+  "name": "whirlwinddb",
+  "private": true,
+  "version": "0.1.0",
+  "description": "WhirlwindDB — source-grounded cultural database",
+"scripts": {
+    "dev:frontend": "cd frontend && npm run dev",
+    "dev:backend": "py -3 backend/api/server.py",
+    "build": "cd frontend && npm run build",
+    "preview": "cd frontend && npm run preview",
+    "install:frontend": "cd frontend && npm install",
+    "install:backend": "pip install -r backend/requirements.txt"
+}
+}

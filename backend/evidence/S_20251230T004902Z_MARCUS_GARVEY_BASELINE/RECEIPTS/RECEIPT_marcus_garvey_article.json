@@ -1,0 +1,14 @@
+{
+  "receipt_version": "V2",
+  "intent": "MARCUS_APP_INGESTION",
+  "anchor_id": "marcus_garvey_article",
+  "source_path": "anchors/canon/Marcus BOX/marcus-garvey-article.pdf",
+  "manifest_entry_sha256": "a02ea681b5e2521d7db276008dfb704f0544809a7e9f828442f96cae7725e060",
+  "import_session_id": "S_20251230T004902Z_MARCUS_GARVEY_BASELINE",
+  "generated_utc": "2026-02-01T22:14:46Z",
+  "pdf": {
+    "pages_total": 4,
+    "pages_inserted": 0
+  },
+  "db_delta": 0
+}

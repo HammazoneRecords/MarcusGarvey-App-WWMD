@@ -1,0 +1,116 @@
+from __future__ import annotations
+
+import json
+import re
+import sys
+from dataclasses import dataclass, asdict
+from datetime import datetime, timezone
+from pathlib import Path
+
+GHOST_RE = re.compile(r"(?:\?[\w]){6,}")     # e.g. ?i?m?p?o?r?t? pattern
+NULL_RE = re.compile(r"\x00")
+REPLACEMENT_CHAR = "\ufffd"                 # �
+
+@dataclass
+class FileFinding:
+    path: str
+    bytes_len: int
+    has_nulls: bool
+    ghost_pattern_hits: int
+    replacement_char_hits: int
+    question_mark_count: int
+    sample: str
+
+def utc_ts() -> str:
+    return datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
+
+def safe_sample(text: str, limit: int = 220) -> str:
+    text = text.replace("\n", "\\n")
+    return text[:limit]
+
+def scan_file(p: Path) -> FileFinding | None:
+    raw = p.read_bytes()
+    try:
+        txt = raw.decode("utf-8", errors="replace")
+    except Exception:
+        txt = raw.decode("latin-1", errors="replace")
+
+    has_nulls = bool(NULL_RE.search(txt))
+    ghost_hits = len(GHOST_RE.findall(txt))
+    repl_hits = txt.count(REPLACEMENT_CHAR)
+    q_count = txt.count("?")
+
+    suspicious = (has_nulls or ghost_hits > 0 or repl_hits > 0 or q_count > 200)
+    if not suspicious:
+        return None
+
+    # pull a sample around first suspicious region
+    idx = txt.find("?") if q_count else -1
+    if idx == -1 and repl_hits:
+        idx = txt.find(REPLACEMENT_CHAR)
+    if idx == -1 and has_nulls:
+        idx = txt.find("\x00")
+    start = max(idx - 80, 0) if idx != -1 else 0
+    sample = safe_sample(txt[start:start+240])
+
+    return FileFinding(
+        path=str(p),
+        bytes_len=len(raw),
+        has_nulls=has_nulls,
+        ghost_pattern_hits=ghost_hits,
+        replacement_char_hits=repl_hits,
+        question_mark_count=q_count,
+        sample=sample,
+    )
+
+def main() -> int:
+    root = Path.cwd().resolve()
+    targets = ["scripts", "tools", "core", "utils"]
+    py_files = []
+    for t in targets:
+        d = root / t
+        if d.exists():
+            py_files.extend(d.rglob("*.py"))
+
+    findings: list[FileFinding] = []
+    for p in py_files:
+        f = scan_file(p)
+        if f:
+            findings.append(f)
+
+    audits_dir = root / "evidence" / "audits"
+    audits_dir.mkdir(parents=True, exist_ok=True)
+
+    ts = utc_ts()
+    out_json = audits_dir / f"ENCODING_AUDIT_{ts}.json"
+    out_md = audits_dir / f"ENCODING_AUDIT_{ts}.md"
+
+    payload = {
+        "type": "encoding_audit",
+        "ts_utc": ts,
+        "root": str(root),
+        "scanned_py_files": len(py_files),
+        "suspicious_files": len(findings),
+        "findings": [asdict(f) for f in findings],
+    }
+    out_json.write_text(json.dumps(payload, indent=2, ensure_ascii=False), encoding="utf-8")
+
+    lines = []
+    lines.append(f"# Encoding Audit\n")
+    lines.append(f"- ts_utc: {ts}\n- scanned: {len(py_files)}\n- suspicious: {len(findings)}\n")
+    if not findings:
+        lines.append("## Result\nPASS — no suspicious patterns detected.\n")
+    else:
+        lines.append("## Suspicious Files\n")
+        for f in findings:
+            lines.append(f"### {f.path}\n")
+            lines.append(f"- bytes: {f.bytes_len}\n- nulls: {f.has_nulls}\n- ghost_hits: {f.ghost_pattern_hits}\n- replacement_hits: {f.replacement_char_hits}\n- '?' count: {f.question_mark_count}\n")
+            lines.append(f"- sample: `{f.sample}`\n")
+    out_md.write_text("\n".join(lines), encoding="utf-8")
+
+    print(f"[OK] Wrote:\n- {out_json}\n- {out_md}")
+    print(f"[RESULT] suspicious_files={len(findings)}")
+    return 0 if len(findings) == 0 else 2
+
+if __name__ == "__main__":
+    raise SystemExit(main())

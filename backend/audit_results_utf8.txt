@@ -1,0 +1,30 @@
+Letter     | JSON Count   | DB Count     | Status
+-------------------------------------------------------
+A          | 102          | 102          | MATCH
+B          | 101          | 101          | MATCH
+C          | 103          | 103          | MATCH
+D          | 82           | 82           | MATCH
+E          | 55           | 55           | MATCH
+F          | 72           | 72           | MATCH
+G          | 82           | 82           | MATCH
+H          | 40           | 40           | MATCH
+I          | 59           | 59           | MATCH
+J          | 58           | 58           | MATCH
+K          | 80           | 80           | MATCH
+L          | 98           | 98           | MATCH
+M          | 86           | 86           | MATCH
+N          | 76           | 76           | MATCH
+O          | 51           | 51           | MATCH
+P          | 75           | 75           | MATCH
+Q          | 23           | 23           | MATCH
+R          | 72           | 72           | MATCH
+S          | 92           | 92           | MATCH
+T          | 71           | 71           | MATCH
+U          | 26           | 26           | MATCH
+V          | 33           | 33           | MATCH
+W          | 39           | 39           | MATCH
+X          | 6            | 6            | MATCH
+Y          | 24           | 24           | MATCH
+Z          | 19           | 19           | MATCH
+-------------------------------------------------------
+TOTAL      | 1625         | 1625         | OK

@@ -1,0 +1,17 @@
+STATE_HISTORY Format Validation
+==================================================
+Total entries: 107
+Standard format: 35
+Legacy format: 0
+
+Traceback (most recent call last):
+  File "C:\Users\Owner\Desktop\PROJECTS IN MOTION\ARK V0\solob wrapper ARK v0\solob-wrapper after abc real4plus\tools\validate_state_history_format.py", line 242, in <module>
+    sys.exit(main())
+             ~~~~^^
+  File "C:\Users\Owner\Desktop\PROJECTS IN MOTION\ARK V0\solob wrapper ARK v0\solob-wrapper after abc real4plus\tools\validate_state_history_format.py", line 212, in main
+    print(f"\u274c VIOLATIONS: {len(result['violations'])}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Owner\AppData\Local\Programs\Python\Python313\Lib\encodings\cp1252.py", line 19, in encode
+    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'charmap' codec can't encode character '\u274c' in position 0: character maps to <undefined>

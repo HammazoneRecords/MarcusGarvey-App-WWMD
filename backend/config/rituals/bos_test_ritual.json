@@ -1,0 +1,34 @@
+{
+    "ritual_version": "1.0",
+    "ritual_name": "bos_pdf_test_dryrun",
+    "intent": "BOS_PDF_INGESTION_TEST",
+    "anchor_id": "book_of_solobility_v1",
+    "source": {
+        "type": "json",
+        "path": "config/rituals/bos_test_data.json",
+        "format": "test_sample"
+    },
+    "steps": [
+        {
+            "type": "validate_source"
+        },
+        {
+            "type": "validate_anchor"
+        },
+        {
+            "type": "ingest_chunks",
+            "chunk_id_template": "{anchor_id}:test:{row_index}",
+            "locator_template": "test:bos:{row_index}",
+            "truth_type": "test_sample"
+        },
+        {
+            "type": "generate_receipt",
+            "receipt_version": "V2"
+        }
+    ],
+    "strict_rules": {
+        "chunk_collision": "STOP",
+        "missing_anchor": "STOP",
+        "schema_mismatch": "STOP"
+    }
+}

@@ -1,0 +1,11 @@
+Searching ARK for: 'What are the aims of the UNIA?'...
+Found 15 relevant chunks.
+Consulting Gemini...
+
+============================================================
+WWMD ANSWER
+============================================================
+
+ERROR: API call failed: HTTP Error 404: Not Found
+
+============================================================

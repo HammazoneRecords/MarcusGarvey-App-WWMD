@@ -1,0 +1,14 @@
+{
+  "receipt_version": "V2",
+  "intent": "MARCUS_APP_INGESTION",
+  "anchor_id": "marcus_garvey_negro_with_a_hat",
+  "source_path": "anchors/canon/Marcus BOX/Negro_With_a_Hat.pdf",
+  "manifest_entry_sha256": "fcb0792d5d880b67ca9cfc2721362677f4e5d34a9030002b83d85377f165520e",
+  "import_session_id": "S_20251230T004902Z_MARCUS_GARVEY_BASELINE",
+  "generated_utc": "2026-02-01T22:22:03Z",
+  "pdf": {
+    "pages_total": 7,
+    "pages_inserted": 7
+  },
+  "db_delta": 7
+}

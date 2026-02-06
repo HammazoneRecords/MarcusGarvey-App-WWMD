@@ -1,0 +1,8 @@
+
+[INVALID] Receipt has schema violations:
+
+  1. Missing required field: db
+  2. Missing required field: strict_rules
+Total errors: 2
+
+See docs/RECEIPT_SCHEMA_V2.md for specification.

@@ -1,0 +1,14 @@
+{
+  "receipt_version": "V2",
+  "intent": "MARCUS_APP_INGESTION",
+  "anchor_id": "marcus_garvey_timeline",
+  "source_path": "anchors/canon/Marcus BOX/marcus g timeline.pdf",
+  "manifest_entry_sha256": "b7f6b5e264eaaee4984cd44c9e9f1d8f8e73a95e479270dc0701baad79002f0e",
+  "import_session_id": "S_20251230T004902Z_MARCUS_GARVEY_BASELINE",
+  "generated_utc": "2026-02-01T22:14:46Z",
+  "pdf": {
+    "pages_total": 16,
+    "pages_inserted": 0
+  },
+  "db_delta": 0
+}

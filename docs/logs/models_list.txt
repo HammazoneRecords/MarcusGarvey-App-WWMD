@@ -1,0 +1,106 @@
+Using API key: AIzaSyCw5a...FzCE
+
+HTTP: 200
+{
+  "models": [
+    {
+      "name": "models/embedding-gecko-001",
+      "version": "001",
+      "displayName": "Embedding Gecko",
+      "description": "Obtain a distributed representation of a text.",
+      "inputTokenLimit": 1024,
+      "outputTokenLimit": 1,
+      "supportedGenerationMethods": [
+        "embedText",
+        "countTextTokens"
+      ]
+    },
+    {
+      "name": "models/gemini-2.5-flash",
+      "version": "001",
+      "displayName": "Gemini 2.5 Flash",
+      "description": "Stable version of Gemini 2.5 Flash, our mid-size multimodal model that supports up to 1 million tokens, released in June of 2025.",
+      "inputTokenLimit": 1048576,
+      "outputTokenLimit": 65536,
+      "supportedGenerationMethods": [
+        "generateContent",
+        "countTokens",
+        "createCachedContent",
+        "batchGenerateContent"
+      ],
+      "temperature": 1,
+      "topP": 0.95,
+      "topK": 64,
+      "maxTemperature": 2,
+      "thinking": true
+    },
+    {
+      "name": "models/gemini-2.5-pro",
+      "version": "2.5",
+      "displayName": "Gemini 2.5 Pro",
+      "description": "Stable release (June 17th, 2025) of Gemini 2.5 Pro",
+      "inputTokenLimit": 1048576,
+      "outputTokenLimit": 65536,
+      "supportedGenerationMethods": [
+        "generateContent",
+        "countTokens",
+        "createCachedContent",
+        "batchGenerateContent"
+      ],
+      "temperature": 1,
+      "topP": 0.95,
+      "topK": 64,
+      "maxTemperature": 2,
+      "thinking": true
+    },
+    {
+      "name": "models/gemini-2.0-flash-exp",
+      "version": "2.0",
+      "displayName": "Gemini 2.0 Flash Experimental",
+      "description": "Gemini 2.0 Flash Experimental",
+      "inputTokenLimit": 1048576,
+      "outputTokenLimit": 8192,
+      "supportedGenerationMethods": [
+        "generateContent",
+        "countTokens",
+        "bidiGenerateContent"
+      ],
+      "temperature": 1,
+      "topP": 0.95,
+      "topK": 40,
+      "maxTemperature": 2
+    },
+    {
+      "name": "models/g
+
+Found models: 50
+- models/embedding-gecko-001 | methods=['embedText', 'countTextTokens']
+- models/gemini-2.5-flash | methods=['generateContent', 'countTokens', 'createCachedContent', 'batchGenerateContent']
+- models/gemini-2.5-pro | methods=['generateContent', 'countTokens', 'createCachedContent', 'batchGenerateContent']
+- models/gemini-2.0-flash-exp | methods=['generateContent', 'countTokens', 'bidiGenerateContent']
+- models/gemini-2.0-flash | methods=['generateContent', 'countTokens', 'createCachedContent', 'batchGenerateContent']
+- models/gemini-2.0-flash-001 | methods=['generateContent', 'countTokens', 'createCachedContent', 'batchGenerateContent']
+- models/gemini-2.0-flash-exp-image-generation | methods=['generateContent', 'countTokens', 'bidiGenerateContent']
+- models/gemini-2.0-flash-lite-001 | methods=['generateContent', 'countTokens', 'createCachedContent', 'batchGenerateContent']
+- models/gemini-2.0-flash-lite | methods=['generateContent', 'countTokens', 'createCachedContent', 'batchGenerateContent']
+- models/gemini-2.0-flash-lite-preview-02-05 | methods=['generateContent', 'countTokens', 'createCachedContent', 'batchGenerateContent']
+- models/gemini-2.0-flash-lite-preview | methods=['generateContent', 'countTokens', 'createCachedContent', 'batchGenerateContent']
+- models/gemini-exp-1206 | methods=['generateContent', 'countTokens', 'createCachedContent', 'batchGenerateContent']
+- models/gemini-2.5-flash-preview-tts | methods=['countTokens', 'generateContent']
+- models/gemini-2.5-pro-preview-tts | methods=['countTokens', 'generateContent', 'batchGenerateContent']
+- models/gemma-3-1b-it | methods=['generateContent', 'countTokens']
+- models/gemma-3-4b-it | methods=['generateContent', 'countTokens']
+- models/gemma-3-12b-it | methods=['generateContent', 'countTokens']
+- models/gemma-3-27b-it | methods=['generateContent', 'countTokens']
+- models/gemma-3n-e4b-it | methods=['generateContent', 'countTokens']
+- models/gemma-3n-e2b-it | methods=['generateContent', 'countTokens']
+- models/gemini-flash-latest | methods=['generateContent', 'countTokens', 'createCachedContent', 'batchGenerateContent']
+- models/gemini-flash-lite-latest | methods=['generateContent', 'countTokens', 'createCachedContent', 'batchGenerateContent']
+- models/gemini-pro-latest | methods=['generateContent', 'countTokens', 'createCachedContent', 'batchGenerateContent']
+- models/gemini-2.5-flash-lite | methods=['generateContent', 'countTokens', 'createCachedContent', 'batchGenerateContent']
+- models/gemini-2.5-flash-image-preview | methods=['generateContent', 'countTokens', 'batchGenerateContent']
+- models/gemini-2.5-flash-image | methods=['generateContent', 'countTokens', 'batchGenerateContent']
+- models/gemini-2.5-flash-preview-09-2025 | methods=['generateContent', 'countTokens', 'createCachedContent', 'batchGenerateContent']
+- models/gemini-2.5-flash-lite-preview-09-2025 | methods=['generateContent', 'countTokens', 'createCachedContent', 'batchGenerateContent']
+- models/gemini-3-pro-preview | methods=['generateContent', 'countTokens', 'createCachedContent', 'batchGenerateContent']
+- models/gemini-3-flash-preview | methods=['generateContent', 'countTokens', 'createCachedContent', 'batchGenerateContent']

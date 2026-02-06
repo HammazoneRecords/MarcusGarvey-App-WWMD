@@ -1,0 +1,22 @@
+# Python dependencies for RAGBox
+
+# Core dependencies
+sqlite3  # Built-in with Python
+
+# Ingestion Dependencies
+pymupdf>=1.22.0  # Required for PDF processing
+
+# API
+flask>=3.0.0
+flask-cors>=4.0.0
+
+# Optional: If using Google's official SDK instead of REST
+# google-generativeai>=0.3.0
+
+# Testing
+pytest>=7.4.0
+pytest-cov>=4.1.0
+
+# Development
+black>=23.0.0
+flake8>=6.0.0

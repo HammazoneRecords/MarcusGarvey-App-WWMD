@@ -1,45 +1,59 @@
-# Marcus Garvey App (WWMD) - Project Architecture
+# Whirlwind KB — Project Architecture
 
-**Version**: 2.0 (Monorepo)
-**Date**: 2025-12-30
+**Version**: 2.1  
+**Date**: 2026-02
 
 ## Overview
-This repository uses a Monorepo structure to separate the React Frontend from the Python Intelligence Engine. They communicate via the "Session Vault" (JSON file exchange).
+
+Whirlwind KB is a monorepo: a React frontend (Vite + TypeScript + Tailwind) and a Python backend (Flask API + RAG engine). They communicate via REST API; session JSON in `sessions/` is used for chat history and optional vault-style exchange.
 
 ## Directory Structure
 
-### 📂 Root Level
+### Root
 | File/Folder | Purpose |
-| :--- | :--- |
-| `frontend/` | The React Application (Vite + TS + Tailwind) |
-| `backend/` | The Python ARK Engine (RAG + Logic) |
-| `sessions/` | **The Bridge**: JSON data exchange folder |
-| `docs/` | Project Documentation & Logs |
-| `ask_marcus.bat` | **Main Entry**: Run queries via terminal |
-| `.env` | Global Configuration (API Keys) |
+|:------------|:--------|
+| `frontend/` | React app (Vite, TS, Tailwind, PWA) |
+| `backend/` | Python API, RAG, nodes DB, testing panel DB |
+| `sessions/` | Session JSON; testing panel state JSON in `sessions/testing_panel/` |
+| `docs/` | Project documentation |
+| `ask_marcus.bat` | CLI entry for RAG queries |
+| `.env` | API keys and optional overrides |
 
-### 📂 Frontend (`/frontend`)
+### Frontend (`/frontend`)
 | Path | Purpose |
-| :--- | :--- |
-| `src/pages/ArkPage.tsx` | The WWMD Interface |
-| `src/services/ArkService.ts` | Polls the Vault API |
-| `src/components/layout/` | Global Layout & Navigation |
-| `package.json` | Frontend Dependencies |
+|:-----|:--------|
+| `src/pages/` | Home, Library (Knowledge Base), WWMD, Toolkit, Profile, FactDetail, TemplateDetail |
+| `src/services/api.ts` | API client (library, facts, WWMD, source section, testing panel) |
+| `src/store/useStore.ts` | Zustand store (theme, saved facts, toolkit edits, apiConfig, Lens history) |
+| `src/components/layout/` | Layout, GlobalSidebar, BottomNav |
+| `src/testing-panel/` | Testing panel (checklist + notes), config and types |
+| `src/mock/db.json` | Seed data for sources/facts/daily/templates when backend not used |
+| `vite.config.ts` | Vite + PWA manifest (Whirlwind KB) |
 
-### 📂 Backend (`/backend`)
+### Backend (`/backend`)
 | Path | Purpose |
-| :--- | :--- |
-| `scripts/wwmd_ask_hybrid.py` | **Core Engine**: RAG + Citation Injection |
-| `scripts/serve_vault.py` | **API Bridge**: Serves `sessions/` content |
-| `data/memory.db` | SQLite + Vector Database |
+|:-----|:--------|
+| `api/server.py` | Flask app: /api/chat, /api/wwmd, /api/library, /api/library/facts/:id, /api/source/:anchor_id, /api/testing-panel, /api/health, sessions |
+| `api/nodes_db.py` | Nodes DB init, seed from db.json, get_library() |
+| `data/memory.db` | RAG SQLite (anchors, chunks) |
+| `data/nodes.db` | Nodes SQLite (nodes, sources, claims, claim_sources); created on first library use |
+| `data/testing_panel.db` | Testing panel state (storage_key, checked_json, notes_json) |
+| `data/testing_panel_schema.sql` | Testing panel table schema |
+| `migrations/` | 001 node spec (Postgres + SQLite), 002 anchor/chunk links |
+| `ragbox/scripts/wwmd_ask_hybrid.py` | RAG + citation injection for chat and WWMD |
+| `ingestion/`, `tools/` | Document pipeline and utilities |
 
 ## Workflows
 
-### 1. The "Gliding" Loop (Development)
-1.  **Run Backend**: `ask_marcus "Query"` -> Generates JSON in `sessions/`.
-2.  **Serve Bridge**: `python backend/scripts/serve_vault.py` -> Exposes JSON.
-3.  **Run Frontend**: `cd frontend && npm run dev` -> React App polls Bridge.
+### Development
+1. **Backend**: `npm run dev:backend` (or `python backend/api/server.py`) → http://localhost:5050  
+2. **Frontend**: `npm run dev:frontend` → http://127.0.0.1:5173 (proxies /api to backend)  
+3. With `VITE_API_BASE_URL` set, Knowledge Base and testing panel use backend; otherwise mock/localStorage.
 
-### 2. Deployment (Vision)
--   **Frontend**: Build to static HTML/JS (`npm run build`).
--   **Backend**: Wrap `wwmd_ask_hybrid.py` in a FastAPI container.
+### Build & Preview
+- `npm run build` → builds frontend to `frontend/dist/`  
+- `npm run preview` → serves dist at http://127.0.0.1:4173  
+
+### Deployment (vision)
+- Frontend: static build to CDN  
+- Backend: containerize Flask + RAG (e.g. FastAPI wrapper)

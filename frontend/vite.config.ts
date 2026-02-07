@@ -10,22 +10,22 @@ export default defineConfig({
         react(),
         VitePWA({
             registerType: 'autoUpdate',
-            includeAssets: ['favicon.ico', 'apple-touch-icon.png', 'mask-icon.svg'],
+            includeAssets: ['whirlwindkb_favicon.ico', 'Whirlwind logo12.png', 'whirlwindkb_favicon_192.png', 'whirlwindkb_favicon_512.png'],
             manifest: {
-                name: 'Garvey Compass',
-                short_name: 'GarveyCompass',
-                description: 'Source-grounded insights into organization building and Pan-African philosophy.',
+                name: 'Whirlwind KB',
+                short_name: 'WhirlwindKB',
+                description: 'Source-grounded knowledge base for organization building and Pan-African philosophy.',
                 theme_color: '#05441d',
                 background_color: '#fdfbf7',
                 display: 'standalone',
                 icons: [
                     {
-                        src: 'pwa-192x192.png',
+                        src: 'whirlwindkb_favicon_192.png',
                         sizes: '192x192',
                         type: 'image/png'
                     },
                     {
-                        src: 'pwa-512x512.png',
+                        src: 'whirlwindkb_favicon_512.png',
                         sizes: '512x512',
                         type: 'image/png'
                     }

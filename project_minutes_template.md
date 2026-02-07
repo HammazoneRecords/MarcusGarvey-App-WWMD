@@ -20,6 +20,46 @@ This document serves as a running log of project activities, decisions, and chan
 
 ---
 
+## Documentation Update (Latest)
+### **Development Team**
+
+#### **Completed Actions:**
+- ✅ **README.md**: Title and branding to Whirlwind KB; Library → Knowledge Base in features; Profile AI/API and nodes DB noted; API endpoints table updated (library, testing-panel, source); backend component list updated (nodes_db, nodes.db, testing_panel.db).
+- ✅ **docs/USER_MANUAL.md**: Title to Whirlwind KB; Library → Knowledge Base in TOC and sections; nav table and Profile settings (AI/API) updated.
+- ✅ **docs/PROJECT_STRUCTURE.md**: Rewritten for v2.1; Whirlwind KB naming; current pages and APIs; nodes DB and testing panel DB; dev/preview workflows.
+- ✅ **docs/DATABASES.md**: Intro updated to reference Whirlwind KB.
+
+---
+
+## February 6, 2026
+### **Development Team (Implementation)**
+
+#### **Completed Actions:**
+- ✅ **App rename to Whirlwind KB**: Rebranded UI from "Garvey Compass" to "Whirlwind KB" across index.html, PWA manifest, Layout, GlobalSidebar, App, Home, Profile, LegalDisclaimer; store key updated to `whirlwind-kb-storage`.
+- ✅ **Testing panel persistence**: Confirmed SQLite DB (`backend/data/testing_panel.db`, schema in `backend/data/testing_panel_schema.sql`). Backend persists to DB and to `sessions/testing_panel/<storage_key>.json` on each save. Frontend uses API when `VITE_API_BASE_URL` is set, else localStorage; empty API response no longer overwrites local notes/checklist.
+- ✅ **Gallery photo preview from top**: Thumbnails and lightbox use `object-top`; lightbox overlay changed to `justify-start pt-16` with `overflow-y-auto` so images show from top and heads are visible before/after click.
+- ✅ **Profile AI/API configuration**: Added collapsible "AI / API" section in Profile with fields for Ollama (base URL), Open Router / OpenAI-compatible (API key, optional base URL and OpenAI key), and Google Gemini (API key). Values stored in Zustand `apiConfig` and persisted to localStorage; backend integration to use these keys is planned.
+- ✅ **431 Request Header Fields Too Large**: Increased Node max HTTP header size for Vite dev and preview via `node --max-http-header-size=65536` in `frontend/package.json` scripts.
+- ✅ **Preview setup**: Root `npm run preview` runs frontend production build preview; documented in README.
+
+#### **Files Modified:**
+- `frontend/index.html`, `frontend/vite.config.ts`, `frontend/src/App.tsx`, `frontend/src/components/layout/Layout.tsx`, `frontend/src/components/layout/GlobalSidebar.tsx`, `frontend/src/pages/Home.tsx`, `frontend/src/pages/Profile.tsx`, `frontend/src/components/ui/LegalDisclaimer.tsx` — Whirlwind KB rename.
+- `frontend/src/store/useStore.ts` — Added `apiConfig` and `setApiConfig`; storage name `whirlwind-kb-storage`.
+- `frontend/src/components/home/Gallery.tsx` — Top-down image alignment and lightbox layout.
+- `frontend/package.json` — Dev/preview scripts use larger header size.
+- `frontend/src/testing-panel/TestingPanel.tsx` — Prefer localStorage when API returns empty so notes persist on restart.
+- `README.md` — Preview section and Whirlwind KB / library backend notes.
+
+#### **Decisions Made:**
+- **Whirlwind KB branding**: App name standardized to "Whirlwind KB" for consistency with project identity.
+- **API keys in Profile**: Store API config in frontend-only persisted state for now; backend can later read from env or from a future API that syncs profile settings.
+
+#### **Next Steps:**
+- Wire backend (WWMD/Lens, chat) to use Profile API config (Ollama, Open Router, OpenAI, Gemini) when making AI requests.
+- Optional: endpoint or env to sync profile API keys to backend for server-side calls.
+
+---
+
 ## January 23, 2026 - 1:42 PM
 ### **Development Team (Implementation)**
 

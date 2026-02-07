@@ -130,7 +130,7 @@ export function TestingPanel({ config, visible = true, onExpandChange }: Testing
       if (next.has(key)) next.delete(key);
       else next.add(key);
       saveCheckedSet(config, next);
-      saveTestingPanelState(config.storageKey, { checked: [...next] }).catch(() => {});
+      saveTestingPanelState(config.storageKey, { checked: [...next], notes }).catch(() => {});
       return next;
     });
   };
@@ -142,7 +142,7 @@ export function TestingPanel({ config, visible = true, onExpandChange }: Testing
       .filter(Boolean);
     setNotes(lines);
     saveNotes(config, lines);
-    saveTestingPanelState(config.storageKey, { notes: lines }).catch(() => {});
+    saveTestingPanelState(config.storageKey, { checked: [...checked], notes: lines }).catch(() => {});
   };
 
   if (!visible) return null;

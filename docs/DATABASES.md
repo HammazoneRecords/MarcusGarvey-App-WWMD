@@ -1,6 +1,6 @@
 # Data Stores and Databases
 
-Overview of where data lives in the Marcus Garvey App (WWMD) and when to add or consolidate.
+Overview of where data lives in **Whirlwind KB** and when to add or consolidate.
 
 ---
 

@@ -73,7 +73,7 @@ export const Home = () => {
                             <div className="p-3 bg-primary/10 rounded-full mb-3">
                                 <Search className="w-6 h-6 text-primary" />
                             </div>
-                            <span className="font-bold text-sm">Browse Library</span>
+                            <span className="font-bold text-sm">Browse Knowledge Base</span>
                         </Card>
                     </Link>
                     <Link to="/toolkit">
@@ -128,8 +128,13 @@ export const Home = () => {
                 <LegalDisclaimer />
             </section>
 
-            <footer className="pt-4 pb-10 text-center">
-                <p className="text-[10px] text-zinc-400 uppercase tracking-[0.2em]">Garvey Compass v1.0 • Grounded in History</p>
+            <footer className="pt-4 pb-10 text-center space-y-2">
+                <p className="text-[10px] text-zinc-400 uppercase tracking-[0.2em]">Mindwave Jamaica • Whirlwind KB v2.0.6 • Grounded in History</p>
+                <p className="text-[10px] text-zinc-500">
+                    <Link to="/privacy" className="hover:text-primary underline">Privacy</Link>
+                    {' · '}
+                    <Link to="/terms" className="hover:text-primary underline">Terms</Link>
+                </p>
             </footer>
         </div>
     );

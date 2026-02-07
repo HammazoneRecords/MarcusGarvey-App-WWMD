@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Search, SlidersHorizontal, Target, X } from 'lucide-react';
 import { useStore } from '../store/useStore';
 import { LensResultCard } from '../components/wwmd/LensResultCard';
@@ -11,6 +12,7 @@ import { Chip, Skeleton, Card } from '../components/ui/index';
 const CATEGORIES = ['All', 'Lens Results', 'Economics', 'Culture', 'History', 'Globalism', 'Education', 'Philosophy'];
 
 export const Library = () => {
+    const navigate = useNavigate();
     const [facts, setFacts] = useState<Fact[]>([]);
     const [loading, setLoading] = useState(true);
     const [searchQuery, setSearchQuery] = useState('');
@@ -167,7 +169,10 @@ export const Library = () => {
                         <div className="p-4">
                             <ResponseView
                                 response={selectedLensResult}
-                                onReset={() => setSelectedLensResult(null)}
+                                onReset={() => {
+                                    setSelectedLensResult(null);
+                                    navigate('/wwmd');
+                                }}
                             />
                         </div>
                     </div>

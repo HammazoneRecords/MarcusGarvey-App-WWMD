@@ -1,4 +1,4 @@
-# Garvey Compass — User Manual
+# Whirlwind KB — User Manual
 
 > Your guide to wisdom, grounded in the philosophy of Marcus Garvey
 
@@ -7,7 +7,7 @@
 ## Table of Contents
 1. [Getting Started](#getting-started)
 2. [Home — Daily Reflection](#home--daily-reflection)
-3. [Library — Explore the Archive](#library--explore-the-archive)
+3. [Knowledge Base — Explore the Archive](#knowledge-base--explore-the-archive)
 4. [WWMD — The Garvey Lens](#wwmd--the-garvey-lens)
 5. [Toolkit — Organization Building](#toolkit--organization-building)
 6. [Profile — Your Journey](#profile--your-journey)
@@ -19,15 +19,15 @@
 ## Getting Started
 
 ### First Launch
-When you open Garvey Compass, you'll land on the **Home** page featuring a daily reflection. The navigation bar at the bottom provides access to all sections:
+When you open **Whirlwind KB**, you'll land on the **Home** page featuring a daily reflection. The navigation bar at the bottom provides access to all sections:
 
 | Icon | Section | Purpose |
 |:----:|:--------|:--------|
 | 🏠 | Home | Daily quotes and inspiration |
-| 📚 | Library | Searchable historical facts |
+| 📚 | Knowledge Base | Searchable historical facts |
 | 🧭 | WWMD | AI-powered decision assistant |
 | 🛠️ | Toolkit | Organization templates |
-| 👤 | Profile | Your saved items and settings |
+| 👤 | Profile | Saved items, theme, AI/API settings |
 
 ### Theme Toggle
 Look for the **sun/moon icon** in the top corner to switch between **Light Mode** (warm parchment tones) and **Dark Mode** (rich charcoal palette).
@@ -51,7 +51,7 @@ The Home page displays a curated piece of wisdom each day.
 
 ---
 
-## Library — Explore the Archive
+## Knowledge Base — Explore the Archive
 
 A comprehensive database of verified historical facts, each backed by primary sources.
 
@@ -145,7 +145,7 @@ Practical templates for community organizing and institution-building.
 Your personal dashboard for managing saved content and preferences.
 
 ### Saved Facts
-View all facts you've bookmarked from the Library. Tap to revisit, long-press to remove.
+View all facts you've bookmarked from the Knowledge Base. Tap to revisit, long-press to remove.
 
 ### Activity Stats
 - Facts saved this month
@@ -155,9 +155,8 @@ View all facts you've bookmarked from the Library. Tap to revisit, long-press to
 
 ### Settings
 - **Theme**: Light/Dark mode toggle
-- **Notifications**: Daily reflection reminders
-- **Data**: Export your saved collection
-- **About**: App version and credits
+- **AI / API**: Configure providers for the Garvey Lens—Ollama (local), Open Router / OpenAI-compatible, or Google Gemini. Keys are stored locally only.
+- **About**: App version and credits (Whirlwind KB)
 
 ---
 
@@ -166,7 +165,7 @@ View all facts you've bookmarked from the Library. Tap to revisit, long-press to
 ### For Daily Use
 - **Morning Ritual**: Start each day with the Home reflection
 - **Bookmark Liberally**: Save anything that resonates; review weekly
-- **Search First**: Before asking WWMD, check if the Library has facts on your topic
+- **Search First**: Before asking WWMD, check if the Knowledge Base has facts on your topic
 
 ### For Deep Study
 - **Follow the Receipts**: Click through to original sources for fuller context

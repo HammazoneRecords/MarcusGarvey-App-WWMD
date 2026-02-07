@@ -10,7 +10,7 @@ export const LegalDisclaimer = () => {
             </div>
             <div className="space-y-3 text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">
                 <p>
-                    <strong>Garvey Compass</strong> is a source-grounded research instrument. The "Garvey Lens" assistant provides analysis derived from documented historical principles and archival records.
+                    <strong>Whirlwind KB</strong> is a source-grounded research instrument. The "Garvey Lens" assistant provides analysis derived from documented historical principles and archival records.
                 </p>
                 <p>
                     This interface is not a roleplay environment, nor is it intended for identity commentary or political messaging. It is designed to facilitate the study of organizational structure and self-reliance philosophy through primary source evidence.

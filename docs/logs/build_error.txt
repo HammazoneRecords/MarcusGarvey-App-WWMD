@@ -1,7 +1,0 @@
-
-> garvey-compass@0.1.0 build
-> tsc && vite build
-
-src/components/layout/BottomNav.tsx(2,25): error TS2724: '"lucide-react"' has no exported member named 'MessageSquareHeader'. Did you mean 'MessageSquareHeart'?
-src/main.tsx(3,17): error TS5097: An import path can only end with a '.tsx' extension when 'allowImportingTsExtensions' is enabled.
-src/pages/Profile.tsx(2,24): error TS2305: Module '"../components/ui"' has no exported member 'ThemeToggle'.

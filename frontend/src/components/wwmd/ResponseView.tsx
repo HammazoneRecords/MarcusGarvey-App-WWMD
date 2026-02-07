@@ -2,8 +2,14 @@ import { WWMDResponse } from '../../types';
 import { Card, Button } from '../ui';
 import { HelpCircle, CheckSquare, ScrollText, Sparkles, RefreshCw } from 'lucide-react';
 import { SourceItem } from '../facts/SourceItem';
+import { useStore } from '../../store/useStore';
 
 export const ResponseView = ({ response, onReset }: { response: WWMDResponse, onReset: () => void }) => {
+    const resultId = response.id ?? (response.query ? `fallback-${response.query.slice(0, 40)}` : 'unknown');
+    const savedActionSteps = useStore((s) => s.savedActionSteps);
+    const toggleSavedActionStep = useStore((s) => s.toggleSavedActionStep);
+    const checkedStepIds = savedActionSteps[resultId] ?? [];
+
     return (
         <div className="space-y-8 animate-in fade-in slide-in-from-bottom-8 duration-700">
             <div className="flex items-center justify-between">
@@ -11,7 +17,7 @@ export const ResponseView = ({ response, onReset }: { response: WWMDResponse, on
                     <Sparkles className="w-5 h-5" />
                     <h2 className="text-sm font-bold uppercase tracking-widest text-zinc-500">Lens Analysis</h2>
                 </div>
-                <button onClick={onReset} className="text-xs font-bold text-zinc-400 hover:text-primary flex items-center gap-1 transition-colors">
+                <button type="button" onClick={onReset} className="text-xs font-bold text-zinc-400 hover:text-primary flex items-center gap-1 transition-colors" aria-label="Start over and clear this analysis">
                     <RefreshCw className="w-3 h-3" />
                     START OVER
                 </button>
@@ -39,7 +45,12 @@ export const ResponseView = ({ response, onReset }: { response: WWMDResponse, on
                 <div className="space-y-3">
                     {response.actionSteps.map((step) => (
                         <div key={step.id} className="flex items-start gap-3 p-4 bg-zinc-50 dark:bg-zinc-800/50 rounded-xl border border-zinc-100 dark:border-zinc-800">
-                            <input type="checkbox" className="mt-1 w-5 h-5 rounded border-zinc-300 text-primary focus:ring-primary" />
+                            <input
+                                type="checkbox"
+                                className="mt-1 w-5 h-5 rounded border-zinc-300 text-primary focus:ring-primary"
+                                checked={checkedStepIds.includes(step.id)}
+                                onChange={() => toggleSavedActionStep(resultId, step.id)}
+                            />
                             <span className="text-sm font-medium">{step.text}</span>
                         </div>
                     ))}

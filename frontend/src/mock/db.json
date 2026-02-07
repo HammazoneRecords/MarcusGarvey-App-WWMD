@@ -36,8 +36,8 @@
             "author": "Universal Negro Improvement Association",
             "year": 1918,
             "type": "archive",
-            "excerpt": "The foundational document establishing the structure, aims, and governing principles of the UNIA.",
-            "url": "https://www.international.ucla.edu/africa/mgpp"
+            "excerpt": "The foundational document establishing the structure, aims, and governing principles of the UNIA. Full text (1918) at BlackPast; for original print see institutional archives.",
+            "url": "https://www.blackpast.org/african-american-history/constitution-universal-negro-improvement-association-1918/"
         },
         {
             "id": "src-negro-world",
@@ -63,8 +63,8 @@
             "author": "UNIA",
             "year": 1920,
             "type": "archive",
-            "excerpt": "Records from the historic August 1920 convention at Madison Square Garden with 25,000 delegates.",
-            "url": "https://www.international.ucla.edu/africa/mgpp"
+            "excerpt": "Records from the historic August 1920 convention at Madison Square Garden with 25,000 delegates. Full proceedings in institutional archives; use archive.org or LoC for primary documents.",
+            "url": "https://archive.org/search?query=UNIA+Convention+1920+Negro+Peoples+Proceedings"
         },
         {
             "id": "src-declaration-1920",
@@ -81,8 +81,8 @@
             "author": "UNIA",
             "year": 1920,
             "type": "archive",
-            "excerpt": "Incorporated January 23, 1920 as the business arm of the UNIA to foster Black economic independence.",
-            "url": "https://www.international.ucla.edu/africa/mgpp"
+            "excerpt": "Incorporated January 23, 1920 as the business arm of the UNIA to foster Black economic independence. Charter and records in institutional archives; use archive.org for digitized materials.",
+            "url": "https://archive.org/search?query=Negro+Factories+Corporation+UNIA+charter"
         },
         {
             "id": "src-harlem-1919",
@@ -704,6 +704,41 @@
                 "Media",
                 "Organization"
             ]
+        },
+        {
+            "id": "tpl-budget",
+            "title": "Organization Budget Template",
+            "description": "Annual or project budget framework for tracking income, expenses, and reserves.",
+            "markdown": "# Budget\n## [Organization / Project Name]\n**Fiscal Year**: _____________\n\n---\n\n## Income\n| Source | Budgeted | Actual |\n|--------|----------|--------|\n| Dues | $ | $ |\n| Donations | $ | $ |\n| Events | $ | $ |\n| Grants | $ | $ |\n| Other | $ | $ |\n| **Total Income** | **$** | **$** |\n\n## Expenses\n| Category | Budgeted | Actual |\n|----------|----------|--------|\n| Program | $ | $ |\n| Administration | $ | $ |\n| Fundraising | $ | $ |\n| Reserve | $ | $ |\n| **Total Expenses** | **$** | **$** |\n\n## Summary\nOpening Balance: $_______\nNet: $_______\nClosing Balance: $_______\n\n---\n*\"A race that is solely dependent upon another for economic existence sooner or later dies.\"* — Marcus Garvey",
+            "tags": ["Economics", "Governance", "Finance"]
+        },
+        {
+            "id": "tpl-membership",
+            "title": "Membership Application",
+            "description": "Standard application form for new members joining the organization.",
+            "markdown": "# Membership Application\n## [Organization Name]\n\n**Date**: _____________\n\n---\n\n## Applicant Information\n**Full Name**: _____________\n**Address**: _____________\n**Email**: _____________\n**Phone**: _____________\n\n## Why do you want to join?\n_____________\n\n## How did you hear about us?\n_____________\n\n## Skills or contributions you can offer\n_____________\n\n## Agreement\nI have read the charter and bylaws and agree to support the mission and abide by the rules of the organization.\n\n**Signature**: _____________ **Date**: _____________\n\n---\n*For office use: Approved ___ Not approved ___ Date ___",
+            "tags": ["Organization", "Governance", "Membership"]
+        },
+        {
+            "id": "tpl-committee-report",
+            "title": "Committee Report Template",
+            "description": "Structured format for committee chairs to report to the full body.",
+            "markdown": "# Committee Report\n## [Committee Name]\n**Reporting Period**: _____________\n**Chair**: _____________\n**Date of Report**: _____________\n\n---\n\n## Summary\n_Brief overview of committee activities and key findings (2-3 sentences)_\n\n## Activities Completed\n1. _____________\n2. _____________\n3. _____________\n\n## Recommendations\n1. _____________\n2. _____________\n\n## Items for Discussion\n_____________\n\n## Next Steps\n_____________\n\n---\n**Submitted by**: _____________",
+            "tags": ["Organization", "Governance", "Leadership"]
+        },
+        {
+            "id": "tpl-fundraising",
+            "title": "Fundraising Plan",
+            "description": "Outline for organizing a fundraising campaign or event.",
+            "markdown": "# Fundraising Plan\n## [Campaign / Event Name]\n**Goal**: $_______\n**Timeline**: _____________\n\n---\n\n## Case for Support\n_Why are we raising funds? Who benefits?_\n\n## Target Audience\n- _____________\n- _____________\n\n## Strategies\n| Strategy | Target Amount | Lead | Deadline |\n|----------|----------------|------|----------|\n| Individual asks | $ | | |\n| Events | $ | | |\n| Grants | $ | | |\n| Online campaign | $ | | |\n\n## Budget for Fundraising\n| Item | Cost |\n|------|------|\n| | $ |\n| **Total** | **$** |\n\n## Stewardship Plan\n_How will we thank and report back to donors?_\n\n---\n*\"The ends you serve that are for all, in common, will take you even into eternity.\"* — Marcus Garvey",
+            "tags": ["Economics", "Fundraising", "Organization"]
+        },
+        {
+            "id": "tpl-bylaws-amendment",
+            "title": "Bylaws Amendment Proposal",
+            "description": "Template for proposing and documenting changes to organization bylaws.",
+            "markdown": "# Bylaws Amendment Proposal\n**Organization**: _____________\n**Date Submitted**: _____________\n**Submitted By**: _____________\n\n---\n\n## Current Language\n_Section/Article to be amended:_\n\n_____________\n\n## Proposed Language\n_____________\n\n## Rationale\n_Why is this change needed?_\n\n_____________\n\n## Process Required by Current Bylaws\n_Example: 30-day notice, 2/3 vote, etc._\n\n_____________\n\n## Vote\n**Date of vote**: _____________\n**Result**: Approved ___ Defeated ___\n**Votes for**: _______ **Votes against**: _______\n\n---\n**Recorded by**: _____________ **Date**: _____________",
+            "tags": ["Governance", "Organization", "Structure"]
         }
     ]
 }

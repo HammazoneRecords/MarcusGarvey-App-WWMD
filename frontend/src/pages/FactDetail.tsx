@@ -39,17 +39,19 @@ export const FactDetail = () => {
         <div className="space-y-8 pb-10 animate-in fade-in slide-in-from-right-4 duration-500">
             {/* Header Actions */}
             <div className="flex items-center justify-between -mx-1">
-                <button onClick={() => navigate(-1)} className="p-2 -ml-2 rounded-full hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors">
+                <button type="button" onClick={() => navigate(-1)} className="p-2 -ml-2 rounded-full hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors" aria-label="Go back">
                     <ChevronLeft className="w-6 h-6" />
                 </button>
                 <div className="flex gap-1">
                     <button
+                        type="button"
                         onClick={() => id && toggleSavedFact(id)}
                         className={`p-2 rounded-full transition-colors ${isSaved ? 'text-primary dark:text-secondary' : 'hover:bg-zinc-100 dark:hover:bg-zinc-800'}`}
+                        aria-label={isSaved ? 'Remove from saved facts' : 'Save fact'}
                     >
                         <Bookmark className={`w-6 h-6 ${isSaved ? 'fill-current' : ''}`} />
                     </button>
-                    <button className="p-2 rounded-full hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors">
+                    <button type="button" className="p-2 rounded-full hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors" aria-label="Share">
                         <Share2 className="w-6 h-6" />
                     </button>
                 </div>

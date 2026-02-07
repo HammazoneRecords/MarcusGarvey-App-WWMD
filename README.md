@@ -1,8 +1,8 @@
-# Garvey Compass
+# Whirlwind KB
 
 > **"A people without the knowledge of their past history, origin and culture is like a tree without roots."** — Marcus Garvey
 
-A full-stack, source-grounded intelligence platform rooted in the philosophy of Marcus Garvey. This application combines a modern React frontend with a Python-powered RAG (Retrieval-Augmented Generation) backend to deliver historically accurate, citation-backed wisdom.
+A full-stack, source-grounded knowledge base inspired by the legacy of Marcus Garvey. Whirlwind KB combines a modern React frontend with a Python-powered RAG (Retrieval-Augmented Generation) backend to deliver historically accurate, citation-backed wisdom.
 
 ---
 
@@ -11,8 +11,8 @@ A full-stack, source-grounded intelligence platform rooted in the philosophy of 
 ### 🏠 Daily Reflection
 Curated quotes and historical context from verified sources, delivered fresh each day to inspire and educate.
 
-### 📚 Library
-A searchable, filterable database of historical claims—each backed by **Receipts** (primary source citations) to ensure integrity.
+### 📚 Knowledge Base
+A searchable, filterable database of historical claims—each backed by **Receipts** (primary source citations) to ensure integrity. When the backend is running, facts load from the nodes DB; otherwise from bundled mock data.
 
 ### 🧭 WWMD (Garvey Lens)
 **"What Would Marcus Do?"** — An AI-powered decision assistant providing principle-based counsel with historical analogies. All responses are **source-grounded**, never fabricated.
@@ -21,7 +21,7 @@ A searchable, filterable database of historical claims—each backed by **Receip
 Organization-building templates with an interactive local editor. Save and customize templates for community work.
 
 ### 👤 Profile
-Personalized dashboard to manage saved facts, preferences, and your learning journey.
+Personalized dashboard: saved facts, theme, **AI/API configuration** (Ollama, Open Router, OpenAI-compatible, Google Gemini), and recent Lens activity.
 
 ---
 
@@ -53,14 +53,14 @@ MarcusGarvey App WWMD/
 ### Backend (`/backend`)
 | Component | Purpose |
 |:----------|:--------|
-| `api/server.py` | Flask API Server (Chat, WWMD Lens, sessions, health) |
-| `requirements.txt` | Flask, flask-cors, pymupdf (install from `backend/`) |
-| `migrations/` | PostgreSQL Node Specification schema (optional) |
-| `ragbox/scripts/wwmd_ask_hybrid.py` | Core RAG Engine with citation injection |
-| `data/memory.db` | SQLite + Vector database |
-| `ragbox/` | RAG system modules |
-| `ingestion/` | Document processing pipeline |
-| `tools/` | Utility scripts and validators |
+| `api/server.py` | Flask API (Chat, WWMD Lens, library, source viewer, testing panel, sessions, health) |
+| `api/nodes_db.py` | Nodes DB: init, seed from db.json, serve library payload |
+| `data/memory.db` | RAG SQLite (anchors, chunks) |
+| `data/nodes.db` | Nodes SQLite (nodes, sources, claims); created on first `/api/library` use |
+| `data/testing_panel.db` | Testing panel SQLite (checklist + notes per storage_key) |
+| `migrations/` | Node spec (001) + anchor/chunk links (002); SQLite variants in `*_sqlite.sql` |
+| `ragbox/scripts/wwmd_ask_hybrid.py` | Core RAG engine with citation injection |
+| `ragbox/`, `ingestion/`, `tools/` | RAG modules, document pipeline, validators |
 
 ---
 
@@ -105,7 +105,7 @@ VITE_API_BASE_URL=http://localhost:5050
 | `npm run dev:backend` | `npm run dev:frontend` |
 
 - Backend: Flask API at **http://localhost:5050** (health: `GET /api/health`, library: `GET /api/library`, fact: `GET /api/library/facts/:id`). On first use it creates `backend/data/nodes.db` from the node schema and seeds it from `frontend/src/mock/db.json` so nodes/sources/claims point to RAG anchors.
-- Frontend: Vite dev server at **http://127.0.0.1:5173** (proxies `/api` to backend). When `VITE_API_BASE_URL` is set, Library loads facts from the backend; otherwise it uses mock `db.json`.
+- Frontend: Vite dev server at **http://127.0.0.1:5173** (proxies `/api` to backend). When `VITE_API_BASE_URL` is set, the Knowledge Base loads facts from the backend; otherwise it uses mock `db.json`.
 
 ---
 
@@ -137,6 +137,15 @@ npm run build
 npm run preview  # Test production build locally
 ```
 
+### 6. Preview (production build locally)
+From the **project root**:
+```bash
+npm run build
+npm run preview
+```
+- Serves the built app from `frontend/dist/` at **http://127.0.0.1:4173** (Vite default).
+- Use after frontend changes to verify the production bundle; refresh or clear cache if assets don’t update.
+
 ---
 
 ## 📖 Workflow
@@ -146,9 +155,14 @@ npm run preview  # Test production build locally
 2. **Serve Bridge**: `python backend/scripts/serve_vault.py` → Exposes JSON via API
 3. **Run Frontend**: `cd frontend && npm run dev` → React polls the bridge
 
-### Deployment Vision
-- **Frontend**: Build to static HTML/JS, deploy to CDN
-- **Backend**: Wrap `wwmd_ask_hybrid.py` in FastAPI container
+### Deployment (production)
+
+See **[docs/DEPLOYMENT.md](docs/DEPLOYMENT.md)** for full steps. Summary:
+
+- **Environment**: Copy [.env.example](.env.example) to `.env` and set values. Never commit `.env`. For production backend set `CORS_ORIGINS` to your frontend origin(s). For production frontend build set `VITE_API_BASE_URL` to your API URL.
+- **Frontend**: `cd frontend && npm run build`; deploy contents of `frontend/dist/` to your static host. Add PWA icons `pwa-192x192.png` and `pwa-512x512.png` to `frontend/public/` before building (see [frontend/public/PWA_ICONS_README.txt](frontend/public/PWA_ICONS_README.txt)).
+- **Backend**: Run with a process manager (e.g. gunicorn) behind HTTPS. Use a reverse proxy for TLS.
+- **Pre-launch**: Use [docs/PRE_PUBLICATION_CHECKLIST.md](docs/PRE_PUBLICATION_CHECKLIST.md).
 
 ---
 
@@ -178,16 +192,36 @@ Defined in `frontend/src/types/index.ts`:
 
 ---
 
-## 🔌 API Endpoints (Future/Backend Integration)
+## 🔌 API Endpoints
 
 | Endpoint | Description |
 |:---------|:------------|
-| Endpoint | Description |
-|:---------|:------------|
-| `POST /api/chat` | Main RAG chat endpoint (Prosecutor's Standard) |
+| `POST /api/chat` | Main RAG chat endpoint |
 | `POST /api/wwmd` | Garvey Lens analysis (Principle + Action Steps) |
+| `GET /api/library` | Knowledge Base: sources + facts (optional filters: `?search=&category=&confidence=`) |
+| `GET /api/library/facts/<id>` | Single fact by id |
+| `GET /api/source/<anchor_id>` | RAG source section (optional `?locator=`) for citation viewer |
+| `GET /api/testing-panel?storage_key=` | Testing panel state (checked, notes) |
+| `POST /api/testing-panel` | Save testing panel state (body: `storage_key`, `checked?`, `notes?`) |
+| `GET /api/health` | Health check |
 | `GET /api/history` | List past sessions |
-| `GET /api/session/<filename>` | Retrieve specific session |
+| `GET /api/session?file=` | Retrieve specific session |
+| `GET /api/latest` | Most recent session |
+
+---
+
+## 📚 Documentation
+
+| Doc | Purpose |
+|-----|---------|
+| [docs/PRE_PUBLICATION_CHECKLIST.md](docs/PRE_PUBLICATION_CHECKLIST.md) | Pre-launch checklist |
+| [docs/DEPLOYMENT.md](docs/DEPLOYMENT.md) | Deployment and env vars |
+| [docs/USER_MANUAL.md](docs/USER_MANUAL.md) | User guide |
+| [docs/PRIVACY_POLICY.md](docs/PRIVACY_POLICY.md) | Privacy policy (fill contact before publish) |
+| [docs/TERMS_OF_USE.md](docs/TERMS_OF_USE.md) | Terms of use (fill contact before publish) |
+| [docs/POST_LAUNCH_RUNBOOK.md](docs/POST_LAUNCH_RUNBOOK.md) | Post-launch monitoring and rollback |
+
+**Support**: Set contact details in the privacy policy and terms, and in the app (e.g. footer or Profile) if you offer user support.
 
 ---
 
@@ -206,4 +240,4 @@ This project is dedicated to preserving and sharing the wisdom of Marcus Garvey 
 
 ---
 
-*Garvey Lens is source-grounded counsel, not impersonation.*
+*Garvey Lens is source-grounded counsel, not impersonation. App name: **Whirlwind KB**.*

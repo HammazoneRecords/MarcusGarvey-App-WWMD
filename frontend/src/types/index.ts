@@ -48,11 +48,12 @@ export interface DailyItem {
 
 export interface WWMDRequest {
     situation: string;
-    mode: "Personal" | "Community";
+    mode?: "Personal" | "Community"; // optional; backend defaults to Personal
     tone: "Practical" | "Strict" | "Gentle";
 }
 
 export interface WWMDResponse {
+    id?: string; // stable id for linking saved action steps
     query?: string; // Optional because legacy responses might not have it
     principle: string;
     historicalAnalogy: string;

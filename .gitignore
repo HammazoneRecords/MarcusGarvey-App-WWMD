@@ -1,0 +1,43 @@
+# Environment and secrets — never commit
+.env
+.env.local
+.env.*.local
+*.env
+
+# Dependencies
+node_modules/
+frontend/node_modules/
+.venv/
+backend/.venv/
+backend/ragbox/.venv/
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Build and output
+frontend/dist/
+dist/
+*.egg-info/
+.eggs/
+
+# IDE and OS
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+
+# Logs and temp
+*.log
+logs/
+tmp/
+temp/
+.vite/
+
+# Local databases (optional: remove if you want to track schema-only)
+# backend/data/*.db
+# backend/data/*.db-journal
+
+# Sessions and user data (optional: keep if not sensitive)
+# sessions/

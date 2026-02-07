@@ -33,8 +33,18 @@ except ImportError as e:
 SERVER_HOST = os.environ.get("ARK_API_HOST", "0.0.0.0")
 SERVER_PORT = int(os.environ.get("ARK_API_PORT", os.environ.get("PORT", "5050")))
 
+# CORS: in production set CORS_ORIGINS to comma-separated allowed origins (e.g. https://app.example.com)
+CORS_ORIGINS = os.environ.get("CORS_ORIGINS", "").strip()
 app = Flask(__name__)
-CORS(app)  # Enable CORS for all routes
+if CORS_ORIGINS:
+    origins = [o.strip() for o in CORS_ORIGINS.split(",") if o.strip()]
+    CORS(app, origins=origins, supports_credentials=False)
+else:
+    CORS(app)  # allow all (dev default)
+
+# Input limits for public API
+WWMD_SITUATION_MAX_LEN = int(os.environ.get("WWMD_SITUATION_MAX_LEN", "4000"))
+CHAT_QUERY_MAX_LEN = int(os.environ.get("CHAT_QUERY_MAX_LEN", "2000"))
 
 @app.route('/api/wwmd', methods=['POST'])
 def wwmd_lens():
@@ -43,6 +53,11 @@ def wwmd_lens():
         return jsonify({"error": "Missing situation"}), 400
     
     situation = data['situation']
+    if not isinstance(situation, str):
+        return jsonify({"error": "situation must be a string"}), 400
+    situation = situation.strip()
+    if len(situation) > WWMD_SITUATION_MAX_LEN:
+        return jsonify({"error": f"situation must be at most {WWMD_SITUATION_MAX_LEN} characters"}), 400
     mode = data.get('mode', 'Personal')
     
     try:
@@ -60,6 +75,11 @@ def chat():
         return jsonify({"error": "Missing query"}), 400
     
     query = data['query']
+    if not isinstance(query, str):
+        return jsonify({"error": "query must be a string"}), 400
+    query = query.strip()
+    if len(query) > CHAT_QUERY_MAX_LEN:
+        return jsonify({"error": f"query must be at most {CHAT_QUERY_MAX_LEN} characters"}), 400
     debug_mode = data.get('debug', 'expand')
     
     try:

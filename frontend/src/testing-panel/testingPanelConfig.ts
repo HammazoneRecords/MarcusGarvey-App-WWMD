@@ -13,15 +13,21 @@ export const testingPanelConfig: TestingPanelConfig = {
       label: 'Home',
       items: [
         { id: 'daily-card', label: 'Daily reflection card' },
+        { id: 'quick-actions', label: 'Quick Actions section' },
+        { id: 'lens-cta', label: 'Ask WWMD card' },
+        { id: 'library-cta', label: 'Browse Knowledge Base card' },
+        { id: 'toolkit-cta', label: 'Open Toolkit card' },
+        { id: 'community-card', label: 'Community card (disabled)' },
+        { id: 'research-highlight', label: 'Research Highlight section' },
+        { id: 'archives-link', label: 'Archives link to library' },
         { id: 'gallery', label: 'Gallery section' },
-        { id: 'library-cta', label: 'Library call-to-action link' },
-        { id: 'lens-cta', label: 'Garvey Lens / WWMD call-to-action' },
         { id: 'legal-disclaimer', label: 'Legal disclaimer' },
+        { id: 'footer', label: 'Footer (Mindwave Jamaica • Whirlwind KB v2.0.6)' },
       ],
     },
     {
       path: '/library',
-      label: 'Library',
+      label: 'Knowledge Base',
       items: [
         { id: 'search', label: 'Search input' },
         { id: 'category-chips', label: 'Category filter chips' },
@@ -39,7 +45,6 @@ export const testingPanelConfig: TestingPanelConfig = {
       label: 'Garvey Lens (WWMD)',
       items: [
         { id: 'situation-input', label: 'Situation text area' },
-        { id: 'mode-toggle', label: 'Mode (Personal / Community)' },
         { id: 'tone-select', label: 'Tone (Practical / Strict / Gentle)' },
         { id: 'submit-button', label: 'Submit / Apply Lens button' },
         { id: 'principle-card', label: 'Principle response card' },

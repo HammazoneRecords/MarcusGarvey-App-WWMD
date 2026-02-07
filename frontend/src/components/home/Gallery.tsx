@@ -19,8 +19,9 @@ export const Gallery = ({ items }: { items: GalleryItem[] }) => {
 
     return (
         <div className="space-y-4">
-            <div className="flex items-center justify-between">
+            <div className="flex items-center justify-between flex-wrap gap-2">
                 <h2 className="text-sm font-bold uppercase tracking-widest text-zinc-500">Archival Gallery</h2>
+                <p className="text-[10px] text-zinc-500 uppercase tracking-wider">Historical images: Library of Congress and public domain archives.</p>
             </div>
 
             <div className="flex overflow-x-auto gap-4 pb-4 -mx-4 px-4 snap-x">
@@ -54,20 +55,22 @@ export const Gallery = ({ items }: { items: GalleryItem[] }) => {
             {/* Lightbox Overlay */}
             {selectedImage && (
                 <div
-                    className="fixed inset-0 z-[100] bg-black/95 backdrop-blur-sm animate-in fade-in duration-300 flex flex-col items-center justify-center p-6"
+                    className="fixed inset-0 z-[100] bg-black/95 backdrop-blur-sm animate-in fade-in duration-300 flex flex-col items-center justify-start pt-16 pb-8 px-6 overflow-y-auto"
                     onClick={() => setSelectedImage(null)}
                 >
                     <button
+                        type="button"
                         className="absolute top-6 right-6 p-2 bg-white/10 hover:bg-white/20 rounded-full text-white transition-colors"
                         onClick={(e) => {
                             e.stopPropagation();
                             setSelectedImage(null);
                         }}
+                        aria-label="Close image preview"
                     >
                         <X className="w-6 h-6" />
                     </button>
 
-                    <div className="w-full max-w-4xl relative animate-in zoom-in-95 duration-300 flex flex-col items-center">
+                    <div className="w-full max-w-4xl relative animate-in zoom-in-95 duration-300 flex flex-col items-center flex-shrink-0">
                         <img
                             src={selectedImage.url}
                             alt={selectedImage.caption}
@@ -83,6 +86,7 @@ export const Gallery = ({ items }: { items: GalleryItem[] }) => {
                                     Historical Record: {selectedImage.year}
                                 </span>
                             )}
+                            <p className="mt-3 text-[10px] text-zinc-500 uppercase tracking-wider">Library of Congress and public domain archives.</p>
                         </div>
                     </div>
                 </div>

@@ -13,9 +13,9 @@ export const WWMD = () => {
     const handleApplyLens = async (data: WWMDRequest) => {
         setLoading(true);
         try {
-            const result = await submitWWMD(data);
-            // Ensure query is attached if backend didn't send it (legacy fallback)
-            const resultWithQuery = { ...result, query: data.situation };
+            const result = await submitWWMD({ ...data, mode: data.mode ?? 'Personal' });
+            // Ensure query and stable id for saved action steps
+            const resultWithQuery = { ...result, query: data.situation, id: result.id || `lens-${Date.now()}` };
 
             setResponse(resultWithQuery);
             addWWMDSession();

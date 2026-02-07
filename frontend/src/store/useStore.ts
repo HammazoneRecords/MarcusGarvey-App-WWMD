@@ -2,12 +2,26 @@ import { create } from 'zustand';
 import { persist, createJSONStorage } from 'zustand/middleware';
 import { WWMDResponse } from '../types';
 
+export type AIProvider = 'ollama' | 'openrouter' | 'openai' | 'gemini';
+
+export interface ApiConfig {
+    provider: AIProvider;
+    ollamaBaseUrl: string;
+    openRouterApiKey: string;
+    openAiBaseUrl: string;
+    openAiApiKey: string;
+    geminiApiKey: string;
+}
+
 interface AppState {
     theme: 'light' | 'dark';
     savedFactIds: string[];
     toolkitEdits: Record<string, string>; // templateId -> customMarkdown
     savedLensResults: WWMDResponse[];
+    /** resultId -> array of action step ids the user checked */
+    savedActionSteps: Record<string, string[]>;
     recentWWMDIds: string[]; // for now just keeping track of count/history
+    apiConfig: ApiConfig;
 
     // Actions
     setTheme: (theme: 'light' | 'dark') => void;
@@ -15,7 +29,9 @@ interface AppState {
     toggleSavedFact: (id: string) => void;
     saveToolkitEdit: (id: string, markdown: string) => void;
     saveLensResult: (result: WWMDResponse) => void;
+    toggleSavedActionStep: (resultId: string, stepId: string) => void;
     addWWMDSession: () => void;
+    setApiConfig: (config: Partial<ApiConfig>) => void;
 }
 
 export const useStore = create<AppState>()(
@@ -25,7 +41,16 @@ export const useStore = create<AppState>()(
             savedFactIds: [],
             toolkitEdits: {},
             savedLensResults: [],
+            savedActionSteps: {},
             recentWWMDIds: [],
+            apiConfig: {
+                provider: 'openai',
+                ollamaBaseUrl: 'http://localhost:11434',
+                openRouterApiKey: '',
+                openAiBaseUrl: '',
+                openAiApiKey: '',
+                geminiApiKey: '',
+            },
 
             setTheme: (theme) => set({ theme }),
             toggleTheme: () => set((state) => ({
@@ -45,12 +70,24 @@ export const useStore = create<AppState>()(
                 if (exists) return state;
                 return { savedLensResults: [result, ...state.savedLensResults] };
             }),
+            toggleSavedActionStep: (resultId, stepId) => set((state) => {
+                const current = state.savedActionSteps[resultId] ?? [];
+                const next = current.includes(stepId)
+                    ? current.filter((id) => id !== stepId)
+                    : [...current, stepId];
+                return {
+                    savedActionSteps: { ...state.savedActionSteps, [resultId]: next }
+                };
+            }),
             addWWMDSession: () => set((state) => ({
                 recentWWMDIds: [...state.recentWWMDIds, new Date().toISOString()].slice(-10)
             })),
+            setApiConfig: (config) => set((state) => ({
+                apiConfig: { ...state.apiConfig, ...config }
+            })),
         }),
         {
-            name: 'garvey-compass-storage',
+            name: 'whirlwind-kb-storage',
             storage: createJSONStorage(() => localStorage),
         }
     )

@@ -6,6 +6,7 @@ const devApiTarget = process.env.VITE_DEV_API ?? 'http://localhost:5050';
 
 // https://vitejs.dev/config/
 export default defineConfig({
+    envDir: '..',
     plugins: [
         react(),
         VitePWA({

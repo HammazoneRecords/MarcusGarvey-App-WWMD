@@ -3,12 +3,23 @@ import { Card, Button } from '../ui';
 import { HelpCircle, CheckSquare, ScrollText, Sparkles, RefreshCw } from 'lucide-react';
 import { SourceItem } from '../facts/SourceItem';
 import { useStore } from '../../store/useStore';
+import { useAuth } from '../../hooks/useAuth';
+import { upsertLensResult } from '../../services/supabaseUserData';
 
 export const ResponseView = ({ response, onReset }: { response: WWMDResponse, onReset: () => void }) => {
     const resultId = response.id ?? (response.query ? `fallback-${response.query.slice(0, 40)}` : 'unknown');
+    const { user } = useAuth();
     const savedActionSteps = useStore((s) => s.savedActionSteps);
     const toggleSavedActionStep = useStore((s) => s.toggleSavedActionStep);
     const checkedStepIds = savedActionSteps[resultId] ?? [];
+
+    const handleToggleStep = (stepId: string) => {
+        toggleSavedActionStep(resultId, stepId);
+        if (user?.id) {
+            const next = useStore.getState().savedActionSteps[resultId] ?? [];
+            upsertLensResult(user.id, resultId, response, next);
+        }
+    };
 
     return (
         <div className="space-y-8 animate-in fade-in slide-in-from-bottom-8 duration-700">
@@ -49,7 +60,7 @@ export const ResponseView = ({ response, onReset }: { response: WWMDResponse, on
                                 type="checkbox"
                                 className="mt-1 w-5 h-5 rounded border-zinc-300 text-primary focus:ring-primary"
                                 checked={checkedStepIds.includes(step.id)}
-                                onChange={() => toggleSavedActionStep(resultId, step.id)}
+                                onChange={() => handleToggleStep(step.id)}
                             />
                             <span className="text-sm font-medium">{step.text}</span>
                         </div>

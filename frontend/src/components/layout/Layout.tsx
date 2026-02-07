@@ -27,7 +27,7 @@ export const Layout = ({ children, title }: { children: React.ReactNode; title?:
                 <header className="sticky top-0 z-40 w-full bg-zinc-100/90 dark:bg-background/80 backdrop-blur-md border-b border-border h-16 flex items-center justify-between px-4 sm:px-6 lg:px-8">
                     <div className="flex items-center gap-3">
                         <h1 className="text-lg font-bold truncate">
-                            {title || 'Whirlwind KB'}
+                            {title || 'Home'}
                         </h1>
                     </div>
                     <div className="flex items-center gap-2">

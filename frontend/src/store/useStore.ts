@@ -32,6 +32,13 @@ interface AppState {
     toggleSavedActionStep: (resultId: string, stepId: string) => void;
     addWWMDSession: () => void;
     setApiConfig: (config: Partial<ApiConfig>) => void;
+    /** Replace user-data from server (used by sync layer on login). */
+    setUserDataSnapshot: (data: {
+        savedFactIds: string[];
+        savedLensResults: WWMDResponse[];
+        savedActionSteps: Record<string, string[]>;
+        toolkitEdits: Record<string, string>;
+    }) => void;
 }
 
 export const useStore = create<AppState>()(
@@ -85,6 +92,12 @@ export const useStore = create<AppState>()(
             setApiConfig: (config) => set((state) => ({
                 apiConfig: { ...state.apiConfig, ...config }
             })),
+            setUserDataSnapshot: (data) => set({
+                savedFactIds: data.savedFactIds,
+                savedLensResults: data.savedLensResults,
+                savedActionSteps: data.savedActionSteps,
+                toolkitEdits: data.toolkitEdits,
+            }),
         }),
         {
             name: 'whirlwind-kb-storage',

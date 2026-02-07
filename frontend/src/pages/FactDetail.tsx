@@ -6,15 +6,28 @@ import { Fact } from '../types';
 import { Button, Skeleton, Card } from '../components/ui/index';
 import { SourceItem } from '../components/facts/SourceItem';
 import { useStore } from '../store/useStore';
+import { useAuth } from '../hooks/useAuth';
+import { addSavedFact, removeSavedFact } from '../services/supabaseUserData';
 
 export const FactDetail = () => {
     const { id } = useParams<{ id: string }>();
     const navigate = useNavigate();
     const [fact, setFact] = useState<Fact | null>(null);
     const [loading, setLoading] = useState(true);
+    const { user } = useAuth();
     const { savedFactIds, toggleSavedFact } = useStore();
 
     const isSaved = id ? savedFactIds.includes(id) : false;
+
+    const handleToggleSaved = () => {
+        if (!id) return;
+        const willBeSaved = !isSaved;
+        toggleSavedFact(id);
+        if (user?.id) {
+            if (willBeSaved) addSavedFact(user.id, id);
+            else removeSavedFact(user.id, id);
+        }
+    };
 
     useEffect(() => {
         const fetchFact = async () => {
@@ -45,7 +58,7 @@ export const FactDetail = () => {
                 <div className="flex gap-1">
                     <button
                         type="button"
-                        onClick={() => id && toggleSavedFact(id)}
+                        onClick={handleToggleSaved}
                         className={`p-2 rounded-full transition-colors ${isSaved ? 'text-primary dark:text-secondary' : 'hover:bg-zinc-100 dark:hover:bg-zinc-800'}`}
                         aria-label={isSaved ? 'Remove from saved facts' : 'Save fact'}
                     >

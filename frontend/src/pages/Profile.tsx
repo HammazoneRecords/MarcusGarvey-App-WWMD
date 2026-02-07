@@ -1,14 +1,21 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useStore } from '../store/useStore';
+import { useAuth } from '../hooks/useAuth';
 import { Card, Button, ThemeToggle } from '../components/ui/index';
 import { LegalDisclaimer } from '../components/ui/LegalDisclaimer';
-import { Shield, Database, Info, Settings2, Moon, Sun, Download, History, Key, Server, ChevronDown, ChevronUp, ExternalLink, CheckSquare, Bookmark, Briefcase } from 'lucide-react';
+import { Shield, Database, Info, Settings2, Moon, Sun, Download, History, Key, Server, ChevronDown, ChevronUp, ExternalLink, CheckSquare, Bookmark, Briefcase, LogIn, LogOut, User, Settings } from 'lucide-react';
 
 export const Profile = () => {
     const [apiSectionOpen, setApiSectionOpen] = useState(true);
     const [hydrated, setHydrated] = useState(false);
+    const [authEmail, setAuthEmail] = useState('');
+    const [authPassword, setAuthPassword] = useState('');
+    const [authMode, setAuthMode] = useState<'signin' | 'signup'>('signin');
+    const [authError, setAuthError] = useState<string | null>(null);
+    const [authBusy, setAuthBusy] = useState(false);
 
+    const { user, loading: authLoading, isConfigured: authConfigured, signIn, signUp, signOut } = useAuth();
     const theme = useStore((s) => s.theme);
     const savedFactIds = useStore((s) => s.savedFactIds) ?? [];
     const toolkitEdits = useStore((s) => s.toolkitEdits) ?? {};
@@ -102,7 +109,97 @@ export const Profile = () => {
                             <div className="absolute left-1 top-1 w-4 h-4 bg-white rounded-full" />
                         </div>
                     </Card>
+
+                    <Link to="/devops">
+                        <Card className="p-4 flex items-center justify-between hover:border-primary/30 transition-colors cursor-pointer">
+                            <div className="flex items-center gap-3">
+                                <div className="p-2 bg-zinc-100 dark:bg-zinc-800 rounded-lg text-zinc-500">
+                                    <Settings className="w-5 h-5" />
+                                </div>
+                                <div>
+                                    <p className="text-sm font-bold">DevOps</p>
+                                    <p className="text-[10px] text-zinc-500 uppercase font-medium">System administration</p>
+                                </div>
+                            </div>
+                            <ExternalLink className="w-4 h-4 text-zinc-400" />
+                        </Card>
+                    </Link>
                 </div>
+            </section>
+
+            {/* Account (Supabase) */}
+            <section className="space-y-4">
+                <div className="flex items-center gap-2 text-zinc-500">
+                    <User className="w-5 h-5" />
+                    <h2 className="text-sm font-bold uppercase tracking-widest">Account</h2>
+                </div>
+                {!authConfigured ? (
+                    <Card className="p-4">
+                        <p className="text-sm text-zinc-500 dark:text-zinc-400">Sign-in is not configured. Add Supabase URL and key to .env to enable.</p>
+                    </Card>
+                ) : authLoading ? (
+                    <Card className="p-4">
+                        <p className="text-sm text-zinc-500">Loading…</p>
+                    </Card>
+                ) : user ? (
+                    <Card className="p-4 flex items-center justify-between">
+                        <div className="flex items-center gap-3">
+                            <div className="p-2 bg-primary/10 rounded-lg">
+                                <LogIn className="w-5 h-5 text-primary dark:text-secondary" />
+                            </div>
+                            <div>
+                                <p className="text-sm font-bold">Signed in</p>
+                                <p className="text-[10px] text-zinc-500 truncate max-w-[200px]" title={user.email ?? ''}>{user.email ?? 'Unknown'}</p>
+                            </div>
+                        </div>
+                        <Button variant="outline" size="sm" onClick={() => signOut()}>
+                            <LogOut className="w-4 h-4 mr-1 inline" /> Sign out
+                        </Button>
+                    </Card>
+                ) : (
+                    <Card className="p-4 space-y-3">
+                        <p className="text-[11px] text-zinc-500 uppercase font-medium">{authMode === 'signin' ? 'Sign in' : 'Create account'}</p>
+                        {authError && <p className="text-xs text-red-600 dark:text-red-400">{authError}</p>}
+                        <input
+                            type="email"
+                            placeholder="Email"
+                            value={authEmail}
+                            onChange={(e) => { setAuthEmail(e.target.value); setAuthError(null); }}
+                            className="w-full px-3 py-2 text-sm rounded-lg border border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-900"
+                            autoComplete="email"
+                        />
+                        <input
+                            type="password"
+                            placeholder="Password"
+                            value={authPassword}
+                            onChange={(e) => { setAuthPassword(e.target.value); setAuthError(null); }}
+                            className="w-full px-3 py-2 text-sm rounded-lg border border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-900"
+                            autoComplete={authMode === 'signin' ? 'current-password' : 'new-password'}
+                        />
+                        <div className="flex gap-2">
+                            <Button
+                                size="sm"
+                                disabled={authBusy || !authEmail || !authPassword}
+                                onClick={async () => {
+                                    setAuthBusy(true);
+                                    setAuthError(null);
+                                    const { error } = authMode === 'signin' ? await signIn(authEmail, authPassword) : await signUp(authEmail, authPassword);
+                                    setAuthBusy(false);
+                                    if (error) setAuthError(error.message);
+                                }}
+                            >
+                                {authBusy ? '…' : authMode === 'signin' ? 'Sign in' : 'Sign up'}
+                            </Button>
+                            <button
+                                type="button"
+                                className="text-xs text-primary dark:text-secondary hover:underline"
+                                onClick={() => { setAuthMode((m) => m === 'signin' ? 'signup' : 'signin'); setAuthError(null); }}
+                            >
+                                {authMode === 'signin' ? 'Create account' : 'Already have an account?'}
+                            </button>
+                        </div>
+                    </Card>
+                )}
             </section>
 
             {/* AI / API Configuration */}

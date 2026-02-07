@@ -4,10 +4,13 @@ import { ResponseView } from '../components/wwmd/ResponseView';
 import { submitWWMD } from '../services/api';
 import { WWMDRequest, WWMDResponse } from '../types';
 import { useStore } from '../store/useStore';
+import { useAuth } from '../hooks/useAuth';
+import { upsertLensResult } from '../services/supabaseUserData';
 
 export const WWMD = () => {
     const [loading, setLoading] = useState(false);
     const [response, setResponse] = useState<WWMDResponse | null>(null);
+    const { user } = useAuth();
     const { addWWMDSession } = useStore();
 
     const handleApplyLens = async (data: WWMDRequest) => {
@@ -20,6 +23,12 @@ export const WWMD = () => {
             setResponse(resultWithQuery);
             addWWMDSession();
             useStore.getState().saveLensResult(resultWithQuery);
+
+            if (user?.id) {
+                const resultId = resultWithQuery.id ?? resultWithQuery.query ?? `lens-${Date.now()}`;
+                const checked = useStore.getState().savedActionSteps[resultId] ?? [];
+                upsertLensResult(user.id, resultId, resultWithQuery, checked);
+            }
 
             // Scroll to top to see response
             window.scrollTo({ top: 0, behavior: 'smooth' });

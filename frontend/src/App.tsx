@@ -1,6 +1,7 @@
 import { lazy, Suspense } from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { Layout } from './components/layout/Layout';
+import { UserDataSync } from './components/UserDataSync';
 import { Home, Library, Profile, Browse, Workflow, Log, DevOps } from './pages';
 import { useStore } from './store/useStore';
 import { useEffect } from 'react';
@@ -26,9 +27,13 @@ function App() {
 
     return (
         <BrowserRouter>
-            <Suspense fallback={<Layout title="Whirlwind KB"><div className="flex items-center justify-center min-h-[40vh] text-zinc-500">Loading…</div></Layout>}>
+            <UserDataSync />
+            <Suspense fallback={<Layout title="Home"><div className="flex items-center justify-center min-h-[40vh] text-zinc-500">Loading…</div></Layout>}>
                 <Routes>
-                    <Route path="/" element={<Layout title="Whirlwind KB"><Home /></Layout>} />
+                    <Route path="/" element={<Navigate to="/home" replace />} />
+                    <Route path="/home" element={<Layout title="Home"><Home /></Layout>} />
+                    <Route path="/login" element={<Navigate to="/profile" replace />} />
+                    <Route path="/signup" element={<Navigate to="/profile" replace />} />
                     <Route path="/library" element={<Layout title="Knowledge Base"><Library /></Layout>} />
                     <Route path="/facts/:id" element={<Layout title="Fact Detail"><FactDetail /></Layout>} />
                     <Route path="/wwmd" element={<Layout title="Garvey Lens"><WWMD /></Layout>} />

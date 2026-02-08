@@ -27,8 +27,18 @@ except ImportError:
 try:
     from wwmd_ask_hybrid import ask_marcus, ask_marcus_lens
 except ImportError as e:
-    print(f"Error importing RAG modules: {e}")
-    sys.exit(1)
+    # If running in diagnostic/health-check-only mode, allow server to start
+    # with limited functionality so ops can verify deployment without full RAG deps.
+    diagnostic_mode = str(os.environ.get('DIAGNOSTIC_MODE', '')).lower() in ('1', 'true', 'yes')
+    if diagnostic_mode:
+        print(f"Starting in DIAGNOSTIC_MODE: RAG modules not available ({e}), limited endpoints enabled.")
+        def ask_marcus(*args, **kwargs):
+            return {"error": "RAG modules not available in DIAGNOSTIC_MODE"}
+        def ask_marcus_lens(*args, **kwargs):
+            return {"error": "RAG modules not available in DIAGNOSTIC_MODE"}
+    else:
+        print(f"Error importing RAG modules: {e}")
+        sys.exit(1)
 
 SERVER_HOST = os.environ.get("ARK_API_HOST", "0.0.0.0")
 SERVER_PORT = int(os.environ.get("ARK_API_PORT", os.environ.get("PORT", "5050")))
@@ -62,13 +72,6 @@ def wwmd_lens():
     # Extract user's API key from request (optional)
     api_key = data.get('apiConfig', {}).get('geminiApiKey') if isinstance(data.get('apiConfig'), dict) else None
     
-    # Debug logging
-    if api_key:
-        print(f"DEBUG: Using user-provided API key: {api_key[:10]}...{api_key[-4:]}")
-    else:
-        print(f"DEBUG: No user API key provided, will use .env key")
-        print(f"DEBUG: Received apiConfig: {data.get('apiConfig', 'NOT PROVIDED')}")
-    
     try:
         # Generate structured analysis with user's API key if provided
         response = ask_marcus_lens(situation, mode=mode, api_key=api_key)
@@ -95,13 +98,6 @@ def chat():
     # Extract user's API key from request (optional)
     api_key = data.get('apiConfig', {}).get('geminiApiKey') if isinstance(data.get('apiConfig'), dict) else None
     
-    # Debug logging
-    if api_key:
-        print(f"DEBUG: Using user-provided API key: {api_key[:10]}...{api_key[-4:]}")
-    else:
-        print(f"DEBUG: No user API key provided, will use .env key")
-        print(f"DEBUG: Received apiConfig: {data.get('apiConfig', 'NOT PROVIDED')}")
-    
     try:
         response = ask_marcus(query, debug_mode=debug_mode, api_key=api_key)
         return jsonify(response)
@@ -110,6 +106,32 @@ def chat():
         import traceback
         traceback.print_exc()
         return jsonify({"error": str(e)}), 500
+
+
+@app.route('/api/key-diagnostic', methods=['POST'])
+def key_diagnostic():
+    """Safe diagnostic: report which API key source would be used for this request.
+    Does NOT return or log actual key values.
+    Request body (optional): { "apiConfig": { "geminiApiKey": "..." } }
+    Response: { user_key_present: bool, env_key_present: bool, using_user_key: bool, using_env_key: bool }
+    """
+    data = request.json or {}
+    user_key = None
+    if isinstance(data.get('apiConfig'), dict):
+        user_key = data.get('apiConfig', {}).get('geminiApiKey')
+    user_key_present = bool(user_key)
+    env_key_present = bool(os.environ.get('GEMINI_API_KEY'))
+    using_user_key = bool(user_key_present)
+    using_env_key = (not using_user_key) and env_key_present
+
+    resp = {
+        "user_key_present": user_key_present,
+        "env_key_present": env_key_present,
+        "using_user_key": using_user_key,
+        "using_env_key": using_env_key,
+        "note": "This endpoint will never echo secret values. If neither key is present, requests that require Gemini will fail."
+    }
+    return jsonify(resp)
 
 @app.route('/api/latest', methods=['GET'])
 def get_latest_session():

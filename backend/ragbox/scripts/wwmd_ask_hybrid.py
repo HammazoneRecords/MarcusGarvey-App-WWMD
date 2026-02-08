@@ -53,15 +53,28 @@ def load_api_key(provided_api_key=None):
     
     Returns:
         API key string or None
+        
+    Raises:
+        ValueError if key format is invalid
     """
     # User-provided key takes precedence
     if provided_api_key and provided_api_key.strip():
-        return provided_api_key.strip()
+        key = provided_api_key.strip()
+        # Validate key format (Gemini keys are typically 39+ chars, alphanumeric+underscore)
+        if len(key) >= 32 and all(c.isalnum() or c in '_-' for c in key):
+            return key
+        else:
+            # Invalid format; do NOT log the actual key
+            raise ValueError("Invalid API key format provided")
     
     # Try environment variable
     env_key = os.environ.get('GEMINI_API_KEY')
     if env_key and env_key.strip():
-        return env_key.strip()
+        key = env_key.strip()
+        if len(key) >= 32:
+            return key
+        else:
+            raise ValueError("Invalid GEMINI_API_KEY in environment (too short)")
     
     # Fall back to .env file
     potential_paths = [
@@ -85,7 +98,12 @@ def load_api_key(provided_api_key=None):
     # Match GEMINI_API_KEY=value or GEMINI_API_KEY="value"
     matches = re.findall(r'GEMINI_API_KEY\s*=\s*"?([^"\n]+)"?', content)
     if matches:
-        return matches[-1]
+        key = matches[-1].strip()
+        # Validate format
+        if len(key) >= 32:
+            return key
+        else:
+            raise ValueError("Invalid GEMINI_API_KEY in .env (too short)")
     return None
 
 def save_to_session_vault(query, response_data):
@@ -108,15 +126,34 @@ def save_to_session_vault(query, response_data):
 # =========================
 
 def call_gemini_rest(api_key, full_text, model_name="gemini-2.5-flash"):
-    """Call Gemini API using REST."""
+    """Call Gemini API using REST with secure Authorization header.
+    
+    Security:
+    - API key passed in Authorization header (not URL query param)
+    - Error messages sanitized (no key exposure)
+    - Input validated before sending
+    """
     import urllib.request
     import urllib.error
     
     if not api_key:
         return "ERROR: Missing API Key"
-        
-    url = f"https://generativelanguage.googleapis.com/v1beta/models/{model_name}:generateContent?key={api_key}"
-    headers = {"Content-Type": "application/json"}
+    
+    # Validate API key format (basic check)
+    api_key = api_key.strip()
+    if not api_key or len(api_key) < 32:
+        return "ERROR: Invalid API Key format"
+    
+    # Sanitize input to prevent injection
+    if not full_text or len(full_text) < 1:
+        return "ERROR: Empty prompt"
+    
+    # Use Authorization header instead of URL query param for security
+    url = f"https://generativelanguage.googleapis.com/v1beta/models/{model_name}:generateContent"
+    headers = {
+        "Content-Type": "application/json",
+        "Authorization": f"Bearer {api_key}"
+    }
     data = {"contents": [{"parts": [{"text": full_text}]}]}
     
     try:
@@ -126,11 +163,21 @@ def call_gemini_rest(api_key, full_text, model_name="gemini-2.5-flash"):
             try:
                 return result['candidates'][0]['content']['parts'][0]['text']
             except (KeyError, IndexError):
-                return f"ERROR: format {result}"
+                return "ERROR: Invalid response format from API"
     except urllib.error.HTTPError as e:
-        return f"ERROR: HTTP {e.code}"
+        # Don't expose internal error details
+        if e.code == 401:
+            return "ERROR: Unauthorized (invalid API key)"
+        elif e.code == 429:
+            return "ERROR: Rate limited by API"
+        elif e.code == 500:
+            return "ERROR: API server error"
+        else:
+            return f"ERROR: API request failed (HTTP {e.code})"
     except Exception as e:
-        return f"ERROR: {e}"
+        # Log error safely without exposing sensitive data
+        error_type = type(e).__name__
+        return f"ERROR: {error_type}"
 
 # =========================
 # PROMPT

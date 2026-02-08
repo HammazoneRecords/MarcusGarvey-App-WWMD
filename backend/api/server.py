@@ -59,13 +59,24 @@ def wwmd_lens():
     if len(situation) > WWMD_SITUATION_MAX_LEN:
         return jsonify({"error": f"situation must be at most {WWMD_SITUATION_MAX_LEN} characters"}), 400
     mode = data.get('mode', 'Personal')
+    # Extract user's API key from request (optional)
+    api_key = data.get('apiConfig', {}).get('geminiApiKey') if isinstance(data.get('apiConfig'), dict) else None
+    
+    # Debug logging
+    if api_key:
+        print(f"DEBUG: Using user-provided API key: {api_key[:10]}...{api_key[-4:]}")
+    else:
+        print(f"DEBUG: No user API key provided, will use .env key")
+        print(f"DEBUG: Received apiConfig: {data.get('apiConfig', 'NOT PROVIDED')}")
     
     try:
-        # Generate structured analysis
-        response = ask_marcus_lens(situation, mode=mode)
+        # Generate structured analysis with user's API key if provided
+        response = ask_marcus_lens(situation, mode=mode, api_key=api_key)
         return jsonify(response)
     except Exception as e:
         print(f"Error processing WWMD request: {e}")
+        import traceback
+        traceback.print_exc()
         return jsonify({"error": str(e)}), 500
 
 @app.route('/api/chat', methods=['POST'])
@@ -81,12 +92,23 @@ def chat():
     if len(query) > CHAT_QUERY_MAX_LEN:
         return jsonify({"error": f"query must be at most {CHAT_QUERY_MAX_LEN} characters"}), 400
     debug_mode = data.get('debug', 'expand')
+    # Extract user's API key from request (optional)
+    api_key = data.get('apiConfig', {}).get('geminiApiKey') if isinstance(data.get('apiConfig'), dict) else None
+    
+    # Debug logging
+    if api_key:
+        print(f"DEBUG: Using user-provided API key: {api_key[:10]}...{api_key[-4:]}")
+    else:
+        print(f"DEBUG: No user API key provided, will use .env key")
+        print(f"DEBUG: Received apiConfig: {data.get('apiConfig', 'NOT PROVIDED')}")
     
     try:
-        response = ask_marcus(query, debug_mode=debug_mode)
+        response = ask_marcus(query, debug_mode=debug_mode, api_key=api_key)
         return jsonify(response)
     except Exception as e:
         print(f"Error processing query: {e}")
+        import traceback
+        traceback.print_exc()
         return jsonify({"error": str(e)}), 500
 
 @app.route('/api/latest', methods=['GET'])

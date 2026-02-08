@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { WWMDForm } from '../components/wwmd/WWMDForm';
 import { ResponseView } from '../components/wwmd/ResponseView';
 import { submitWWMD } from '../services/api';
@@ -12,11 +12,27 @@ export const WWMD = () => {
     const [response, setResponse] = useState<WWMDResponse | null>(null);
     const { user } = useAuth();
     const { addWWMDSession } = useStore();
+    const apiConfig = useStore((s) => s.apiConfig);
+    const [isHydrated, setIsHydrated] = useState(false);
+
+    // Wait for store hydration
+    useEffect(() => {
+        const unsub = useStore.persist?.onFinishHydration?.(() => setIsHydrated(true));
+        setIsHydrated(useStore.persist?.hasHydrated?.() ?? true);
+        return () => { unsub?.(); };
+    }, []);
 
     const handleApplyLens = async (data: WWMDRequest) => {
         setLoading(true);
         try {
-            const result = await submitWWMD({ ...data, mode: data.mode ?? 'Personal' });
+            // Get fresh api config to ensure we have the latest
+            const currentApiConfig = useStore.getState().apiConfig;
+            console.log('Current apiConfig:', { 
+                hasKey: !!currentApiConfig?.geminiApiKey,
+                keyLength: currentApiConfig?.geminiApiKey?.length,
+                provider: currentApiConfig?.provider
+            });
+            const result = await submitWWMD({ ...data, mode: data.mode ?? 'Personal', apiConfig: currentApiConfig });
             // Ensure query and stable id for saved action steps
             const resultWithQuery = { ...result, query: data.situation, id: result.id || `lens-${Date.now()}` };
 

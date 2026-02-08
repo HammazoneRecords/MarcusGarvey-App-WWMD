@@ -39,6 +39,8 @@ interface AppState {
         savedActionSteps: Record<string, string[]>;
         toolkitEdits: Record<string, string>;
     }) => void;
+    /** Clear all user data (called on sign out) */
+    clearUserData: () => void;
 }
 
 export const useStore = create<AppState>()(
@@ -97,6 +99,21 @@ export const useStore = create<AppState>()(
                 savedLensResults: data.savedLensResults,
                 savedActionSteps: data.savedActionSteps,
                 toolkitEdits: data.toolkitEdits,
+            }),
+            clearUserData: () => set({
+                savedFactIds: [],
+                toolkitEdits: {},
+                savedLensResults: [],
+                savedActionSteps: {},
+                recentWWMDIds: [],
+                apiConfig: {
+                    provider: 'openai',
+                    ollamaBaseUrl: 'http://localhost:11434',
+                    openRouterApiKey: '',
+                    openAiBaseUrl: '',
+                    openAiApiKey: '',
+                    geminiApiKey: '',
+                },
             }),
         }),
         {

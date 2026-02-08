@@ -50,6 +50,13 @@ export interface WWMDRequest {
     situation: string;
     mode?: "Personal" | "Community"; // optional; backend defaults to Personal
     tone: "Practical" | "Strict" | "Gentle";
+    apiConfig?: {
+        provider: string;
+        geminiApiKey?: string;
+        openRouterApiKey?: string;
+        openAiApiKey?: string;
+        ollamaBaseUrl?: string;
+    };
 }
 
 export interface WWMDResponse {

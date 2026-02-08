@@ -11,7 +11,7 @@ export default defineConfig({
         react(),
         VitePWA({
             registerType: 'autoUpdate',
-            includeAssets: ['whirlwindkb_favicon.ico', 'Whirlwind logo12.png', 'whirlwindkb_favicon_192.png', 'whirlwindkb_favicon_512.png'],
+            includeAssets: ['whirlwindkb_favicon.ico', 'pwa_192.png', 'pwa_512.png'],
             manifest: {
                 name: 'Whirlwind KB',
                 short_name: 'WhirlwindKB',
@@ -21,12 +21,12 @@ export default defineConfig({
                 display: 'standalone',
                 icons: [
                     {
-                        src: 'whirlwindkb_favicon_192.png',
+                        src: 'pwa_192.png',
                         sizes: '192x192',
                         type: 'image/png'
                     },
                     {
-                        src: 'whirlwindkb_favicon_512.png',
+                        src: 'pwa_512.png',
                         sizes: '512x512',
                         type: 'image/png'
                     }

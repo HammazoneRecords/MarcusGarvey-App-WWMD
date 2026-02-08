@@ -31,6 +31,7 @@ export const Profile = () => {
         geminiApiKey: '',
     };
     const setApiConfig = useStore((s) => s.setApiConfig);
+    const clearUserData = useStore((s) => s.clearUserData);
 
     useEffect(() => {
         const unsub = useStore.persist?.onFinishHydration?.(() => setHydrated(true));
@@ -152,7 +153,10 @@ export const Profile = () => {
                                 <p className="text-[10px] text-zinc-500 truncate max-w-[200px]" title={user.email ?? ''}>{user.email ?? 'Unknown'}</p>
                             </div>
                         </div>
-                        <Button variant="outline" size="sm" onClick={() => signOut()}>
+                        <Button variant="outline" size="sm" onClick={async () => {
+                            clearUserData();
+                            await signOut();
+                        }}>
                             <LogOut className="w-4 h-4 mr-1 inline" /> Sign out
                         </Button>
                     </Card>

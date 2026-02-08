@@ -1,7 +1,7 @@
 # Privacy Policy — Whirlwind KB
 
-**Last updated:** February 6, 2025  
-**Contact:** [Your contact email or support link]
+**Last updated:** February 7, 2026  
+**Contact:** ovandobrown@mindwaveja.com
 
 ## Overview
 
@@ -33,7 +33,7 @@ We may update this policy. The "Last updated" date at the top will change when w
 
 ## Contact
 
-For privacy questions or requests, contact: [Your contact email or support link].
+For privacy questions or requests, contact: ovandobrown@mindwaveja.com.
 
 ---
 

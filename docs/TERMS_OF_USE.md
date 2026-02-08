@@ -1,7 +1,7 @@
 # Terms of Use — Whirlwind KB
 
-**Last updated:** February 6, 2025  
-**Contact:** [Your contact email or support link]
+**Last updated:** February 7, 2026  
+**Contact:** ovandobrown@mindwaveja.com
 
 ## Acceptance
 
@@ -45,7 +45,7 @@ We may change these terms. The "Last updated" date will be revised when we do. C
 
 ## Contact
 
-For questions about these terms: [Your contact email or support link].
+For questions about these terms: ovandobrown@mindwaveja.com.
 
 ---
 

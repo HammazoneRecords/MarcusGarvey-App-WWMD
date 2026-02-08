@@ -6,36 +6,161 @@ Returns structured data and handles scoring.
 import re
 from typing import List, Dict, Tuple, Any
 
+def is_metadata_or_frontmatter(line_text: str) -> bool:
+    """
+    Detect if a line is publisher metadata, copyright, or frontmatter.
+    Returns True if the line should be excluded from citations.
+    
+    Filters out:
+    - Copyright statements, publisher info, ISBN
+    - Environmental/printing statements
+    - Table of contents, indices, headers
+    - Question headers (e.g., "How successful was...?")
+    - Fragments and incomplete sentences
+    - Single words or very short labels
+    """
+    text_lower = line_text.lower().strip()
+    text_stripped = text_lower.strip()
+    
+    # Copyright and publication metadata
+    metadata_patterns = [
+        'copyright ©',
+        'all rights reserved',
+        'dover publications',
+        'dover thrift',
+        'isbn',
+        'published by',
+        'printed in',
+        'earth-friendly',
+        'environmental defense',
+        'recycled paper',
+        'post-consumer waste',
+        'international freight',
+        'global air pollution',
+        'manufacturing books',
+        'printing on recycled',
+        'fossil fuels',
+        'consumption of trees',
+        'paper calculator',
+        'thrift editions',
+        'contents',
+        'table of contents',
+        'index of',
+        'page number',
+    ]
+    
+    # Check for metadata patterns
+    for pattern in metadata_patterns:
+        if pattern in text_lower:
+            return True
+    
+    # Filter out question headers (lines starting with How, What, Why, Where, Who)
+    question_starters = ['how ', 'what ', 'why ', 'where ', 'who ', 'when ']
+    if any(text_lower.startswith(q) for q in question_starters):
+        # If it ends with a question mark AND is short, it's likely a question header, not a citation
+        if text_lower.endswith('?') and len(text_lower) < 100:
+            return True
+    
+    # Very short lines are likely labels, headers, or fragments
+    if len(text_stripped) < 15:
+        return True
+    
+    # Lines that are obviously fragments (start with lowercase, don't form complete thought)
+    # e.g., "together to rebuild their great nation" (continuation from previous line)
+    if text_stripped and text_stripped[0].islower() and not any(text_lower.startswith(word) for word in ['the ', 'a ', 'an ', 'and ', 'or ', 'but ']):
+        # If starts with lowercase word that's not an article/conjunction, likely a fragment
+        first_word = text_stripped.split()[0] if text_stripped.split() else ''
+        # Check if this looks like a continuation (starts with verb ending or unusual word)
+        if first_word.endswith('er') or first_word.endswith('ing') or first_word in ['together', 'still', 'also', 'never', 'always']:
+            return True
+    
+    # Check for typical copyright year pattern (© 2004)
+    if re.search(r'©\s*\d{4}', text_lower):
+        return True
+    
+    return False
+
 def score_citation(line_text: str, query_terms: List[str]) -> int:
     """
     Score a potential citation based on relevance and quality.
     
-    Heuristic:
-    +3 if matches query key terms
-    +2 if contains directive language (must, foundation, program)
-    -2 if generic/short
+    Scoring heuristic:
+    - Query term matches: +6 per unique match (high relevance)
+    - Complete sentence (ends with . ? !): +5 bonus
+    - Directive/authoritative language: +3 per instance
+    - Substantive length (100+ chars): +2-4 points
+    - Garveyite vocabulary: +4 per term
+    - Capital letter start (complete thought): +2
+    
+    Penalties:
+    - Too short (<50 chars): -5
+    - Lowercase start (fragment): -3
+    - No period/punctuation (incomplete): -4
+    - No query relevance: -2
+    - Metadata: -100 (skip entirely)
     """
     score = 0
     text_lower = line_text.lower()
-    
-    # Check query terms
-    for term in query_terms:
-        if term in text_lower:
-            score += 3
-            
-    # Check directive language
-    directives = ['must', 'foundation', 'salvation', 'program', 'essential', 'imperative', 'duty']
-    if any(d in text_lower for d in directives):
-        score += 2
-        
-    # Penalize short/generic lines, rewarding substance
+    text_stripped = line_text.strip()
+    words = line_text.split()
     length = len(line_text)
-    if length < 40:
+    
+    # SKIP if metadata
+    if is_metadata_or_frontmatter(line_text):
+        return -100  # Signal to skip this entirely
+    
+    # Query term matches (high weight for relevance)
+    query_matches = sum(1 for term in query_terms if term in text_lower and len(term) > 2)
+    if query_matches > 0:
+        score += (6 * query_matches)  # Increased weight
+    else:
+        # If no query term match, slightly penalize (it's tangential)
         score -= 2
-    elif length > 100:
-        score += 1
-        
-    return score
+    
+    # Complete sentence structure is crucial
+    if text_stripped.endswith(('.', '?', '!')):
+        score += 5  # Increased bonus for complete sentences
+    else:
+        score -= 4  # Heavy penalty for fragments
+    
+    # Starts with capital letter = likely complete thought
+    if text_stripped and text_stripped[0].isupper():
+        score += 2
+    else:
+        score -= 3  # Likely a fragment or continuation
+    
+    # Substantive length (longer = more informative)
+    if length >= 150:
+        score += 4  # Very substantive
+    elif length >= 100:
+        score += 2  # Substantial
+    elif length >= 60:
+        score += 1  # Moderate
+    elif length < 50:
+        score -= 5  # Too short, likely fragment
+    
+    # Directive/authoritative language
+    directives = ['must', 'foundation', 'salvation', 'program', 'essential', 'imperative', 'duty', 
+                  'shall', 'will', 'organization', 'movement', 'universal', 'nation', 'race',
+                  'liberate', 'emancipate', 'commerce', 'self-reliance', 'independent', 'establish']
+    directive_count = sum(1 for d in directives if d in text_lower)
+    score += (3 * directive_count)
+    
+    # Garveyite/historical vocabulary
+    garvey_vocab = ['garvey', 'unia', 'race', 'negro', 'africa', 'back-to-africa', 
+                    'self-determination', 'black nationalism', 'industrial', 'economic',
+                    'liberty', 'independence', 'people', 'build', 'establish', 'create',
+                    'diaspora', 'organization', 'movement']
+    vocab_count = sum(1 for v in garvey_vocab if v in text_lower)
+    score += (4 * vocab_count)
+    
+    # Multiple short words in sequence = likely fragment
+    # "You can shackle the hands" - dramatic but not substantive
+    if len(words) > 0 and len(words) <= 8 and all(len(w) <= 7 for w in words):
+        if score < 15:  # Only penalize if not highly relevant
+            score -= 3
+    
+    return max(-100, score)  # Allow negative scores to signal skip or poor quality
 
 def find_text_matches(ai_response: str, line_data: List[Dict], query_terms: List[str] = None) -> List[Dict]:
     """
@@ -53,6 +178,10 @@ def find_text_matches(ai_response: str, line_data: List[Dict], query_terms: List
         locator = line_info['locator']
         
         if locator in seen_locators:
+            continue
+        
+        # SKIP metadata/publisher information entirely
+        if is_metadata_or_frontmatter(line_text):
             continue
             
         line_lower = line_text.lower()

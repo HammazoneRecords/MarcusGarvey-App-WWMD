@@ -42,12 +42,28 @@ ENV_PATH = BASE_DIR.parent.parent / ".env"
 SESSIONS_DIR = BASE_DIR.parent / "sessions"
 
 # Config from Env
-CITATION_EXPAND_MAX_LINES = int(os.environ.get("CITATION_EXPAND_MAX_LINES", 500))
-CITATION_MAX_DISPLAY = int(os.environ.get("CITATION_MAX_DISPLAY", 8))
+CITATION_EXPAND_MAX_LINES = int(os.environ.get("CITATION_EXPAND_MAX_LINES", 1500))
+CITATION_MAX_DISPLAY = int(os.environ.get("CITATION_MAX_DISPLAY", 15))
 
-def load_api_key():
-    """Parse .env for Gemini API Key."""
-    # Try looking in multiple locations
+def load_api_key(provided_api_key=None):
+    """Get Gemini API Key from parameter, env, or .env file.
+    
+    Args:
+        provided_api_key: Optional API key provided by user (takes precedence)
+    
+    Returns:
+        API key string or None
+    """
+    # User-provided key takes precedence
+    if provided_api_key and provided_api_key.strip():
+        return provided_api_key.strip()
+    
+    # Try environment variable
+    env_key = os.environ.get('GEMINI_API_KEY')
+    if env_key and env_key.strip():
+        return env_key.strip()
+    
+    # Fall back to .env file
     potential_paths = [
         ENV_PATH,
         BASE_DIR.parent / ".env",
@@ -61,7 +77,6 @@ def load_api_key():
             break
             
     if not target_path:
-        print(f"DEBUG: .env not found in {potential_paths}")
         return None
         
     import re
@@ -121,7 +136,7 @@ def call_gemini_rest(api_key, full_text, model_name="gemini-2.5-flash"):
 # PROMPT
 # =========================
 HYBRID_PROMPT_TEMPLATE = """You are the Voice of the Marcus Garvey ARK.
-Your goal is to answer the user's question using **ONLY** the provided Reference Chunks.
+Your wisdom flows from a deep archive of Garveyite philosophy and historical precedent.
 
 ## THE PROSECUTOR'S STANDARD
 1. Admissible Evidence Only: Do not use outside knowledge. If the answer is not in the chunks, state so.
@@ -135,24 +150,38 @@ Your goal is to answer the user's question using **ONLY** the provided Reference
 {query}
 
 ## INSTRUCTIONS
-- Provide a comprehensive, eloquent answer in the voice of Marcus Garvey.
-- Do NOT add citation footnotes yourself; the system will handle that.
-- If the text supports it, be bold, visionary, and empowering.
+- Provide a comprehensive, eloquent, and substantial answer (3-5 paragraphs minimum) in the voice of Marcus Garvey.
+- Ground EVERY major claim in the archives. Reference multiple supporting passages and use specific textual evidence.
+- If multiple related concepts exist in the context, explore each distinct facet with depth and critical nuance.
+- Build your answer with layers: core principle → historical application → practical wisdom → actionable guidance.
+- END with 2-3 concrete, actionable steps grounded in the philosophical principles from the archives:
+  * Each step must be directly supported by citations from the material
+  * Explain WHY each step matters based on Garvey's philosophy
+  * Make steps specific and implementable (not vague ideals)
+  * Connect each step to the broader answer and cited evidence
+- Do NOT add citation footnotes yourself; the system will handle citation formatting.
+- Be bold, visionary, and empowering. Echo Garvey's voice and conviction where the archive permits.
 - If the text is silent, say: "The archives are silent on this specific matter."
 
 Answer:
 """
 
-def ask_marcus(query, debug_mode='expand', output_file=None):
+def ask_marcus(query, debug_mode='expand', output_file=None, api_key=None):
     """
     Main entry point for asking a question.
     Returns the JSON response dict.
+    
+    Args:
+        query: User question
+        debug_mode: 'expand', 'strict', or 'off'
+        output_file: Optional path to save JSON output
+        api_key: Optional Gemini API key (uses .env if not provided)
     """
     start_time = time.time()
-    api_key = load_api_key()
+    api_key = load_api_key(api_key)
     
     # 1. Retrieval
-    results = retrieve_hybrid(query, max_results=15)
+    results = retrieve_hybrid(query, max_results=25)
     
     # 2. Context Building & Expansion
     context_data = build_hybrid_context(results)
@@ -218,33 +247,41 @@ Analyze the following user situation through the {mode} LENS of Marcus Garvey's 
 ## INSTRUCTIONS
 Output a valid JSON object strictly following this schema:
 {{
-  "principle": "The specific Garveyite principle that applies here (e.g., self-reliance, industrial organization).",
-  "historicalAnalogy": "A relevant historical parallel from the U.N.I.A. or Garvey's life based on the context.",
+  "principle": "The specific Garveyite principle that applies here (e.g., self-reliance, industrial organization), grounded in the context provided.",
+  "historicalAnalogy": "A relevant historical parallel from the U.N.I.A. or Garvey's life based on the context. Include specific details.",
   "actionSteps": [
-    {{"id": "1", "text": "Specific, actionable advice step 1", "completed": false}},
-    {{"id": "2", "text": "Specific, actionable advice step 2", "completed": false}},
-    {{"id": "3", "text": "Specific, actionable advice step 3", "completed": false}}
+    {{"id": "1", "text": "Specific, actionable advice step 1, grounded in the archive philosophy", "completed": false}},
+    {{"id": "2", "text": "Specific, actionable advice step 2, grounded in the archive philosophy", "completed": false}},
+    {{"id": "3", "text": "Specific, actionable advice step 3, grounded in the archive philosophy", "completed": false}}
   ],
   "mirrorQuestions": [
-    "A reflective question challenging the user's approach?",
-    "A question about long-term impact?"
+    "A reflective question challenging the user's approach based on Garvey's philosophy?",
+    "A question about long-term impact and alignment with Garveyite principles?"
   ]
 }}
 
 - Do NOT include markdown code blocks (```json). Just the raw JSON string.
-- Ensure the advice is practical but grounded in the 1920s philosophy of independence.
+- Each action step must be grounded in the context and citations provided. Explain WHY each step matters based on Garvey's philosophy.
+- Steps must be practical and implementable, reflecting self-determination, economic independence, and organizational excellence.
+- Ensure advice reflects the principles evident in the archive, not external knowledge.
+- If the context does not support actionable guidance, include that caveat in the principle field.
 """
 
-def ask_marcus_lens(situation, mode="Personal"):
+def ask_marcus_lens(situation, mode="Personal", api_key=None):
     """
     Analyzes a situation and returns structured JSON for WWMD page.
+    
+    Args:
+        situation: User situation description
+        mode: Analysis mode (default 'Personal')
+        api_key: Optional Gemini API key (uses .env if not provided)
     """
     start_time = time.time()
-    api_key = load_api_key()
+    api_key = load_api_key(api_key)
     
     # 1. Retrieval (Treat situation as query)
     search_query = f"{situation} {mode} organization success"
-    results = retrieve_hybrid(search_query, max_results=10)
+    results = retrieve_hybrid(search_query, max_results=20)
     
     # 2. Context
     context_data = build_hybrid_context(results)
@@ -265,7 +302,7 @@ def ask_marcus_lens(situation, mode="Personal"):
         
         # Inject receipts (citations)
         receipts = []
-        for r in results[:3]:
+        for r in results[:10]:
             loc = r['line_locator']
             page = loc.split(':')[-1] if ':' in loc else "0"
             receipts.append({

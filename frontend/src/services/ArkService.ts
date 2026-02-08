@@ -43,12 +43,16 @@ export const ArkService = {
         }
     },
 
-    askQuestion: async (query: string): Promise<WwmdResponse | null> => {
+    askQuestion: async (query: string, apiConfig?: any): Promise<WwmdResponse | null> => {
         try {
+            const payload: any = { query };
+            if (apiConfig) {
+                payload.apiConfig = apiConfig;
+            }
             const response = await fetch(withApi('/chat'), {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ query })
+                body: JSON.stringify(payload)
             });
             if (!response.ok) throw new Error('Network response was not ok');
             return await response.json();

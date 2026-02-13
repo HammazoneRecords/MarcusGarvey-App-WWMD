@@ -3,16 +3,26 @@
   "private": true,
   "version": "0.1.0",
   "description": "WhirlwindDB — source-grounded cultural database",
-  "scripts": {
+"scripts": {
     "dev:frontend": "cd frontend && npm run dev",
     "dev:backend": "py -3 backend/api/server.py",
-    "build": "cd frontend && npm install && npm run build",
+    "build": "cd frontend && npm run build",
     "preview": "cd frontend && npm run preview",
     "install:frontend": "cd frontend && npm install",
-    "install:backend": "pip install -r backend/requirements.txt",
-    "postinstall": "cd frontend && npm install"
-  },
-  "engines": {
-    "node": "18.x"
-  }
+    "install:backend": "pip install -r backend/requirements.txt"
 }
+}
+6MDheRJfIiuaARlZ - sb
+
+make photo preview be shwn from top town and not middle down . all the heads arent visible before clicking
+add ai api integration in profile google or open router or open ai compatible
+change garvey compass To Whirlwind KB
+in profile add api info for ollama and open router/open ai or gemini
+we have multiple souces citing this website page : https://www.international.ucla.edu/africa/mgpp . we need to find pages with the info. when we click the link it should take us directly to the web page that has the citation.
+need to add more tool kits
+remove personal and community in the wwmd just have one analyze with garvey lens
+http://127.0.0.1:5173/facts/fact-unia-membership sources not cited accurately, the link lead to a generic page about marcus garvey which could eventually lead to the source but this link does nto qualify to be cited as a source : https://www.international.ucla.edu/africa/mgpp
+Version should be 2.0.6 everywhere version is mention for the app {footer & side panel]
+new ananysis in the lens result card does not go to new analysis page .
+in profile we need a way to vew all the save recommeded actions the user selected
+stats card dont work

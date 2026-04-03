@@ -71,26 +71,28 @@ export const getToolkitTemplateById = async (id: string): Promise<ToolkitTemplat
 };
 
 export const submitWWMD = async (request: WWMDRequest): Promise<WWMDResponse> => {
+    const url = withBase('/api/wwmd');
     try {
-        const response = await fetch(withBase('/api/wwmd'), {
+        const response = await fetch(url, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(request)
         });
 
         if (!response.ok) {
-            throw new Error('Network response was not ok');
+            const errBody = await response.text().catch(() => '');
+            throw new Error(`Backend ${response.status}: ${errBody || response.statusText}`);
         }
 
         return await response.json();
     } catch (error) {
-        console.error("Failed to submit WWMD lens:", error);
-        // Fallback mock if server is down (optional, but good for stability)
+        const msg = error instanceof Error ? error.message : String(error);
+        console.error("WWMD fetch failed:", { url, error: msg });
         return {
-            principle: "Connection Error (Fallback)",
-            historicalAnalogy: "Could not connect to the ARK. Please ensure the backend server is running.",
+            principle: "Connection Error",
+            historicalAnalogy: `${msg}\n\nEndpoint: ${url}`,
             receipts: [],
-            actionSteps: [{ id: "1", text: "Check server connection", completed: false }],
+            actionSteps: [{ id: "1", text: "Check server connection and backend logs", completed: false }],
             mirrorQuestions: []
         };
     }

@@ -44,20 +44,26 @@ export const ArkService = {
     },
 
     askQuestion: async (query: string, apiConfig?: any): Promise<WwmdResponse | null> => {
+        const url = withApi('/chat');
         try {
             const payload: any = { query };
             if (apiConfig) {
                 payload.apiConfig = apiConfig;
             }
-            const response = await fetch(withApi('/chat'), {
+            const response = await fetch(url, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(payload)
             });
-            if (!response.ok) throw new Error('Network response was not ok');
+            if (!response.ok) {
+                const errBody = await response.text().catch(() => '');
+                console.error('ArkService.askQuestion failed:', { url, status: response.status, body: errBody });
+                return null;
+            }
             return await response.json();
         } catch (error) {
-            console.error('Failed to ask question:', error);
+            const msg = error instanceof Error ? error.message : String(error);
+            console.error('ArkService.askQuestion error:', { url, error: msg });
             return null;
         }
     }

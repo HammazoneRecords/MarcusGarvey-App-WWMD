@@ -1,0 +1,18 @@
+# Marcus Garvey App — Environment Config
+# Copy this to .ark on the server and fill in values
+# NEVER commit .ark — it is gitignored
+
+# ── Ollama (required) ─────────────────────────────────────────
+OLLAMA_HOST=http://localhost:11434
+
+# ── Server ────────────────────────────────────────────────────
+ARK_API_HOST=0.0.0.0
+ARK_API_PORT=5050
+FLASK_DEBUG=false
+
+# ── CORS (set to your frontend domain in production) ──────────
+# CORS_ORIGINS=https://yourdomain.com
+
+# ── Input limits (optional, defaults shown) ───────────────────
+# WWMD_SITUATION_MAX_LEN=4000
+# CHAT_QUERY_MAX_LEN=2000

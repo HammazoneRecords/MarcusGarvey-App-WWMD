@@ -76,13 +76,11 @@ def wwmd_lens():
         return jsonify({"error": f"situation must be at most {WWMD_SITUATION_MAX_LEN} characters"}), 400
     mode = data.get('mode', 'Personal')
     api_config = data.get('apiConfig', {}) if isinstance(data.get('apiConfig'), dict) else {}
-    api_key = api_config.get('geminiApiKey') or None
-    # If user opted in to their own AI, pass their Ollama URL; otherwise use VPS Ollama from env
     use_own_ai = api_config.get('useOwnAI', False)
     ollama_base_url = api_config.get('ollamaBaseUrl') if use_own_ai else os.environ.get('OLLAMA_HOST', 'http://localhost:11434')
 
     try:
-        response = ask_marcus_lens(situation, mode=mode, api_key=api_key, ollama_base_url=ollama_base_url)
+        response = ask_marcus_lens(situation, mode=mode, ollama_base_url=ollama_base_url)
         return jsonify(response)
     except Exception as e:
         print(f"Error processing WWMD request: {e}")
@@ -104,12 +102,11 @@ def chat():
         return jsonify({"error": f"query must be at most {CHAT_QUERY_MAX_LEN} characters"}), 400
     debug_mode = data.get('debug', 'expand')
     api_config = data.get('apiConfig', {}) if isinstance(data.get('apiConfig'), dict) else {}
-    api_key = api_config.get('geminiApiKey') or None
     use_own_ai = api_config.get('useOwnAI', False)
     ollama_base_url = api_config.get('ollamaBaseUrl') if use_own_ai else os.environ.get('OLLAMA_HOST', 'http://localhost:11434')
 
     try:
-        response = ask_marcus(query, debug_mode=debug_mode, api_key=api_key, ollama_base_url=ollama_base_url)
+        response = ask_marcus(query, debug_mode=debug_mode, ollama_base_url=ollama_base_url)
         return jsonify(response)
     except Exception as e:
         print(f"Error processing query: {e}")
@@ -118,30 +115,6 @@ def chat():
         return jsonify({"error": str(e)}), 500
 
 
-@app.route('/api/key-diagnostic', methods=['POST'])
-def key_diagnostic():
-    """Safe diagnostic: report which API key source would be used for this request.
-    Does NOT return or log actual key values.
-    Request body (optional): { "apiConfig": { "geminiApiKey": "..." } }
-    Response: { user_key_present: bool, env_key_present: bool, using_user_key: bool, using_env_key: bool }
-    """
-    data = request.json or {}
-    user_key = None
-    if isinstance(data.get('apiConfig'), dict):
-        user_key = data.get('apiConfig', {}).get('geminiApiKey')
-    user_key_present = bool(user_key)
-    env_key_present = bool(os.environ.get('GEMINI_API_KEY'))
-    using_user_key = bool(user_key_present)
-    using_env_key = (not using_user_key) and env_key_present
-
-    resp = {
-        "user_key_present": user_key_present,
-        "env_key_present": env_key_present,
-        "using_user_key": using_user_key,
-        "using_env_key": using_env_key,
-        "note": "This endpoint will never echo secret values. If neither key is present, requests that require Gemini will fail."
-    }
-    return jsonify(resp)
 
 @app.route('/api/latest', methods=['GET'])
 def get_latest_session():

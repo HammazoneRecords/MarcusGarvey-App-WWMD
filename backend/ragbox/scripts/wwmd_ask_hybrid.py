@@ -38,72 +38,27 @@ except ImportError:
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 BASE_DIR = Path(__file__).resolve().parent.parent
-ENV_PATH = BASE_DIR.parent.parent / ".env"
+ARK_CONFIG_PATH = BASE_DIR.parent.parent / ".ark"
 SESSIONS_DIR = BASE_DIR.parent / "sessions"
 
 # Config from Env
 CITATION_EXPAND_MAX_LINES = int(os.environ.get("CITATION_EXPAND_MAX_LINES", 1500))
 CITATION_MAX_DISPLAY = int(os.environ.get("CITATION_MAX_DISPLAY", 15))
 
-def load_api_key(provided_api_key=None):
-    """Get Gemini API Key from parameter, env, or .env file.
-    
-    Args:
-        provided_api_key: Optional API key provided by user (takes precedence)
-    
-    Returns:
-        API key string or None
-        
-    Raises:
-        ValueError if key format is invalid
+def load_ark_config(key_name):
+    """Load a config value from environment or .ark file.
+    Checks env first, then falls back to .ark file.
     """
-    # User-provided key takes precedence
-    if provided_api_key and provided_api_key.strip():
-        key = provided_api_key.strip()
-        # Validate key format (Gemini keys are typically 39+ chars, alphanumeric+underscore)
-        if len(key) >= 32 and all(c.isalnum() or c in '_-' for c in key):
-            return key
-        else:
-            # Invalid format; do NOT log the actual key
-            raise ValueError("Invalid API key format provided")
-    
-    # Try environment variable
-    env_key = os.environ.get('GEMINI_API_KEY')
-    if env_key and env_key.strip():
-        key = env_key.strip()
-        if len(key) >= 32:
-            return key
-        else:
-            raise ValueError("Invalid GEMINI_API_KEY in environment (too short)")
-    
-    # Fall back to .env file
-    potential_paths = [
-        ENV_PATH,
-        BASE_DIR.parent / ".env",
-        Path("d:/PROJECTS IN MOTION/MarcusGarvey App WWMD/.env")
-    ]
-    
-    target_path = None
-    for p in potential_paths:
-        if p.exists():
-            target_path = p
-            break
-            
-    if not target_path:
-        return None
-        
-    import re
-    content = target_path.read_text(encoding="utf-8")
-    # Handle both quoted and unquoted values
-    # Match GEMINI_API_KEY=value or GEMINI_API_KEY="value"
-    matches = re.findall(r'GEMINI_API_KEY\s*=\s*"?([^"\n]+)"?', content)
-    if matches:
-        key = matches[-1].strip()
-        # Validate format
-        if len(key) >= 32:
-            return key
-        else:
-            raise ValueError("Invalid GEMINI_API_KEY in .env (too short)")
+    env_val = os.environ.get(key_name)
+    if env_val and env_val.strip():
+        return env_val.strip()
+
+    if ARK_CONFIG_PATH.exists():
+        import re
+        content = ARK_CONFIG_PATH.read_text(encoding="utf-8")
+        matches = re.findall(rf'{key_name}\s*=\s*"?([^"\n]+)"?', content)
+        if matches:
+            return matches[-1].strip()
     return None
 
 def save_to_session_vault(query, response_data):
@@ -158,72 +113,12 @@ def call_ollama(base_url, full_text, model_name="llama3.1:8b"):
         return f"ERROR: Ollama request failed — {type(e).__name__}"
 
 
-def call_generation(prompt, api_key=None, ollama_base_url=None):
-    """Route to Ollama or Gemini depending on what's available.
-    Priority: ollama_base_url (user-supplied or VPS env) > Gemini api_key > error
-    """
+def call_generation(prompt, ollama_base_url=None):
+    """Route to Ollama. Uses user-supplied URL if provided, otherwise VPS env or .ark config."""
     if ollama_base_url:
         return call_ollama(ollama_base_url, prompt)
-    if api_key:
-        return call_gemini_rest(api_key, prompt)
-    # Neither configured — try VPS env Ollama as last resort
-    vps_ollama = os.environ.get('OLLAMA_HOST', 'http://localhost:11434')
+    vps_ollama = load_ark_config('OLLAMA_HOST') or 'http://localhost:11434'
     return call_ollama(vps_ollama, prompt)
-
-
-def call_gemini_rest(api_key, full_text, model_name="gemini-2.5-flash"):
-    """Call Gemini API using REST with secure Authorization header.
-    
-    Security:
-    - API key passed in Authorization header (not URL query param)
-    - Error messages sanitized (no key exposure)
-    - Input validated before sending
-    """
-    import urllib.request
-    import urllib.error
-    
-    if not api_key:
-        return "ERROR: Missing API Key"
-    
-    # Validate API key format (basic check)
-    api_key = api_key.strip()
-    if not api_key or len(api_key) < 32:
-        return "ERROR: Invalid API Key format"
-    
-    # Sanitize input to prevent injection
-    if not full_text or len(full_text) < 1:
-        return "ERROR: Empty prompt"
-    
-    # Use Authorization header instead of URL query param for security
-    url = f"https://generativelanguage.googleapis.com/v1beta/models/{model_name}:generateContent"
-    headers = {
-        "Content-Type": "application/json",
-        "Authorization": f"Bearer {api_key}"
-    }
-    data = {"contents": [{"parts": [{"text": full_text}]}]}
-    
-    try:
-        req = urllib.request.Request(url, data=json.dumps(data).encode('utf-8'), headers=headers)
-        with urllib.request.urlopen(req) as response:
-            result = json.loads(response.read().decode('utf-8'))
-            try:
-                return result['candidates'][0]['content']['parts'][0]['text']
-            except (KeyError, IndexError):
-                return "ERROR: Invalid response format from API"
-    except urllib.error.HTTPError as e:
-        # Don't expose internal error details
-        if e.code == 401:
-            return "ERROR: Unauthorized (invalid API key)"
-        elif e.code == 429:
-            return "ERROR: Rate limited by API"
-        elif e.code == 500:
-            return "ERROR: API server error"
-        else:
-            return f"ERROR: API request failed (HTTP {e.code})"
-    except Exception as e:
-        # Log error safely without exposing sensitive data
-        error_type = type(e).__name__
-        return f"ERROR: {error_type}"
 
 # =========================
 # PROMPT
@@ -259,7 +154,7 @@ Your wisdom flows from a deep archive of Garveyite philosophy and historical pre
 Answer:
 """
 
-def ask_marcus(query, debug_mode='expand', output_file=None, api_key=None, ollama_base_url=None):
+def ask_marcus(query, debug_mode='expand', output_file=None, ollama_base_url=None):
     """
     Main entry point for asking a question.
     Returns the JSON response dict.
@@ -268,13 +163,10 @@ def ask_marcus(query, debug_mode='expand', output_file=None, api_key=None, ollam
         query: User question
         debug_mode: 'expand', 'strict', or 'off'
         output_file: Optional path to save JSON output
-        api_key: Optional Gemini API key (uses .env if not provided)
-        ollama_base_url: Optional Ollama base URL — if set, Ollama is used instead of Gemini
+        ollama_base_url: Optional Ollama base URL — overrides .ark config
     """
     start_time = time.time()
-    if not ollama_base_url:
-        api_key = load_api_key(api_key)
-    
+
     # 1. Retrieval
     results = retrieve_hybrid(query, max_results=25)
     
@@ -292,8 +184,8 @@ def ask_marcus(query, debug_mode='expand', output_file=None, api_key=None, ollam
     
     # 3. AI Generation
     prompt = HYBRID_PROMPT_TEMPLATE.format(context=context_data['context'], query=query)
-    raw_response = call_generation(prompt, api_key=api_key, ollama_base_url=ollama_base_url)
-    
+    raw_response = call_generation(prompt, ollama_base_url=ollama_base_url)
+
     # 4. Citation Discovery & Scoring
     query_terms = query.lower().split()
     citations = get_citations(raw_response, expanded_lines, query_terms)
@@ -362,19 +254,16 @@ Output a valid JSON object strictly following this schema:
 - If the context does not support actionable guidance, include that caveat in the principle field.
 """
 
-def ask_marcus_lens(situation, mode="Personal", api_key=None, ollama_base_url=None):
+def ask_marcus_lens(situation, mode="Personal", ollama_base_url=None):
     """
     Analyzes a situation and returns structured JSON for WWMD page.
 
     Args:
         situation: User situation description
         mode: Analysis mode (default 'Personal')
-        api_key: Optional Gemini API key (uses .env if not provided)
-        ollama_base_url: Optional Ollama base URL — if set, Ollama is used instead of Gemini
+        ollama_base_url: Optional Ollama base URL — overrides .ark config
     """
     start_time = time.time()
-    if not ollama_base_url:
-        api_key = load_api_key(api_key)
     
     # 1. Retrieval (Treat situation as query)
     search_query = f"{situation} {mode} organization success"
@@ -390,7 +279,7 @@ def ask_marcus_lens(situation, mode="Personal", api_key=None, ollama_base_url=No
         mode=mode
     )
     
-    raw_response = call_generation(prompt, api_key=api_key, ollama_base_url=ollama_base_url)
+    raw_response = call_generation(prompt, ollama_base_url=ollama_base_url)
 
     # 4. Clean and Parse JSON
     try:

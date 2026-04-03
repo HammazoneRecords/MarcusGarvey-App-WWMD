@@ -41,3 +41,4 @@ temp/
 
 # Sessions and user data (optional: keep if not sensitive)
 # sessions/
+.ark

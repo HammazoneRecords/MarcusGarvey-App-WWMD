@@ -1,13 +1,6 @@
-# Vercel Configuration
-# https://vercel.com/docs/projects/project-configuration
-
 {
+  "rootDirectory": "frontend",
   "buildCommand": "npm run build",
-  "outputDirectory": "frontend/dist",
-  "framework": "react",
-  "nodeVersion": "18.x",
-  "env": [
-    "GEMINI_API_KEY",
-    "CORS_ORIGINS"
-  ]
+  "outputDirectory": "dist",
+  "framework": "vite"
 }

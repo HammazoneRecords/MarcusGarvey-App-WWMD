@@ -6,6 +6,7 @@ export type AIProvider = 'ollama' | 'openrouter' | 'openai' | 'gemini';
 
 export interface ApiConfig {
     provider: AIProvider;
+    useOwnAI: boolean;
     ollamaBaseUrl: string;
     openRouterApiKey: string;
     openAiBaseUrl: string;
@@ -54,6 +55,7 @@ export const useStore = create<AppState>()(
             recentWWMDIds: [],
             apiConfig: {
                 provider: 'openai',
+                useOwnAI: false,
                 ollamaBaseUrl: 'http://localhost:11434',
                 openRouterApiKey: '',
                 openAiBaseUrl: '',
@@ -108,6 +110,7 @@ export const useStore = create<AppState>()(
                 recentWWMDIds: [],
                 apiConfig: {
                     provider: 'openai',
+                    useOwnAI: false,
                     ollamaBaseUrl: 'http://localhost:11434',
                     openRouterApiKey: '',
                     openAiBaseUrl: '',

@@ -35,7 +35,7 @@ export const Gallery = ({ items }: { items: GalleryItem[] }) => {
                             <img
                                 src={item.url}
                                 alt={item.caption}
-                                className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-110"
+                                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" style={{ objectPosition: '50% 15%' }}
                             />
                             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex flex-col justify-end p-4">
                                 <p className="text-white text-xs font-medium leading-relaxed">

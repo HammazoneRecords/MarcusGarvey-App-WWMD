@@ -1,4 +1,4 @@
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 import { Home, Library, MessageSquare, Briefcase, User, ArrowRight } from 'lucide-react';
 import { cn } from '../ui/index';
 
@@ -42,6 +42,13 @@ export const GlobalSidebar = () => {
                     </NavLink>
                 ))}
             </nav>
+
+            {/* Legal footer */}
+            <div className="p-4 border-t border-border shrink-0 flex gap-4">
+                <Link to="/privacy" className="text-[10px] text-zinc-500 hover:text-zinc-700 dark:hover:text-zinc-300 transition-colors">Privacy</Link>
+                <Link to="/terms" className="text-[10px] text-zinc-500 hover:text-zinc-700 dark:hover:text-zinc-300 transition-colors">Terms</Link>
+                <span className="text-[10px] text-zinc-400 ml-auto">v2.0.6</span>
+            </div>
         </aside>
     );
 };

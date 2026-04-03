@@ -12,7 +12,9 @@ PROJECT_ROOT = BASE_DIR.parent
 SESSIONS_DIR = PROJECT_ROOT / "sessions"
 DB_PATH = BASE_DIR / "data" / "memory.db"
 TESTING_PANEL_DB_PATH = BASE_DIR / "data" / "testing_panel.db"
-RAG_SCRIPTS_DIR = BASE_DIR / "ragbox" / "scripts"
+
+# RAG_SCRIPTS_DIR should be relative or configurable via env
+RAG_SCRIPTS_DIR = Path(os.environ.get("RAG_SCRIPTS_DIR", str(BASE_DIR / "ragbox" / "scripts")))
 sys.path.insert(0, str(BASE_DIR))
 sys.path.append(str(RAG_SCRIPTS_DIR))
 
@@ -24,20 +26,22 @@ except ImportError:
     except ImportError:
         get_library = None
 
+# Security note: In a production environment, DIAGNOSTIC_MODE should be disabled by default.
+# It currently allows the server to start without critical RAG modules for debugging purposes.
+diagnostic_mode = str(os.environ.get('DIAGNOSTIC_MODE', 'false')).lower() in ('1', 'true', 'yes')
+
 try:
     from wwmd_ask_hybrid import ask_marcus, ask_marcus_lens
 except ImportError as e:
-    # If running in diagnostic/health-check-only mode, allow server to start
-    # with limited functionality so ops can verify deployment without full RAG deps.
-    diagnostic_mode = str(os.environ.get('DIAGNOSTIC_MODE', '')).lower() in ('1', 'true', 'yes')
     if diagnostic_mode:
-        print(f"Starting in DIAGNOSTIC_MODE: RAG modules not available ({e}), limited endpoints enabled.")
+        print(f"WARNING: Starting in DIAGNOSTIC_MODE. RAG modules not available ({e}).")
         def ask_marcus(*args, **kwargs):
-            return {"error": "RAG modules not available in DIAGNOSTIC_MODE"}
+            return {"error": "RAG modules not available (Diagnostic Mode)"}
         def ask_marcus_lens(*args, **kwargs):
-            return {"error": "RAG modules not available in DIAGNOSTIC_MODE"}
+            return {"error": "RAG modules not available (Diagnostic Mode)"}
     else:
-        print(f"Error importing RAG modules: {e}")
+        print(f"CRITICAL ERROR: Failed to import RAG modules: {e}")
+        print("Set DIAGNOSTIC_MODE=true if you want to bypass this for debugging.")
         sys.exit(1)
 
 SERVER_HOST = os.environ.get("ARK_API_HOST", "0.0.0.0")
@@ -50,7 +54,9 @@ if CORS_ORIGINS:
     origins = [o.strip() for o in CORS_ORIGINS.split(",") if o.strip()]
     CORS(app, origins=origins, supports_credentials=False)
 else:
-    CORS(app)  # allow all (dev default)
+    # WARNING: No CORS_ORIGINS set — allowing all origins. MUST set CORS_ORIGINS in production.
+    print("WARNING: CORS_ORIGINS not set. All origins allowed. Set CORS_ORIGINS env var for production.")
+    CORS(app)
 
 # Input limits for public API
 WWMD_SITUATION_MAX_LEN = int(os.environ.get("WWMD_SITUATION_MAX_LEN", "4000"))
@@ -69,12 +75,14 @@ def wwmd_lens():
     if len(situation) > WWMD_SITUATION_MAX_LEN:
         return jsonify({"error": f"situation must be at most {WWMD_SITUATION_MAX_LEN} characters"}), 400
     mode = data.get('mode', 'Personal')
-    # Extract user's API key from request (optional)
-    api_key = data.get('apiConfig', {}).get('geminiApiKey') if isinstance(data.get('apiConfig'), dict) else None
-    
+    api_config = data.get('apiConfig', {}) if isinstance(data.get('apiConfig'), dict) else {}
+    api_key = api_config.get('geminiApiKey') or None
+    # If user opted in to their own AI, pass their Ollama URL; otherwise use VPS Ollama from env
+    use_own_ai = api_config.get('useOwnAI', False)
+    ollama_base_url = api_config.get('ollamaBaseUrl') if use_own_ai else os.environ.get('OLLAMA_HOST', 'http://localhost:11434')
+
     try:
-        # Generate structured analysis with user's API key if provided
-        response = ask_marcus_lens(situation, mode=mode, api_key=api_key)
+        response = ask_marcus_lens(situation, mode=mode, api_key=api_key, ollama_base_url=ollama_base_url)
         return jsonify(response)
     except Exception as e:
         print(f"Error processing WWMD request: {e}")
@@ -95,11 +103,13 @@ def chat():
     if len(query) > CHAT_QUERY_MAX_LEN:
         return jsonify({"error": f"query must be at most {CHAT_QUERY_MAX_LEN} characters"}), 400
     debug_mode = data.get('debug', 'expand')
-    # Extract user's API key from request (optional)
-    api_key = data.get('apiConfig', {}).get('geminiApiKey') if isinstance(data.get('apiConfig'), dict) else None
-    
+    api_config = data.get('apiConfig', {}) if isinstance(data.get('apiConfig'), dict) else {}
+    api_key = api_config.get('geminiApiKey') or None
+    use_own_ai = api_config.get('useOwnAI', False)
+    ollama_base_url = api_config.get('ollamaBaseUrl') if use_own_ai else os.environ.get('OLLAMA_HOST', 'http://localhost:11434')
+
     try:
-        response = ask_marcus(query, debug_mode=debug_mode, api_key=api_key)
+        response = ask_marcus(query, debug_mode=debug_mode, api_key=api_key, ollama_base_url=ollama_base_url)
         return jsonify(response)
     except Exception as e:
         print(f"Error processing query: {e}")
@@ -406,4 +416,5 @@ def health():
 
 if __name__ == '__main__':
     print(f"Starting WWMD RAG Server on port {SERVER_PORT}...")
-    app.run(host=SERVER_HOST, port=SERVER_PORT, debug=True)
+    debug = str(os.environ.get('FLASK_DEBUG', 'false')).lower() in ('1', 'true', 'yes')
+    app.run(host=SERVER_HOST, port=SERVER_PORT, debug=debug)

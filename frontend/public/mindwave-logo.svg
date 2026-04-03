@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 80" fill="none">
+  <defs>
+    <!-- Red wave gradient - top to bottom shading -->
+    <linearGradient id="redWave" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#EC3237"/>
+      <stop offset="50%" stop-color="#E94E52"/>
+      <stop offset="100%" stop-color="#EDA1A7"/>
+    </linearGradient>
+    <!-- Green wave gradient - top to bottom shading -->
+    <linearGradient id="greenWave" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#A4CF4C"/>
+      <stop offset="50%" stop-color="#8FC043"/>
+      <stop offset="100%" stop-color="#7AB339"/>
+    </linearGradient>
+  </defs>
+  
+  <!-- Red Wave - M shape: starts low, peaks up, dips to trough, peaks up, ends low -->
+  <path d="M8 32 Q22 10 40 32 Q50 44 60 32 Q78 10 92 32" 
+        stroke="url(#redWave)" 
+        stroke-width="10" 
+        stroke-linecap="round" 
+        fill="none"/>
+  
+  <!-- Green Wave - W shape: starts high, dips down, peaks up, dips down, ends high -->
+  <path d="M8 48 Q22 70 40 48 Q50 36 60 48 Q78 70 92 48" 
+        stroke="url(#greenWave)" 
+        stroke-width="10" 
+        stroke-linecap="round" 
+        fill="none"/>
+</svg>

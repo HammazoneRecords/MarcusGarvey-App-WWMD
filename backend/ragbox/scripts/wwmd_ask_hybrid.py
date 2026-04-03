@@ -125,6 +125,52 @@ def save_to_session_vault(query, response_data):
 # GENERATION CLIENT
 # =========================
 
+def call_ollama(base_url, full_text, model_name="llama3.1:8b"):
+    """Call an Ollama-compatible endpoint.
+    base_url: e.g. http://localhost:11434 or user-supplied URL
+    """
+    import urllib.request
+    import urllib.error
+
+    if not base_url:
+        return "ERROR: No Ollama base URL configured"
+
+    base_url = base_url.rstrip('/')
+    url = f"{base_url}/api/generate"
+    data = {
+        "model": model_name,
+        "prompt": full_text,
+        "stream": False
+    }
+
+    try:
+        req = urllib.request.Request(
+            url,
+            data=json.dumps(data).encode('utf-8'),
+            headers={"Content-Type": "application/json"}
+        )
+        with urllib.request.urlopen(req, timeout=120) as response:
+            result = json.loads(response.read().decode('utf-8'))
+            return result.get('response', 'ERROR: Empty response from Ollama')
+    except urllib.error.URLError as e:
+        return f"ERROR: Could not reach Ollama at {base_url} — {type(e).__name__}"
+    except Exception as e:
+        return f"ERROR: Ollama request failed — {type(e).__name__}"
+
+
+def call_generation(prompt, api_key=None, ollama_base_url=None):
+    """Route to Ollama or Gemini depending on what's available.
+    Priority: ollama_base_url (user-supplied or VPS env) > Gemini api_key > error
+    """
+    if ollama_base_url:
+        return call_ollama(ollama_base_url, prompt)
+    if api_key:
+        return call_gemini_rest(api_key, prompt)
+    # Neither configured — try VPS env Ollama as last resort
+    vps_ollama = os.environ.get('OLLAMA_HOST', 'http://localhost:11434')
+    return call_ollama(vps_ollama, prompt)
+
+
 def call_gemini_rest(api_key, full_text, model_name="gemini-2.5-flash"):
     """Call Gemini API using REST with secure Authorization header.
     
@@ -213,19 +259,21 @@ Your wisdom flows from a deep archive of Garveyite philosophy and historical pre
 Answer:
 """
 
-def ask_marcus(query, debug_mode='expand', output_file=None, api_key=None):
+def ask_marcus(query, debug_mode='expand', output_file=None, api_key=None, ollama_base_url=None):
     """
     Main entry point for asking a question.
     Returns the JSON response dict.
-    
+
     Args:
         query: User question
         debug_mode: 'expand', 'strict', or 'off'
         output_file: Optional path to save JSON output
         api_key: Optional Gemini API key (uses .env if not provided)
+        ollama_base_url: Optional Ollama base URL — if set, Ollama is used instead of Gemini
     """
     start_time = time.time()
-    api_key = load_api_key(api_key)
+    if not ollama_base_url:
+        api_key = load_api_key(api_key)
     
     # 1. Retrieval
     results = retrieve_hybrid(query, max_results=25)
@@ -244,7 +292,7 @@ def ask_marcus(query, debug_mode='expand', output_file=None, api_key=None):
     
     # 3. AI Generation
     prompt = HYBRID_PROMPT_TEMPLATE.format(context=context_data['context'], query=query)
-    raw_response = call_gemini_rest(api_key, prompt)
+    raw_response = call_generation(prompt, api_key=api_key, ollama_base_url=ollama_base_url)
     
     # 4. Citation Discovery & Scoring
     query_terms = query.lower().split()
@@ -314,17 +362,19 @@ Output a valid JSON object strictly following this schema:
 - If the context does not support actionable guidance, include that caveat in the principle field.
 """
 
-def ask_marcus_lens(situation, mode="Personal", api_key=None):
+def ask_marcus_lens(situation, mode="Personal", api_key=None, ollama_base_url=None):
     """
     Analyzes a situation and returns structured JSON for WWMD page.
-    
+
     Args:
         situation: User situation description
         mode: Analysis mode (default 'Personal')
         api_key: Optional Gemini API key (uses .env if not provided)
+        ollama_base_url: Optional Ollama base URL — if set, Ollama is used instead of Gemini
     """
     start_time = time.time()
-    api_key = load_api_key(api_key)
+    if not ollama_base_url:
+        api_key = load_api_key(api_key)
     
     # 1. Retrieval (Treat situation as query)
     search_query = f"{situation} {mode} organization success"
@@ -340,8 +390,8 @@ def ask_marcus_lens(situation, mode="Personal", api_key=None):
         mode=mode
     )
     
-    raw_response = call_gemini_rest(api_key, prompt)
-    
+    raw_response = call_generation(prompt, api_key=api_key, ollama_base_url=ollama_base_url)
+
     # 4. Clean and Parse JSON
     try:
         cleaned = raw_response.replace('```json', '').replace('```', '').strip()

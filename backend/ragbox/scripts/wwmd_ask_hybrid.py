@@ -104,7 +104,7 @@ def call_ollama(base_url, full_text, model_name="llama3.1:8b"):
             data=json.dumps(data).encode('utf-8'),
             headers={"Content-Type": "application/json"}
         )
-        with urllib.request.urlopen(req, timeout=120) as response:
+        with urllib.request.urlopen(req, timeout=300) as response:
             result = json.loads(response.read().decode('utf-8'))
             return result.get('response', 'ERROR: Empty response from Ollama')
     except urllib.error.URLError as e:

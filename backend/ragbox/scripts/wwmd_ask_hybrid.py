@@ -16,6 +16,7 @@ import os
 import argparse
 import json
 import time
+import sqlite3
 from datetime import datetime, timezone, timedelta
 from pathlib import Path
 
@@ -37,13 +38,33 @@ except ImportError:
 # =========================
 
 BASE_DIR = Path(__file__).resolve().parent.parent
-BASE_DIR = Path(__file__).resolve().parent.parent
 ARK_CONFIG_PATH = BASE_DIR.parent.parent / ".ark"
 SESSIONS_DIR = BASE_DIR.parent / "sessions"
+DB_PATH = BASE_DIR / "data" / "memory.db"
 
 # Config from Env
 CITATION_EXPAND_MAX_LINES = int(os.environ.get("CITATION_EXPAND_MAX_LINES", 1500))
 CITATION_MAX_DISPLAY = int(os.environ.get("CITATION_MAX_DISPLAY", 15))
+
+def resolve_anchor_meta(anchor_ids):
+    """Batch-resolve anchor titles and canonical paths from memory.db.
+    Returns dict: {anchor_id: {title, canonical_path}}
+    """
+    if not DB_PATH.exists() or not anchor_ids:
+        return {}
+    try:
+        conn = sqlite3.connect(str(DB_PATH))
+        conn.row_factory = sqlite3.Row
+        placeholders = ",".join("?" * len(anchor_ids))
+        rows = conn.execute(
+            f"SELECT anchor_id, title, canonical_path FROM anchors WHERE anchor_id IN ({placeholders})",
+            anchor_ids
+        ).fetchall()
+        conn.close()
+        return {row["anchor_id"]: {"title": row["title"], "canonical_path": row["canonical_path"]} for row in rows}
+    except Exception:
+        return {}
+
 
 def load_ark_config(key_name):
     """Load a config value from environment or .ark file.
@@ -286,20 +307,27 @@ def ask_marcus_lens(situation, mode="Personal", ollama_base_url=None):
         cleaned = raw_response.replace('```json', '').replace('```', '').strip()
         data = json.loads(cleaned)
         
-        # Inject receipts (citations)
+        # Inject receipts (citations) with real anchor metadata
+        top_results = results[:10]
+        anchor_ids = list(set(r['anchor_id'] for r in top_results))
+        anchor_meta = resolve_anchor_meta(anchor_ids)
+
         receipts = []
-        for r in results[:10]:
+        for r in top_results:
             loc = r['line_locator']
             page = loc.split(':')[-1] if ':' in loc else "0"
+            meta = anchor_meta.get(r['anchor_id'], {})
+            title = meta.get('title') or r['anchor_id']
             receipts.append({
                 "id": r['anchor_id'],
                 "anchorId": r['anchor_id'],
-                "title": f"Source {r['anchor_id']}",
+                "title": title,
                 "type": "archive",
                 "excerpt": r['line_content'],
-                "year": 1920,
+                "year": None,
                 "page": page,
-                "locator": loc
+                "locator": loc,
+                "canonicalPath": meta.get('canonical_path') or None,
             })
             
         data['receipts'] = receipts

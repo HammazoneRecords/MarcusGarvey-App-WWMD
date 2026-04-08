@@ -15,10 +15,10 @@ export const GlobalSidebar = () => {
         <aside className="w-64 border-r border-border bg-zinc-100/90 dark:bg-card/50 backdrop-blur-xl hidden md:flex flex-col h-screen sticky top-0">
             {/* Status block at top */}
             <div className="p-4 border-b border-border shrink-0">
-                <div className="bg-gradient-to-br from-black to-zinc-800 dark:from-red-950 dark:to-black p-4 rounded-xl text-white shadow-lg relative overflow-hidden group cursor-pointer">
+                <div onClick={() => window.location.reload()} className="bg-gradient-to-br from-black to-zinc-800 dark:from-red-950 dark:to-black p-4 rounded-xl text-white shadow-lg relative overflow-hidden group cursor-pointer">
                     <div className="absolute top-0 right-0 w-20 h-20 bg-green-500/20 rounded-full blur-2xl -mr-10 -mt-10 group-hover:bg-green-500/30 transition-all"></div>
                     <p className="text-xs font-mono text-green-400 mb-1">STATUS: ONLINE</p>
-                    <p className="text-[10px] opacity-70 mt-2">marcusgarvey876.com</p>
+                    <p className="text-[10px] font-bold uppercase tracking-widest opacity-90 mt-2">MARCUSGARVEY876.COM</p>
                 </div>
             </div>
 

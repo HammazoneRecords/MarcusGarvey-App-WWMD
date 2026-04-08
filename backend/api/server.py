@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, Response, stream_with_context
 from flask_cors import CORS
 import json
 import sqlite3
@@ -31,7 +31,7 @@ except ImportError:
 diagnostic_mode = str(os.environ.get('DIAGNOSTIC_MODE', 'false')).lower() in ('1', 'true', 'yes')
 
 try:
-    from wwmd_ask_hybrid import ask_marcus, ask_marcus_lens
+    from wwmd_ask_hybrid import ask_marcus, ask_marcus_lens, ask_marcus_lens_stream
 except ImportError as e:
     if diagnostic_mode:
         print(f"WARNING: Starting in DIAGNOSTIC_MODE. RAG modules not available ({e}).")
@@ -39,6 +39,9 @@ except ImportError as e:
             return {"error": "RAG modules not available (Diagnostic Mode)"}
         def ask_marcus_lens(*args, **kwargs):
             return {"error": "RAG modules not available (Diagnostic Mode)"}
+        def ask_marcus_lens_stream(*args, **kwargs):
+            import json
+            yield f"data: {json.dumps({'type': 'error', 'message': 'RAG modules not available (Diagnostic Mode)'})}\n\n"
     else:
         print(f"CRITICAL ERROR: Failed to import RAG modules: {e}")
         print("Set DIAGNOSTIC_MODE=true if you want to bypass this for debugging.")
@@ -87,6 +90,48 @@ def wwmd_lens():
         import traceback
         traceback.print_exc()
         return jsonify({"error": str(e)}), 500
+
+@app.route('/api/wwmd/stream', methods=['POST'])
+def wwmd_lens_stream():
+    """Streaming version of /api/wwmd — fires events as work progresses.
+    Uses SSE so the browser connection stays alive during Ollama generation.
+    X-Accel-Buffering: no tells Nginx to pass chunks through immediately.
+    """
+    data = request.json
+    if not data or 'situation' not in data:
+        return jsonify({"error": "Missing situation"}), 400
+
+    situation = data['situation']
+    if not isinstance(situation, str):
+        return jsonify({"error": "situation must be a string"}), 400
+    situation = situation.strip()
+    if len(situation) > WWMD_SITUATION_MAX_LEN:
+        return jsonify({"error": f"situation must be at most {WWMD_SITUATION_MAX_LEN} characters"}), 400
+
+    mode = data.get('mode', 'Personal')
+    api_config = data.get('apiConfig', {}) if isinstance(data.get('apiConfig'), dict) else {}
+    use_own_ai = api_config.get('useOwnAI', False)
+    ollama_base_url = api_config.get('ollamaBaseUrl') if use_own_ai else os.environ.get('OLLAMA_HOST', 'http://localhost:11434')
+
+    def generate():
+        try:
+            yield from ask_marcus_lens_stream(situation, mode=mode, ollama_base_url=ollama_base_url)
+        except Exception as e:
+            import json as _json
+            print(f"Error in wwmd stream: {e}")
+            import traceback
+            traceback.print_exc()
+            yield f"data: {_json.dumps({'type': 'error', 'message': str(e)})}\n\n"
+
+    return Response(
+        stream_with_context(generate()),
+        content_type='text/event-stream',
+        headers={
+            'Cache-Control': 'no-cache',
+            'X-Accel-Buffering': 'no',
+        }
+    )
+
 
 @app.route('/api/chat', methods=['POST'])
 def chat():
@@ -385,7 +430,7 @@ def library_fact_by_id(fact_id):
 
 @app.route('/api/health', methods=['GET'])
 def health():
-    return jsonify({"status": "ok", "service": "WhirlwindDB ARK Connect"})
+    return jsonify({"status": "ok", "service": "Marcus Garvey ARK"})
 
 if __name__ == '__main__':
     print(f"Starting WWMD RAG Server on port {SERVER_PORT}...")

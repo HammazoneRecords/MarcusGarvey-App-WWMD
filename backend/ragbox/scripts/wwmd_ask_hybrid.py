@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
-WWMD (What Would Marcus Do) RAG Agent - JSON CONTRACT MODE
-Version: 4.1 (Flask-Ready, Refined Persona)
+Marcus Garvey ARK - RAG Agent - JSON CONTRACT MODE
+Version: 5.0 (Grok-powered)
 
 Features:
 1. JSON Output Contract (frontend-ready)
@@ -29,7 +29,6 @@ try:
     from .hybrid_retriever import retrieve_hybrid, build_hybrid_context, fetch_all_lines_for_parents
     from .citation_injector import get_citations, inject_citations_text
 except ImportError:
-    # Fallback for running as script
     from hybrid_retriever import retrieve_hybrid, build_hybrid_context, fetch_all_lines_for_parents
     from citation_injector import get_citations, inject_citations_text
 
@@ -42,14 +41,14 @@ ARK_CONFIG_PATH = BASE_DIR.parent.parent / ".ark"
 SESSIONS_DIR = BASE_DIR.parent / "sessions"
 DB_PATH = BASE_DIR / "data" / "memory.db"
 
-# Config from Env
 CITATION_EXPAND_MAX_LINES = int(os.environ.get("CITATION_EXPAND_MAX_LINES", 1500))
 CITATION_MAX_DISPLAY = int(os.environ.get("CITATION_MAX_DISPLAY", 15))
 
+GROK_BASE_URL = "https://api.x.ai/v1"
+GROK_MODEL = os.environ.get("GROK_MODEL", "grok-3")
+
+
 def resolve_anchor_meta(anchor_ids):
-    """Batch-resolve anchor titles and canonical paths from memory.db.
-    Returns dict: {anchor_id: {title, canonical_path}}
-    """
     if not DB_PATH.exists() or not anchor_ids:
         return {}
     try:
@@ -67,9 +66,6 @@ def resolve_anchor_meta(anchor_ids):
 
 
 def load_ark_config(key_name):
-    """Load a config value from environment or .ark file.
-    Checks env first, then falls back to .ark file.
-    """
     env_val = os.environ.get(key_name)
     if env_val and env_val.strip():
         return env_val.strip()
@@ -82,68 +78,133 @@ def load_ark_config(key_name):
             return matches[-1].strip()
     return None
 
+
 def save_to_session_vault(query, response_data):
-    """Save JSON to sessions/YYYY-MM-DD/timestamp_slug.json"""
     kingston_tz = timezone(timedelta(hours=-5))
     now = datetime.now(kingston_tz)
-    
     date_dir = SESSIONS_DIR / now.strftime("%Y-%m-%d")
     date_dir.mkdir(parents=True, exist_ok=True)
-    
     slug = "".join([c if c.isalnum() else '_' for c in query[:30]])
     filename = f"{now.strftime('%H%M%S')}_{slug}.json"
-    
     filepath = date_dir / filename
     filepath.write_text(json.dumps(response_data, indent=2), encoding="utf-8")
     return filepath
 
+
 # =========================
-# GENERATION CLIENT
+# GROK GENERATION CLIENT
 # =========================
 
-def call_ollama(base_url, full_text, model_name="llama3.1:8b"):
-    """Call an Ollama-compatible endpoint.
-    base_url: e.g. http://localhost:11434 or user-supplied URL
+def get_grok_api_key():
+    key = load_ark_config('GROK_API_KEY') or load_ark_config('grok_api_key')
+    if not key:
+        raise RuntimeError("GROK_API_KEY not found in environment or .ark config")
+    return key
+
+
+def call_grok(prompt, system_prompt=None):
+    """Call Grok API (non-streaming). Returns response text."""
+    import urllib.request
+    import urllib.error
+
+    api_key = get_grok_api_key()
+    messages = []
+    if system_prompt:
+        messages.append({"role": "system", "content": system_prompt})
+    messages.append({"role": "user", "content": prompt})
+
+    data = json.dumps({
+        "model": GROK_MODEL,
+        "messages": messages,
+        "temperature": 0.3,
+        "max_tokens": 4096,
+        "stream": False
+    }).encode("utf-8")
+
+    req = urllib.request.Request(
+        f"{GROK_BASE_URL}/chat/completions",
+        data=data,
+        headers={
+            "Content-Type": "application/json",
+            "Authorization": f"Bearer {api_key}"
+        }
+    )
+
+    try:
+        with urllib.request.urlopen(req, timeout=120) as resp:
+            result = json.loads(resp.read().decode("utf-8"))
+            return result["choices"][0]["message"]["content"]
+    except urllib.error.HTTPError as e:
+        body = e.read().decode("utf-8", errors="replace")
+        return f"ERROR: Grok API error {e.code}: {body[:200]}"
+    except Exception as e:
+        return f"ERROR: Grok request failed — {type(e).__name__}: {e}"
+
+
+def call_grok_stream(prompt, system_prompt=None):
+    """
+    Generator yielding text tokens from Grok streaming API.
+    Each yield is a string token.
     """
     import urllib.request
     import urllib.error
 
-    if not base_url:
-        return "ERROR: No Ollama base URL configured"
+    api_key = get_grok_api_key()
+    messages = []
+    if system_prompt:
+        messages.append({"role": "system", "content": system_prompt})
+    messages.append({"role": "user", "content": prompt})
 
-    base_url = base_url.rstrip('/')
-    url = f"{base_url}/api/generate"
-    data = {
-        "model": model_name,
-        "prompt": full_text,
-        "stream": False
-    }
+    data = json.dumps({
+        "model": GROK_MODEL,
+        "messages": messages,
+        "temperature": 0.3,
+        "max_tokens": 4096,
+        "stream": True
+    }).encode("utf-8")
+
+    req = urllib.request.Request(
+        f"{GROK_BASE_URL}/chat/completions",
+        data=data,
+        headers={
+            "Content-Type": "application/json",
+            "Authorization": f"Bearer {api_key}"
+        }
+    )
 
     try:
-        req = urllib.request.Request(
-            url,
-            data=json.dumps(data).encode('utf-8'),
-            headers={"Content-Type": "application/json"}
-        )
-        with urllib.request.urlopen(req, timeout=300) as response:
-            result = json.loads(response.read().decode('utf-8'))
-            return result.get('response', 'ERROR: Empty response from Ollama')
-    except urllib.error.URLError as e:
-        return f"ERROR: Could not reach Ollama at {base_url} — {type(e).__name__}"
+        with urllib.request.urlopen(req, timeout=120) as resp:
+            for line in resp:
+                line = line.decode("utf-8").strip()
+                if not line or not line.startswith("data:"):
+                    continue
+                payload = line[5:].strip()
+                if payload == "[DONE]":
+                    break
+                try:
+                    chunk = json.loads(payload)
+                    delta = chunk["choices"][0].get("delta", {})
+                    token = delta.get("content", "")
+                    if token:
+                        yield token
+                except (json.JSONDecodeError, KeyError):
+                    continue
+    except urllib.error.HTTPError as e:
+        body = e.read().decode("utf-8", errors="replace")
+        yield f"ERROR: Grok API {e.code}: {body[:200]}"
     except Exception as e:
-        return f"ERROR: Ollama request failed — {type(e).__name__}"
+        yield f"ERROR: {type(e).__name__}: {e}"
 
 
-def call_generation(prompt, ollama_base_url=None):
-    """Route to Ollama. Uses user-supplied URL if provided, otherwise VPS env or .ark config."""
-    if ollama_base_url:
-        return call_ollama(ollama_base_url, prompt)
-    vps_ollama = load_ark_config('OLLAMA_HOST') or 'http://localhost:11434'
-    return call_ollama(vps_ollama, prompt)
+def call_generation(prompt, **kwargs):
+    """Main generation entry point — routes to Grok."""
+    return call_grok(prompt)
+
 
 # =========================
-# PROMPT
+# PROMPT TEMPLATES
 # =========================
+
 HYBRID_PROMPT_TEMPLATE = """You are the Voice of the Marcus Garvey ARK.
 Your wisdom flows from a deep archive of Garveyite philosophy and historical precedent.
 
@@ -174,74 +235,6 @@ Your wisdom flows from a deep archive of Garveyite philosophy and historical pre
 
 Answer:
 """
-
-def ask_marcus(query, debug_mode='expand', output_file=None, ollama_base_url=None):
-    """
-    Main entry point for asking a question.
-    Returns the JSON response dict.
-
-    Args:
-        query: User question
-        debug_mode: 'expand', 'strict', or 'off'
-        output_file: Optional path to save JSON output
-        ollama_base_url: Optional Ollama base URL — overrides .ark config
-    """
-    start_time = time.time()
-
-    # 1. Retrieval
-    results = retrieve_hybrid(query, max_results=25)
-    
-    # 2. Context Building & Expansion
-    context_data = build_hybrid_context(results)
-    
-    expanded_lines = []
-    if debug_mode == 'expand':
-        parent_ids = list(set(r['parent_chunk_id'] for r in results))
-        expanded_lines = fetch_all_lines_for_parents(parent_ids)
-        # Limit expansion
-        expanded_lines = expanded_lines[:CITATION_EXPAND_MAX_LINES]
-    elif debug_mode == 'strict':
-        expanded_lines = [{'text': r['line_content'], 'locator': r['line_locator'], 'source': r['anchor_id']} for r in results]
-    
-    # 3. AI Generation
-    prompt = HYBRID_PROMPT_TEMPLATE.format(context=context_data['context'], query=query)
-    raw_response = call_generation(prompt, ollama_base_url=ollama_base_url)
-
-    # 4. Citation Discovery & Scoring
-    query_terms = query.lower().split()
-    citations = get_citations(raw_response, expanded_lines, query_terms)
-    top_citations = citations[:CITATION_MAX_DISPLAY]
-    
-    # 5. Build JSON Contract
-    kingston_tz = timezone(timedelta(hours=-5))
-    timestamp = datetime.now(kingston_tz).isoformat()
-    
-    json_output = {
-        "query": query,
-        "mode": "garvey_lens",
-        "answer": raw_response,
-        "citations": top_citations,
-        "meta": {
-            "chunks_found": len(results),
-            "citation_search_space": len(expanded_lines),
-            "timestamp": timestamp,
-            "latency_ms": int((time.time() - start_time) * 1000)
-        }
-    }
-    
-    # 6. Session Vault
-    vault_path = save_to_session_vault(query, json_output)
-    
-    # Add vault path to meta logic if needed, but for now we return the object
-    # If called via CLI, we might print or save
-    if output_file:
-         Path(output_file).write_text(json.dumps(json_output, indent=2), encoding="utf-8")
-         
-    return json_output
-
-# =========================
-# WWMD LENS MODE
-# =========================
 
 LENS_PROMPT_TEMPLATE = """You are the Voice of the Marcus Garvey ARK.
 Analyze the following user situation through the {mode} LENS of Marcus Garvey's philosophy.
@@ -275,39 +268,115 @@ Output a valid JSON object strictly following this schema:
 - If the context does not support actionable guidance, include that caveat in the principle field.
 """
 
-def ask_marcus_lens(situation, mode="Personal", ollama_base_url=None):
-    """
-    Analyzes a situation and returns structured JSON for WWMD page.
 
-    Args:
-        situation: User situation description
-        mode: Analysis mode (default 'Personal')
-        ollama_base_url: Optional Ollama base URL — overrides .ark config
+# =========================
+# MAIN QUERY FUNCTIONS
+# =========================
+
+def ask_marcus(query, debug_mode='expand', output_file=None, **kwargs):
+    """
+    Main entry point for asking a question.
+    Returns the JSON response dict.
     """
     start_time = time.time()
-    
-    # 1. Retrieval (Treat situation as query)
-    search_query = f"{situation} {mode} organization success"
-    results = retrieve_hybrid(search_query, max_results=20)
-    
-    # 2. Context
+
+    # 1. Retrieval
+    results = retrieve_hybrid(query, max_results=25)
+
+    # 2. Context Building & Expansion
     context_data = build_hybrid_context(results)
-    
-    # 3. AI Generation
+
+    expanded_lines = []
+    if debug_mode == 'expand':
+        parent_ids = list(set(r['parent_chunk_id'] for r in results))
+        expanded_lines = fetch_all_lines_for_parents(parent_ids)
+        expanded_lines = expanded_lines[:CITATION_EXPAND_MAX_LINES]
+    elif debug_mode == 'strict':
+        expanded_lines = [{'text': r['line_content'], 'locator': r['line_locator'], 'source': r['anchor_id']} for r in results]
+
+    # 3. AI Generation via Grok
+    prompt = HYBRID_PROMPT_TEMPLATE.format(context=context_data['context'], query=query)
+    raw_response = call_grok(prompt)
+
+    # 4. Citation Discovery & Scoring
+    query_terms = query.lower().split()
+    citations = get_citations(raw_response, expanded_lines, query_terms)
+    top_citations = citations[:CITATION_MAX_DISPLAY]
+
+    # 5. Build JSON Contract
+    kingston_tz = timezone(timedelta(hours=-5))
+    timestamp = datetime.now(kingston_tz).isoformat()
+
+    json_output = {
+        "query": query,
+        "mode": "garvey_lens",
+        "answer": raw_response,
+        "citations": top_citations,
+        "meta": {
+            "chunks_found": len(results),
+            "citation_search_space": len(expanded_lines),
+            "timestamp": timestamp,
+            "latency_ms": int((time.time() - start_time) * 1000),
+            "model": GROK_MODEL
+        }
+    }
+
+    # 6. Session Vault
+    save_to_session_vault(query, json_output)
+
+    if output_file:
+        Path(output_file).write_text(json.dumps(json_output, indent=2), encoding="utf-8")
+
+    return json_output
+
+
+def ask_marcus_lens_stream(situation, mode="Personal", **kwargs):
+    """
+    Generator yielding SSE events for WWMD lens analysis.
+    Fires 'retrieved' immediately after SQLite query, 'generating' heartbeats
+    while Grok streams, then 'done' with the full parsed JSON.
+
+    Events:
+        {"type": "retrieved", "chunks": N}
+        {"type": "generating", "chars": N}
+        {"type": "done", "data": {...}}
+        {"type": "error", "message": "..."}
+    """
+    # 1. Retrieval
+    search_query = f"{situation} {mode}"
+    results = retrieve_hybrid(search_query, max_results=20)
+    context_data = build_hybrid_context(results)
+
+    yield f"data: {json.dumps({'type': 'retrieved', 'chunks': len(results)})}\n\n"
+
+    # 2. Build prompt
     prompt = LENS_PROMPT_TEMPLATE.format(
-        context=context_data['context'], 
+        context=context_data['context'],
         situation=situation,
         mode=mode
     )
-    
-    raw_response = call_generation(prompt, ollama_base_url=ollama_base_url)
 
-    # 4. Clean and Parse JSON
+    # 3. Stream from Grok
+    full_text = ""
+    last_heartbeat = 0
     try:
-        cleaned = raw_response.replace('```json', '').replace('```', '').strip()
-        data = json.loads(cleaned)
-        
-        # Inject receipts (citations) with real anchor metadata
+        for token in call_grok_stream(prompt):
+            if token.startswith("ERROR:"):
+                yield f"data: {json.dumps({'type': 'error', 'message': token})}\n\n"
+                return
+            full_text += token
+            if len(full_text) - last_heartbeat >= 200:
+                last_heartbeat = len(full_text)
+                yield f"data: {json.dumps({'type': 'generating', 'chars': len(full_text)})}\n\n"
+    except Exception as e:
+        yield f"data: {json.dumps({'type': 'error', 'message': str(e)})}\n\n"
+        return
+
+    # 4. Parse JSON + build receipts
+    try:
+        cleaned = full_text.replace('```json', '').replace('```', '').strip()
+        data_out = json.loads(cleaned)
+
         top_results = results[:10]
         anchor_ids = list(set(r['anchor_id'] for r in top_results))
         anchor_meta = resolve_anchor_meta(anchor_ids)
@@ -329,18 +398,77 @@ def ask_marcus_lens(situation, mode="Personal", ollama_base_url=None):
                 "locator": loc,
                 "canonicalPath": meta.get('canonical_path') or None,
             })
-            
-        data['receipts'] = receipts
-        return data
-        
+
+        data_out['receipts'] = receipts
+        yield f"data: {json.dumps({'type': 'done', 'data': data_out})}\n\n"
+
     except json.JSONDecodeError:
-        return {
-            "principle": "Protocol Error",
-            "historicalAnalogy": "The system could not structure the answer correctly. Raw: " + raw_response[:100],
+        fallback = {
+            "principle": "Parse Error",
+            "historicalAnalogy": "The oracle spoke in riddles. Raw: " + full_text[:200],
             "receipts": [],
             "actionSteps": [],
             "mirrorQuestions": []
         }
+        yield f"data: {json.dumps({'type': 'done', 'data': fallback})}\n\n"
+
+
+def ask_marcus_lens(situation, mode="Personal", **kwargs):
+    """
+    Analyzes a situation through Garvey's lens. Returns structured JSON.
+    """
+    start_time = time.time()
+
+    search_query = f"{situation} {mode} organization success"
+    results = retrieve_hybrid(search_query, max_results=20)
+    context_data = build_hybrid_context(results)
+
+    prompt = LENS_PROMPT_TEMPLATE.format(
+        context=context_data['context'],
+        situation=situation,
+        mode=mode
+    )
+
+    raw_response = call_grok(prompt)
+
+    try:
+        cleaned = raw_response.replace('```json', '').replace('```', '').strip()
+        data = json.loads(cleaned)
+
+        top_results = results[:10]
+        anchor_ids = list(set(r['anchor_id'] for r in top_results))
+        anchor_meta = resolve_anchor_meta(anchor_ids)
+
+        receipts = []
+        for r in top_results:
+            loc = r['line_locator']
+            page = loc.split(':')[-1] if ':' in loc else "0"
+            meta = anchor_meta.get(r['anchor_id'], {})
+            title = meta.get('title') or r['anchor_id']
+            receipts.append({
+                "id": r['anchor_id'],
+                "anchorId": r['anchor_id'],
+                "title": title,
+                "type": "archive",
+                "excerpt": r['line_content'],
+                "year": None,
+                "page": page,
+                "locator": loc,
+                "canonicalPath": meta.get('canonical_path') or None,
+            })
+
+        data['receipts'] = receipts
+        return data
+
+    except json.JSONDecodeError:
+        return {
+            "principle": "Protocol Error",
+            "historicalAnalogy": "The system could not structure the answer. Raw: " + raw_response[:100],
+            "receipts": [],
+            "actionSteps": [],
+            "mirrorQuestions": []
+        }
+
 
 def main():
     parser = argparse.ArgumentParser()
@@ -349,18 +477,17 @@ def main():
     parser.add_argument("--out", help="Save JSON to specific file")
     parser.add_argument("--debug", type=str, choices=['expand', 'strict', 'off'], default='expand')
     args = parser.parse_args()
-    
+
     response = ask_marcus(args.query, args.debug, args.out)
-        
+
     if args.json:
         print(json.dumps(response, indent=2))
     else:
-        # Legacy Text Output
         print("\n" + "="*60)
-        print("WWMD ANSWER (JSON-Powered)")
+        print("MARCUS GARVEY ARK ANSWER")
         print("="*60 + "\n")
         print(inject_citations_text(response['answer'], response['citations']))
-        print(f"\n[Vault]: Saved to session vault")
+
 
 if __name__ == "__main__":
     main()

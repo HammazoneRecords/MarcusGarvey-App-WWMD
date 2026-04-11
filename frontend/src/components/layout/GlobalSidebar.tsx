@@ -5,7 +5,7 @@ import { cn } from '../ui/index';
 const NAV_ITEMS = [
     { icon: Home, label: 'Home', path: '/home' },
     { icon: Library, label: 'Knowledge Base', path: '/library' },
-    { icon: MessageSquare, label: 'WWMD', path: '/wwmd' },
+    { icon: MessageSquare, label: 'What Would Marcus Do (WWMD)', path: '/wwmd' },
     { icon: Briefcase, label: 'Toolkit', path: '/toolkit' },
     { icon: User, label: 'Profile', path: '/profile' },
 ];

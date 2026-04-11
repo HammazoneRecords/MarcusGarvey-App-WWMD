@@ -2,7 +2,7 @@
 
 > **"A people without the knowledge of their past history, origin and culture is like a tree without roots."** — Marcus Garvey
 
-A full-stack, source-grounded knowledge base inspired by the legacy of Marcus Garvey. Whirlwind KB combines a modern React frontend with a Python-powered RAG (Retrieval-Augmented Generation) backend to deliver historically accurate, citation-backed wisdom.
+A full-stack, source-grounded knowledge base inspired by the legacy of Marcus Garvey. This app combines a modern React frontend with a Python-powered RAG (Retrieval-Augmented Generation) backend to deliver historically accurate, citation-backed wisdom.
 
 ---
 

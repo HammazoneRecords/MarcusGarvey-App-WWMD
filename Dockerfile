@@ -15,6 +15,8 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copy backend source (data/ is volume-mounted — not baked in)
 COPY backend/ ./backend/
 
+# Match VPS: run gunicorn from backend/ so module path is api.server:app
+WORKDIR /app/backend
 EXPOSE 5050
 # data/ is mounted at runtime via docker-compose volume
-CMD ["gunicorn", "-w", "2", "-b", "0.0.0.0:5050", "backend.api.server:app"]
+CMD ["gunicorn", "-w", "2", "-b", "0.0.0.0:5050", "api.server:app"]

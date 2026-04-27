@@ -7,32 +7,75 @@ import { useStore } from '../store/useStore';
 import { useAuth } from '../hooks/useAuth';
 import { upsertLensResult } from '../services/supabaseUserData';
 
+const API_BASE = (import.meta.env.VITE_API_BASE_URL ?? '').replace(/\/$/, '');
+
 export const WWMD = () => {
     const [loading, setLoading] = useState(false);
     const [response, setResponse] = useState<WWMDResponse | null>(null);
     const { user } = useAuth();
     const { addWWMDSession } = useStore();
 
+    const commitResult = (result: WWMDResponse, situation: string) => {
+        const resultWithQuery = { ...result, query: situation, id: result.id || `lens-${Date.now()}` };
+        setResponse(resultWithQuery);
+        addWWMDSession();
+        useStore.getState().saveLensResult(resultWithQuery);
+        if (user?.id) {
+            const resultId = resultWithQuery.id ?? resultWithQuery.query ?? `lens-${Date.now()}`;
+            const checked = useStore.getState().savedActionSteps[resultId] ?? [];
+            upsertLensResult(user.id, resultId, resultWithQuery, checked);
+        }
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
+
     const handleApplyLens = async (data: WWMDRequest) => {
         setLoading(true);
+        const apiConfig = useStore.getState().apiConfig;
+
+        // Try streaming endpoint first — keeps connection alive during generation
         try {
-            const currentApiConfig = useStore.getState().apiConfig;
-            const result = await submitWWMD({ ...data, mode: data.mode ?? 'Personal', apiConfig: currentApiConfig });
-            // Ensure query and stable id for saved action steps
-            const resultWithQuery = { ...result, query: data.situation, id: result.id || `lens-${Date.now()}` };
+            const res = await fetch(`${API_BASE}/api/wwmd/stream`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ situation: data.situation, mode: data.mode ?? 'Personal', apiConfig }),
+            });
 
-            setResponse(resultWithQuery);
-            addWWMDSession();
-            useStore.getState().saveLensResult(resultWithQuery);
+            if (res.ok && res.body) {
+                const reader = res.body.getReader();
+                const decoder = new TextDecoder();
+                let buffer = '';
 
-            if (user?.id) {
-                const resultId = resultWithQuery.id ?? resultWithQuery.query ?? `lens-${Date.now()}`;
-                const checked = useStore.getState().savedActionSteps[resultId] ?? [];
-                upsertLensResult(user.id, resultId, resultWithQuery, checked);
+                while (true) {
+                    const { done, value } = await reader.read();
+                    if (done) break;
+
+                    buffer += decoder.decode(value, { stream: true });
+                    const parts = buffer.split('\n\n');
+                    buffer = parts.pop() ?? '';
+
+                    for (const part of parts) {
+                        if (!part.startsWith('data: ')) continue;
+                        try {
+                            const event = JSON.parse(part.slice(6));
+                            if (event.type === 'done' && event.data) {
+                                commitResult(event.data as WWMDResponse, data.situation);
+                            } else if (event.type === 'error') {
+                                console.error('Stream error:', event.message);
+                            }
+                        } catch (_) { /* skip malformed SSE line */ }
+                    }
+                }
+                setLoading(false);
+                return; // streaming succeeded
             }
+        } catch (streamErr) {
+            console.warn('Streaming endpoint unavailable, falling back:', streamErr);
+        }
 
-            // Scroll to top to see response
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+        // Fallback: original non-streaming call
+        try {
+            const result = await submitWWMD({ ...data, mode: data.mode ?? 'Personal', apiConfig });
+            commitResult(result, data.situation);
         } catch (error) {
             console.error("Failed to apply lens", error);
         } finally {

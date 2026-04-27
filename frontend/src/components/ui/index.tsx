@@ -53,7 +53,7 @@ export const Chip = ({ label, active, onClick }: { label: string; active?: boole
     <button
         onClick={onClick}
         className={cn(
-            'px-3 py-1 rounded-full text-xs font-semibold whitespace-nowrap transition-colors tap-target',
+            'px-3 py-1 rounded-full text-xs font-semibold whitespace-nowrap shrink-0 transition-colors tap-target',
             active
                 ? 'bg-secondary text-black shadow-sm'
                 : 'bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400 border border-zinc-200 dark:border-zinc-700'

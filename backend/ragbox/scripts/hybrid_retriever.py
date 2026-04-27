@@ -3,6 +3,7 @@
 Hybrid Retrieval System
 Retrieves line chunks + their parent chunks for context
 """
+import os
 import sqlite3
 from pathlib import Path
 from typing import List, Dict, Any
@@ -118,8 +119,16 @@ def build_hybrid_context(results: List[Dict]) -> Dict[str, Any]:
         })
         parent_contents.add(result['parent_content'])
     
-    # Combine unique parent contents
-    context = "\n\n---\n\n".join(parent_contents)
+    # Combine unique parent contents — cap at ~4000 chars so the model has room to generate
+    CONTEXT_CHAR_LIMIT = int(os.environ.get("RAG_CONTEXT_CHAR_LIMIT", "4000"))
+    sorted_contents = sorted(parent_contents, key=len, reverse=True)
+    kept, total = [], 0
+    for chunk in sorted_contents:
+        if total + len(chunk) > CONTEXT_CHAR_LIMIT:
+            break
+        kept.append(chunk)
+        total += len(chunk)
+    context = "\n\n---\n\n".join(kept) if kept else "\n\n---\n\n".join(list(parent_contents)[:3])
     
     return {
         'lines': lines,

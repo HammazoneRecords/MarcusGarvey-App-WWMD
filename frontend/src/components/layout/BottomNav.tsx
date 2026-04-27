@@ -4,7 +4,7 @@ import { cn } from '../ui/index';
 
 const NAV_ITEMS = [
     { icon: Home, label: 'Home', path: '/home' },
-    { icon: Library, label: 'Knowledge Base', path: '/library' },
+    { icon: Library, label: 'Library', path: '/library' },
     { icon: MessageSquare, label: 'WWMD', path: '/wwmd' },
     { icon: Briefcase, label: 'Toolkit', path: '/toolkit' },
     { icon: User, label: 'Profile', path: '/profile' },
@@ -24,7 +24,7 @@ export const BottomNav = () => {
                         )}
                     >
                         <item.icon className="w-6 h-6" />
-                        <span className="text-[10px] mt-1 font-medium">{item.label}</span>
+                        <span className="text-[10px] mt-1 font-medium truncate w-full text-center px-0.5">{item.label}</span>
                     </NavLink>
                 ))}
             </div>

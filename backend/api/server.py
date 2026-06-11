@@ -26,6 +26,11 @@ except ImportError:
     except ImportError:
         get_library = None
 
+try:
+    from api import auth
+except ImportError:
+    import auth
+
 # Security note: In a production environment, DIAGNOSTIC_MODE should be disabled by default.
 # It currently allows the server to start without critical RAG modules for debugging purposes.
 diagnostic_mode = str(os.environ.get('DIAGNOSTIC_MODE', 'false')).lower() in ('1', 'true', 'yes')
@@ -65,6 +70,10 @@ else:
 WWMD_SITUATION_MAX_LEN = int(os.environ.get("WWMD_SITUATION_MAX_LEN", "4000"))
 CHAT_QUERY_MAX_LEN = int(os.environ.get("CHAT_QUERY_MAX_LEN", "2000"))
 
+# Auth + user-data tables live in the same DB as anchors/chunks
+DB_PATH.parent.mkdir(parents=True, exist_ok=True)
+auth.init_auth_tables(DB_PATH)
+
 @app.route('/api/wwmd', methods=['POST'])
 def wwmd_lens():
     data = request.json
@@ -78,12 +87,14 @@ def wwmd_lens():
     if len(situation) > WWMD_SITUATION_MAX_LEN:
         return jsonify({"error": f"situation must be at most {WWMD_SITUATION_MAX_LEN} characters"}), 400
     mode = data.get('mode', 'Personal')
+    user_name = data.get('user_name', 'friend') or 'friend'
+    session_id = data.get('session_id') or None
     api_config = data.get('apiConfig', {}) if isinstance(data.get('apiConfig'), dict) else {}
     use_own_ai = api_config.get('useOwnAI', False)
     ollama_base_url = api_config.get('ollamaBaseUrl') if use_own_ai else os.environ.get('OLLAMA_HOST', 'http://localhost:11434')
 
     try:
-        response = ask_marcus_lens(situation, mode=mode, ollama_base_url=ollama_base_url)
+        response = ask_marcus_lens(situation, mode=mode, user_name=user_name, session_id=session_id, ollama_base_url=ollama_base_url)
         return jsonify(response)
     except Exception as e:
         print(f"Error processing WWMD request: {e}")
@@ -109,13 +120,15 @@ def wwmd_lens_stream():
         return jsonify({"error": f"situation must be at most {WWMD_SITUATION_MAX_LEN} characters"}), 400
 
     mode = data.get('mode', 'Personal')
+    user_name = data.get('user_name', 'friend') or 'friend'
+    session_id = data.get('session_id') or None
     api_config = data.get('apiConfig', {}) if isinstance(data.get('apiConfig'), dict) else {}
     use_own_ai = api_config.get('useOwnAI', False)
     ollama_base_url = api_config.get('ollamaBaseUrl') if use_own_ai else os.environ.get('OLLAMA_HOST', 'http://localhost:11434')
 
     def generate():
         try:
-            yield from ask_marcus_lens_stream(situation, mode=mode, ollama_base_url=ollama_base_url)
+            yield from ask_marcus_lens_stream(situation, mode=mode, user_name=user_name, session_id=session_id, ollama_base_url=ollama_base_url)
         except Exception as e:
             import json as _json
             print(f"Error in wwmd stream: {e}")
@@ -146,12 +159,14 @@ def chat():
     if len(query) > CHAT_QUERY_MAX_LEN:
         return jsonify({"error": f"query must be at most {CHAT_QUERY_MAX_LEN} characters"}), 400
     debug_mode = data.get('debug', 'expand')
+    user_name = data.get('user_name', 'friend') or 'friend'
+    session_id = data.get('session_id') or None
     api_config = data.get('apiConfig', {}) if isinstance(data.get('apiConfig'), dict) else {}
     use_own_ai = api_config.get('useOwnAI', False)
     ollama_base_url = api_config.get('ollamaBaseUrl') if use_own_ai else os.environ.get('OLLAMA_HOST', 'http://localhost:11434')
 
     try:
-        response = ask_marcus(query, debug_mode=debug_mode, ollama_base_url=ollama_base_url)
+        response = ask_marcus(query, debug_mode=debug_mode, user_name=user_name, session_id=session_id, ollama_base_url=ollama_base_url)
         return jsonify(response)
     except Exception as e:
         print(f"Error processing query: {e}")
@@ -426,6 +441,119 @@ def library_fact_by_id(fact_id):
         return jsonify({"error": "Fact not found"}), 404
     except Exception as e:
         return jsonify({"error": str(e)}), 500
+
+
+# ---------------------------------------------------------------------------
+# Auth (magic link + JWT)
+# ---------------------------------------------------------------------------
+
+@app.route('/api/auth/request', methods=['POST'])
+def auth_request():
+    data = request.json or {}
+    email = data.get('email', '')
+    if not isinstance(email, str) or not email.strip():
+        return jsonify({"error": "Missing email"}), 400
+    ok, err = auth.request_magic_link(email, DB_PATH)
+    if not ok:
+        return jsonify({"error": err}), 400
+    return jsonify({"ok": True})
+
+
+@app.route('/api/auth/verify', methods=['GET'])
+def auth_verify():
+    token = request.args.get('token')
+    if not token:
+        return jsonify({"error": "Missing token"}), 400
+    user, err = auth.verify_magic_link(token, DB_PATH)
+    if not user:
+        return jsonify({"error": err}), 400
+    jwt_token = auth.generate_jwt(user["id"], user["email"])
+    return jsonify({"token": jwt_token, "user": user})
+
+
+@app.route('/api/auth/me', methods=['GET'])
+def auth_me():
+    user = auth.get_user_from_request(request)
+    if not user:
+        return jsonify({"error": "Not authenticated"}), 401
+    return jsonify({"user": user})
+
+
+# ---------------------------------------------------------------------------
+# User data sync (saved facts, lens results, toolkit edits)
+# ---------------------------------------------------------------------------
+
+@app.route('/api/user/data', methods=['GET'])
+def user_data():
+    user = auth.get_user_from_request(request)
+    if not user:
+        return jsonify({"error": "Not authenticated"}), 401
+    return jsonify(auth.get_user_data_snapshot(user["id"], DB_PATH))
+
+
+@app.route('/api/user/saved-facts', methods=['POST'])
+def user_saved_facts():
+    user = auth.get_user_from_request(request)
+    if not user:
+        return jsonify({"error": "Not authenticated"}), 401
+    data = request.json or {}
+    fact_id = data.get('fact_id')
+    action = data.get('action')
+    if not fact_id or action not in ('add', 'remove'):
+        return jsonify({"error": "Missing fact_id or invalid action"}), 400
+    if action == 'add':
+        auth.add_saved_fact(user["id"], fact_id, DB_PATH)
+    else:
+        auth.remove_saved_fact(user["id"], fact_id, DB_PATH)
+    return jsonify({"ok": True})
+
+
+@app.route('/api/user/lens-results', methods=['POST'])
+def user_lens_results():
+    user = auth.get_user_from_request(request)
+    if not user:
+        return jsonify({"error": "Not authenticated"}), 401
+    data = request.json or {}
+    result_id = data.get('result_id')
+    payload = data.get('payload')
+    checked_action_step_ids = data.get('checked_action_step_ids', [])
+    if not result_id or payload is None:
+        return jsonify({"error": "Missing result_id or payload"}), 400
+    auth.upsert_lens_result(user["id"], result_id, payload, checked_action_step_ids, DB_PATH)
+    return jsonify({"ok": True})
+
+
+@app.route('/api/user/toolkit-edits', methods=['POST'])
+def user_toolkit_edits():
+    user = auth.get_user_from_request(request)
+    if not user:
+        return jsonify({"error": "Not authenticated"}), 401
+    data = request.json or {}
+    template_id = data.get('template_id')
+    markdown = data.get('markdown')
+    if not template_id or markdown is None:
+        return jsonify({"error": "Missing template_id or markdown"}), 400
+    auth.upsert_toolkit_edit(user["id"], template_id, markdown, DB_PATH)
+    return jsonify({"ok": True})
+
+
+# ---------------------------------------------------------------------------
+# Lead capture (TTS early access)
+# ---------------------------------------------------------------------------
+
+@app.route('/api/leads/tts', methods=['POST'])
+def leads_tts():
+    data = request.json or {}
+    email = data.get('email', '')
+    source = data.get('source')
+    if not isinstance(email, str) or not email.strip():
+        return jsonify({"error": "Missing email"}), 400
+    if not isinstance(source, str):
+        source = None
+    ok, err = auth.add_tts_lead(email, DB_PATH, source=source)
+    if not ok:
+        return jsonify({"error": err}), 400
+    return jsonify({"ok": True})
 
 
 @app.route('/api/health', methods=['GET'])

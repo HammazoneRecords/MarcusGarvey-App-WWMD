@@ -1,10 +1,13 @@
+import { useState } from 'react';
 import { WWMDResponse } from '../../types';
 import { Card, Button } from '../ui';
-import { HelpCircle, CheckSquare, ScrollText, Sparkles, RefreshCw } from 'lucide-react';
+import { HelpCircle, CheckSquare, ScrollText, Sparkles, RefreshCw, Copy, Check, Share2 } from 'lucide-react';
 import { SourceItem } from '../facts/SourceItem';
 import { useStore } from '../../store/useStore';
 import { useAuth } from '../../hooks/useAuth';
-import { upsertLensResult } from '../../services/supabaseUserData';
+import { upsertLensResult } from '../../services/userData';
+import { trackSync } from '../../services/syncHelpers';
+import { TTSEarlyAccessBanner } from './TTSEarlyAccessBanner';
 
 export const ResponseView = ({ response, onReset }: { response: WWMDResponse, onReset: () => void }) => {
     const resultId = response.id ?? (response.query ? `fallback-${response.query.slice(0, 40)}` : 'unknown');
@@ -12,13 +15,28 @@ export const ResponseView = ({ response, onReset }: { response: WWMDResponse, on
     const savedActionSteps = useStore((s) => s.savedActionSteps);
     const toggleSavedActionStep = useStore((s) => s.toggleSavedActionStep);
     const checkedStepIds = savedActionSteps[resultId] ?? [];
+    const [copied, setCopied] = useState(false);
 
     const handleToggleStep = (stepId: string) => {
         toggleSavedActionStep(resultId, stepId);
         if (user?.id) {
             const next = useStore.getState().savedActionSteps[resultId] ?? [];
-            upsertLensResult(user.id, resultId, response, next);
+            trackSync(`lens-${resultId}`, "Couldn't sync your progress — saved on this device only", () => upsertLensResult(resultId, response, next));
         }
+    };
+
+    const shareText = `"${response.principle}"\n\n— Marcus Garvey ARK\nmarcusgarvey876.com`;
+
+    const handleCopy = () => {
+        navigator.clipboard.writeText(shareText).then(() => {
+            setCopied(true);
+            setTimeout(() => setCopied(false), 2000);
+        });
+    };
+
+    const handleWhatsApp = () => {
+        const url = `https://wa.me/?text=${encodeURIComponent(shareText)}`;
+        window.open(url, '_blank', 'noopener');
     };
 
     return (
@@ -26,12 +44,22 @@ export const ResponseView = ({ response, onReset }: { response: WWMDResponse, on
             <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2 text-primary dark:text-secondary">
                     <Sparkles className="w-5 h-5" />
-                    <h2 className="text-sm font-bold uppercase tracking-widest text-zinc-500">Lens Analysis</h2>
+                    <h2 className="text-sm font-bold uppercase tracking-widest text-zinc-500">What Marcus Would Do</h2>
                 </div>
-                <button type="button" onClick={onReset} className="text-xs font-bold text-zinc-400 hover:text-primary flex items-center gap-1 transition-colors" aria-label="Start over and clear this analysis">
-                    <RefreshCw className="w-3 h-3" />
-                    START OVER
-                </button>
+                <div className="flex items-center gap-3">
+                    <button type="button" onClick={handleCopy} className="text-xs font-bold text-zinc-400 hover:text-primary flex items-center gap-1 transition-colors" aria-label="Copy result to clipboard">
+                        {copied ? <Check className="w-3 h-3 text-green-500" /> : <Copy className="w-3 h-3" />}
+                        {copied ? 'COPIED' : 'COPY'}
+                    </button>
+                    <button type="button" onClick={handleWhatsApp} className="text-xs font-bold text-zinc-400 hover:text-green-500 flex items-center gap-1 transition-colors" aria-label="Share on WhatsApp">
+                        <Share2 className="w-3 h-3" />
+                        SHARE
+                    </button>
+                    <button type="button" onClick={onReset} className="text-xs font-bold text-zinc-400 hover:text-primary flex items-center gap-1 transition-colors" aria-label="Start over and clear this analysis">
+                        <RefreshCw className="w-3 h-3" />
+                        START OVER
+                    </button>
+                </div>
             </div>
 
             <section className="space-y-4">
@@ -46,12 +74,14 @@ export const ResponseView = ({ response, onReset }: { response: WWMDResponse, on
                         {response.historicalAnalogy}
                     </p>
                 </div>
+
+                <TTSEarlyAccessBanner />
             </section>
 
             <section className="space-y-4">
                 <div className="flex items-center gap-2 text-zinc-500">
                     <CheckSquare className="w-5 h-5" />
-                    <h2 className="text-sm font-bold uppercase tracking-widest">Recommended Actions</h2>
+                    <h2 className="text-sm font-bold uppercase tracking-widest">What He'd Have You Do</h2>
                 </div>
                 <div className="space-y-3">
                     {response.actionSteps.map((step) => (
@@ -83,7 +113,7 @@ export const ResponseView = ({ response, onReset }: { response: WWMDResponse, on
             <section className="p-6 bg-zinc-900 text-white rounded-2xl space-y-4 border border-zinc-800">
                 <div className="flex items-center gap-2 text-secondary">
                     <HelpCircle className="w-5 h-5" />
-                    <h2 className="text-sm font-bold uppercase tracking-widest">Garvey Mirror</h2>
+                    <h2 className="text-sm font-bold uppercase tracking-widest">Marcus Asks You</h2>
                 </div>
                 <div className="space-y-4">
                     {response.mirrorQuestions.map((q, i) => (

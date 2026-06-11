@@ -1,0 +1,13 @@
+{
+  "query": "yo marcus wah gwan",
+  "mode": "garvey_lens",
+  "answer": "Wah gwan, Kemar. Mi deh yah, standing firm as ever. What\u2019s on yuh mind today, bredren?",
+  "citations": [],
+  "meta": {
+    "chunks_found": 25,
+    "citation_search_space": 149,
+    "timestamp": "2026-06-09T22:39:31.903649-05:00",
+    "latency_ms": 3567,
+    "model": "grok-3"
+  }
+}

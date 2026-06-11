@@ -69,3 +69,4 @@ export const Skeleton = ({ className }: { className?: string }) => (
 );
 
 export { ThemeToggle } from './ThemeToggle';
+export { ToastContainer } from './Toast';

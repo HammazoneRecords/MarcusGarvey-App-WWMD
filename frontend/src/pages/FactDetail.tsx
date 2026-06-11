@@ -7,7 +7,8 @@ import { Button, Skeleton, Card } from '../components/ui/index';
 import { SourceItem } from '../components/facts/SourceItem';
 import { useStore } from '../store/useStore';
 import { useAuth } from '../hooks/useAuth';
-import { addSavedFact, removeSavedFact } from '../services/supabaseUserData';
+import { addSavedFact, removeSavedFact } from '../services/userData';
+import { trackSync } from '../services/syncHelpers';
 
 export const FactDetail = () => {
     const { id } = useParams<{ id: string }>();
@@ -24,8 +25,8 @@ export const FactDetail = () => {
         const willBeSaved = !isSaved;
         toggleSavedFact(id);
         if (user?.id) {
-            if (willBeSaved) addSavedFact(user.id, id);
-            else removeSavedFact(user.id, id);
+            if (willBeSaved) trackSync(`fact-${id}`, "Couldn't sync this bookmark — saved on this device only", () => addSavedFact(id));
+            else trackSync(`fact-${id}`, "Couldn't sync this bookmark — saved on this device only", () => removeSavedFact(id));
         }
     };
 

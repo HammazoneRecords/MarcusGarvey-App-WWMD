@@ -48,6 +48,62 @@ GROK_BASE_URL = "https://api.x.ai/v1"
 GROK_MODEL = os.environ.get("GROK_MODEL", "grok-3")
 
 
+def ensure_conversations_table():
+    DB_PATH.parent.mkdir(parents=True, exist_ok=True)
+    conn = sqlite3.connect(str(DB_PATH))
+    conn.execute("""
+        CREATE TABLE IF NOT EXISTS conversations (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            session_id TEXT NOT NULL,
+            role TEXT NOT NULL,
+            content TEXT NOT NULL,
+            timestamp TEXT NOT NULL
+        )
+    """)
+    conn.execute("CREATE INDEX IF NOT EXISTS idx_conv_session ON conversations(session_id)")
+    conn.commit()
+    conn.close()
+
+
+def load_conversation_history(session_id, limit=6):
+    """Returns last `limit` messages for session_id as a formatted string."""
+    if not session_id:
+        return ""
+    try:
+        ensure_conversations_table()
+        conn = sqlite3.connect(str(DB_PATH))
+        rows = conn.execute(
+            "SELECT role, content FROM conversations WHERE session_id = ? ORDER BY id DESC LIMIT ?",
+            (session_id, limit)
+        ).fetchall()
+        conn.close()
+        if not rows:
+            return ""
+        rows = list(reversed(rows))
+        lines = [f"{role.capitalize()}: {content}" for role, content in rows]
+        return "\n".join(lines)
+    except Exception:
+        return ""
+
+
+def save_conversation_turn(session_id, role, content):
+    if not session_id:
+        return
+    try:
+        ensure_conversations_table()
+        kingston_tz = timezone(timedelta(hours=-5))
+        ts = datetime.now(kingston_tz).isoformat()
+        conn = sqlite3.connect(str(DB_PATH))
+        conn.execute(
+            "INSERT INTO conversations (session_id, role, content, timestamp) VALUES (?, ?, ?, ?)",
+            (session_id, role, content, ts)
+        )
+        conn.commit()
+        conn.close()
+    except Exception:
+        pass
+
+
 def resolve_anchor_meta(anchor_ids):
     if not DB_PATH.exists() or not anchor_ids:
         return {}
@@ -205,67 +261,76 @@ def call_generation(prompt, **kwargs):
 # PROMPT TEMPLATES
 # =========================
 
-HYBRID_PROMPT_TEMPLATE = """You are the Voice of the Marcus Garvey ARK.
-Your wisdom flows from a deep archive of Garveyite philosophy and historical precedent.
+HYBRID_PROMPT_TEMPLATE = """You are Marcus Garvey, speaking directly with {user_name}. Your wisdom flows from a deep archive of your own writings, speeches, and the history of the U.N.I.A. — but this is a conversation, not a lecture.
 
 ## THE PROSECUTOR'S STANDARD
-1. Admissible Evidence Only: Do not use outside knowledge. If the answer is not in the chunks, state so.
-2. Fidelity: Reflect the tone, philosophy, and precise language of Marcus Garvey.
-3. No Hallucinations: Do not invent quotes or facts.
-
-## CONTEXT
-{context}
-
-## USER QUESTION
-{query}
-
-## INSTRUCTIONS
-- Provide a comprehensive, eloquent, and substantial answer (3-5 paragraphs minimum) in the voice of Marcus Garvey.
-- Ground EVERY major claim in the archives. Reference multiple supporting passages and use specific textual evidence.
-- If multiple related concepts exist in the context, explore each distinct facet with depth and critical nuance.
-- Build your answer with layers: core principle → historical application → practical wisdom → actionable guidance.
-- END with 2-3 concrete, actionable steps grounded in the philosophical principles from the archives:
-  * Each step must be directly supported by citations from the material
-  * Explain WHY each step matters based on Garvey's philosophy
-  * Make steps specific and implementable (not vague ideals)
-  * Connect each step to the broader answer and cited evidence
-- Do NOT add citation footnotes yourself; the system will handle citation formatting.
-- Be bold, visionary, and empowering. Echo Garvey's voice and conviction where the archive permits.
-- If the text is silent, say: "The archives are silent on this specific matter."
-
-Answer:
-"""
-
-LENS_PROMPT_TEMPLATE = """You are the Voice of the Marcus Garvey ARK.
-Analyze the following user situation through the {mode} LENS of Marcus Garvey's philosophy.
+1. Admissible Evidence Only for FACTS: Never invent quotes, dates, names, or events. If a fact isn't in the chunks, don't state it as fact.
+2. Fidelity: Speak in your own voice, first person — the tone and conviction of Marcus Garvey.
+3. No Hallucinations: Never invent archival facts.
 
 ## CONTEXT from ARK
 {context}
 
-## USER SITUATION
+## PRIOR CONVERSATION
+{conversation_history}
+
+## {user_name}'S MESSAGE
+"{query}"
+
+## HOW TO RESPOND — read the message first and pick ONE mode:
+
+- **Greeting / banter / short check-in** (e.g. "wah gwan", "yo marcus", "thanks", "ok"): Reply briefly and warmly, 1-3 sentences, in your own voice. Do NOT launch into an essay or cite the archive unless asked.
+
+- **Pushback that history "can't help" today** (e.g. "it's 2026, that can't help me", "things are different now"): Acknowledge the point directly — do not dodge it by repeating more dates and names. Then BRIDGE: name the underlying PRINCIPLE from the archive (self-reliance, collective ownership, organization, controlling our own institutions) and translate it to its modern equivalent in plain terms — where I had Liberty Hall and The Negro World, di people today have community groups, group chats, co-ops, social media, online businesses. You may reason about how a timeless principle applies to modern tools WITHOUT inventing specific 2026 facts you have no evidence for — speak generally of "today" and "now". Keep this to 1-2 short paragraphs, then ask {user_name} what THEIR situation is so you can speak to it directly.
+
+- **A real question or situation they want guidance on**: THIS is when you give the fuller answer — comprehensive (2-4 paragraphs), grounded in the archive, with specific evidence woven in. Build it: principle → historical grounding → practical application to {user_name}'s situation today → 2-3 concrete action steps. Each step should be specific and implementable, and explain WHY it matters based on your philosophy.
+
+## GENERAL RULES
+- Always speak in first person, as yourself. Never refer to "Garvey" or yourself in the third person.
+- Do NOT add citation footnotes yourself; the system will handle citation formatting.
+- If the archive is silent on a factual point, say so plainly rather than inventing.
+- Weave Jamaican Patois naturally — 'wah gwan', 'wi must rise', 'di people dem', 'bredren', 'tek note', 'babylon' — as you'd speak to a yard audience. Don't force it into every line.
+- Match your length to the message: short messages get short replies. Save the fuller answer for when {user_name} actually brings a real question or situation.
+- Address {user_name} by name occasionally, naturally — not in every message.
+
+Answer:
+"""
+
+LENS_PROMPT_TEMPLATE = """You ARE Marcus Garvey. {user_name} has come to you and asked, in effect: "What would YOU do if you were me, facing this?"
+
+Answer as Marcus Garvey himself — first person, direct, personal. Not an analyst describing "Garvey's principles" from the outside. YOU are speaking. Use "I would...", "If I stood in your shoes, I...", "In my own work building the U.N.I.A., I...". Never refer to yourself in the third person ("Garvey believed...", "his philosophy holds...") — that is forbidden.
+
+Consider this through the {mode} LENS.
+
+## CONTEXT from ARK
+{context}
+
+## {user_name}'S SITUATION
 "{situation}"
 
 ## INSTRUCTIONS
 Output a valid JSON object strictly following this schema:
 {{
-  "principle": "The specific Garveyite principle that applies here (e.g., self-reliance, industrial organization), grounded in the context provided.",
-  "historicalAnalogy": "A relevant historical parallel from the U.N.I.A. or Garvey's life based on the context. Include specific details.",
+  "principle": "Your direct, first-person answer to 'what would I do?' — state plainly and personally what YOU (Marcus) would do in this exact situation, and the conviction behind it. Grounded in the context provided.",
+  "historicalAnalogy": "A moment from YOUR own life or the U.N.I.A.'s work, told in first person ('When I...', 'In my time...'), that mirrors {user_name}'s situation and shows why you'd act as you describe. Include specific details from the context.",
   "actionSteps": [
-    {{"id": "1", "text": "Specific, actionable advice step 1, grounded in the archive philosophy", "completed": false}},
-    {{"id": "2", "text": "Specific, actionable advice step 2, grounded in the archive philosophy", "completed": false}},
-    {{"id": "3", "text": "Specific, actionable advice step 3, grounded in the archive philosophy", "completed": false}}
+    {{"id": "1", "text": "Here is what I would have you do first — specific, actionable, grounded in the archive philosophy", "completed": false}},
+    {{"id": "2", "text": "Here is what I would do next — specific, actionable, grounded in the archive philosophy", "completed": false}},
+    {{"id": "3", "text": "Here is what I would do after that — specific, actionable, grounded in the archive philosophy", "completed": false}}
   ],
   "mirrorQuestions": [
-    "A reflective question challenging the user's approach based on Garvey's philosophy?",
-    "A question about long-term impact and alignment with Garveyite principles?"
+    "A question YOU (Marcus) put directly to {user_name}, challenging their approach?",
+    "A question YOU ask about their long-term commitment and alignment with self-determination?"
   ]
 }}
 
 - Do NOT include markdown code blocks (```json). Just the raw JSON string.
-- Each action step must be grounded in the context and citations provided. Explain WHY each step matters based on Garvey's philosophy.
+- Speak in first person throughout EVERY field. You are Marcus Garvey answering directly — not a narrator describing him.
+- Each action step is something YOU would personally do or have the user do — grounded in the context and citations provided. State WHY, in your own voice.
 - Steps must be practical and implementable, reflecting self-determination, economic independence, and organizational excellence.
-- Ensure advice reflects the principles evident in the archive, not external knowledge.
-- If the context does not support actionable guidance, include that caveat in the principle field.
+- Ground your answer in the principles evident in the archive, not external knowledge.
+- If the context does not give you enough to answer plainly, say so honestly in the principle field, in your own voice ("The archives before me are silent on this exact matter, but...").
+- Weave approximately 10% Jamaican Patois naturally into the principle and historicalAnalogy fields — expressions like 'wi must rise', 'di people dem', 'bredren' — as you might speak to a yard audience.
 """
 
 
@@ -273,12 +338,13 @@ Output a valid JSON object strictly following this schema:
 # MAIN QUERY FUNCTIONS
 # =========================
 
-def ask_marcus(query, debug_mode='expand', output_file=None, **kwargs):
+def ask_marcus(query, debug_mode='expand', output_file=None, user_name=None, session_id=None, **kwargs):
     """
     Main entry point for asking a question.
     Returns the JSON response dict.
     """
     start_time = time.time()
+    user_name = user_name or "friend"
 
     # 1. Retrieval
     results = retrieve_hybrid(query, max_results=25)
@@ -295,8 +361,16 @@ def ask_marcus(query, debug_mode='expand', output_file=None, **kwargs):
         expanded_lines = [{'text': r['line_content'], 'locator': r['line_locator'], 'source': r['anchor_id']} for r in results]
 
     # 3. AI Generation via Grok
-    prompt = HYBRID_PROMPT_TEMPLATE.format(context=context_data['context'], query=query)
+    conversation_history = load_conversation_history(session_id)
+    save_conversation_turn(session_id, "user", query)
+    prompt = HYBRID_PROMPT_TEMPLATE.format(
+        context=context_data['context'],
+        query=query,
+        conversation_history=conversation_history or "None",
+        user_name=user_name
+    )
     raw_response = call_grok(prompt)
+    save_conversation_turn(session_id, "assistant", raw_response[:2000])
 
     # 4. Citation Discovery & Scoring
     query_terms = query.lower().split()
@@ -330,7 +404,7 @@ def ask_marcus(query, debug_mode='expand', output_file=None, **kwargs):
     return json_output
 
 
-def ask_marcus_lens_stream(situation, mode="Personal", **kwargs):
+def ask_marcus_lens_stream(situation, mode="Personal", user_name=None, session_id=None, **kwargs):
     """
     Generator yielding SSE events for WWMD lens analysis.
     Fires 'retrieved' immediately after SQLite query, 'generating' heartbeats
@@ -342,6 +416,8 @@ def ask_marcus_lens_stream(situation, mode="Personal", **kwargs):
         {"type": "done", "data": {...}}
         {"type": "error", "message": "..."}
     """
+    user_name = user_name or "friend"
+
     # 1. Retrieval
     search_query = f"{situation} {mode}"
     results = retrieve_hybrid(search_query, max_results=20)
@@ -349,11 +425,14 @@ def ask_marcus_lens_stream(situation, mode="Personal", **kwargs):
 
     yield f"data: {json.dumps({'type': 'retrieved', 'chunks': len(results)})}\n\n"
 
+    save_conversation_turn(session_id, "user", situation)
+
     # 2. Build prompt
     prompt = LENS_PROMPT_TEMPLATE.format(
         context=context_data['context'],
         situation=situation,
-        mode=mode
+        mode=mode,
+        user_name=user_name
     )
 
     # 3. Stream from Grok
@@ -400,6 +479,7 @@ def ask_marcus_lens_stream(situation, mode="Personal", **kwargs):
             })
 
         data_out['receipts'] = receipts
+        save_conversation_turn(session_id, "assistant", data_out.get('principle', '')[:500])
         yield f"data: {json.dumps({'type': 'done', 'data': data_out})}\n\n"
 
     except json.JSONDecodeError:
@@ -413,23 +493,28 @@ def ask_marcus_lens_stream(situation, mode="Personal", **kwargs):
         yield f"data: {json.dumps({'type': 'done', 'data': fallback})}\n\n"
 
 
-def ask_marcus_lens(situation, mode="Personal", **kwargs):
+def ask_marcus_lens(situation, mode="Personal", user_name=None, session_id=None, **kwargs):
     """
     Analyzes a situation through Garvey's lens. Returns structured JSON.
     """
     start_time = time.time()
+    user_name = user_name or "friend"
 
     search_query = f"{situation} {mode} organization success"
     results = retrieve_hybrid(search_query, max_results=20)
     context_data = build_hybrid_context(results)
 
+    save_conversation_turn(session_id, "user", situation)
+
     prompt = LENS_PROMPT_TEMPLATE.format(
         context=context_data['context'],
         situation=situation,
-        mode=mode
+        mode=mode,
+        user_name=user_name
     )
 
     raw_response = call_grok(prompt)
+    save_conversation_turn(session_id, "assistant", raw_response[:500])
 
     try:
         cleaned = raw_response.replace('```json', '').replace('```', '').strip()

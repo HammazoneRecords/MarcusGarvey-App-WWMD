@@ -16,3 +16,12 @@ FLASK_DEBUG=false
 # ── Input limits (optional, defaults shown) ───────────────────
 # WWMD_SITUATION_MAX_LEN=4000
 # CHAT_QUERY_MAX_LEN=2000
+
+# ── Auth (magic link + JWT) ────────────────────────────────────
+# JWT_SECRET is auto-generated and persisted here on first run if absent.
+# JWT_SECRET=
+# Resend (email delivery for magic links). If unset, links are logged to console.
+# RESEND_API_KEY=
+# RESEND_FROM_EMAIL=Marcus Garvey ARK <onboarding@resend.dev>
+# Frontend URL used to build magic-link verification URLs
+# FRONTEND_URL=http://localhost:5175

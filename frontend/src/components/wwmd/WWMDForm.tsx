@@ -7,11 +7,15 @@ import { Button } from '../ui/index';
 import { MessageSquare, Sparkles } from 'lucide-react';
 
 const MAX_LEN = 4000;
+const PROMPT_PREFIX = 'Marcus, what would you do if ';
 
 const schema = z.object({
     situation: z.string()
         .min(10, 'Please provide more context (at least 10 characters)')
-        .max(MAX_LEN, `Maximum ${MAX_LEN} characters`),
+        .max(MAX_LEN, `Maximum ${MAX_LEN} characters`)
+        .refine((val) => val.trim().length > PROMPT_PREFIX.trim().length, {
+            message: 'Tell Marcus what you\'re facing after "if"',
+        }),
     mode: z.enum(['Personal', 'Community']).default('Personal'),
 });
 
@@ -20,12 +24,35 @@ type FormValues = z.infer<typeof schema>;
 export const WWMDForm = ({ onSubmit, loading }: { onSubmit: (data: WWMDRequest) => void, loading: boolean }) => {
     const { register, handleSubmit, control, setValue, watch, formState: { errors } } = useForm<FormValues>({
         resolver: zodResolver(schema),
-        defaultValues: { mode: 'Personal' }
+        defaultValues: { situation: PROMPT_PREFIX, mode: 'Personal' }
     });
 
-    const situation = useWatch({ control, name: 'situation', defaultValue: '' });
+    const situation = useWatch({ control, name: 'situation' });
     const mode = watch('mode');
     const charCount = situation?.length ?? 0;
+
+    const { ref: situationFormRef, ...situationField } = register('situation');
+    const textareaRef = useRef<HTMLTextAreaElement | null>(null);
+
+    useEffect(() => {
+        const el = textareaRef.current;
+        if (el) {
+            el.focus();
+            el.setSelectionRange(el.value.length, el.value.length);
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
+
+    // Keep the cursor/selection out of the fixed prompt prefix, so clicking
+    // anywhere in the textarea and typing can't split "...you" / "do if..." apart.
+    const clampSelection = () => {
+        const el = textareaRef.current;
+        if (!el) return;
+        const min = PROMPT_PREFIX.length;
+        if (el.selectionStart < min || el.selectionEnd < min) {
+            el.setSelectionRange(Math.max(el.selectionStart, min), Math.max(el.selectionEnd, min));
+        }
+    };
 
     // Elapsed timer
     const [elapsed, setElapsed] = useState(0);
@@ -48,14 +75,22 @@ export const WWMDForm = ({ onSubmit, loading }: { onSubmit: (data: WWMDRequest) 
         <form onSubmit={handleSubmit((data) => onSubmit({ ...data, tone: 'Practical' }))} className="space-y-6">
             <div className="space-y-2">
                 <div className="flex items-center justify-between">
-                    <label className="text-sm font-bold uppercase tracking-widest text-zinc-500">The Situation</label>
+                    <label className="text-sm font-bold uppercase tracking-widest text-zinc-500">What Are You Facing?</label>
                     <span className={`text-[10px] font-mono ${charCount > MAX_LEN * 0.9 ? 'text-red-500' : 'text-zinc-400'}`}>
                         {charCount}/{MAX_LEN}
                     </span>
                 </div>
                 <textarea
-                    {...register('situation')}
-                    placeholder="e.g., I am considering starting a community cooperative but I am worried about funding..."
+                    {...situationField}
+                    ref={(el) => {
+                        situationFormRef(el);
+                        textareaRef.current = el;
+                    }}
+                    onClick={clampSelection}
+                    onFocus={clampSelection}
+                    onSelect={clampSelection}
+                    onKeyDown={clampSelection}
+                    placeholder="Marcus, what would you do if I am considering starting a community cooperative but I am worried about funding..."
                     className={`w-full h-32 p-4 rounded-2xl bg-white dark:bg-zinc-900 border ${errors.situation ? 'border-accent' : 'border-zinc-200 dark:border-zinc-800'} focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all resize-none text-base`}
                     maxLength={MAX_LEN}
                 />
@@ -99,7 +134,7 @@ export const WWMDForm = ({ onSubmit, loading }: { onSubmit: (data: WWMDRequest) 
                 ) : (
                     <span className="flex items-center gap-2">
                         <MessageSquare className="w-5 h-5" />
-                        Analyze with Garvey Lens
+                        Ask: What Would Marcus Do?
                     </span>
                 )}
             </Button>

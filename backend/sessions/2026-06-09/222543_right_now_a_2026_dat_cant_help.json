@@ -1,0 +1,119 @@
+{
+  "query": "right now a 2026 dat cant help me",
+  "mode": "garvey_lens",
+  "answer": "Wah gwan, noah? Di archives speak plainly that even as babylon\u2019s Bureau of Investigation began gathering information about the movement in 1919 for the purpose of deportation, Marcus Garvey pressed forward without pause, building The Negro World and presiding over Liberty Hall at 114 West 138th Street as the political center of the U.N.I.A. The year 2026 alters none of that recorded truth: external conditions, whether surveillance in 1919 or any later claim that history cannot serve the present, never halted the work. Instead they sharpened the resolve to unite the Negro peoples of the world into one great body to establish a country and government absolutely their own.\n\nThe core principle remains steadfast self-reliance and institution-building amid adversity. The records show that after travels through Western Europe and studies at Birkbeck College, Garvey returned to Jamaica in 1914 inspired by Booker T. Washington\u2019s Up from Slavery, immediately founding the Universal Negro Improvement Association with the program of uniting the race. By 1919 he had soared to prominence, addressing tens of thousands in hundreds of speeches and millions more through newspapers, his estimates of two million members imprecise yet reflective of the boundless energy that turned an unknown West Indian into a force renowned throughout the world. That historical application teaches that persecution, such as the assassination attempt survived on October 14, 1919 through the quick action of Amy Ashwood, signals the threat our unity poses to those in power, and wi must rise with the identical discipline that expanded enrollment and donations across the United States despite official monitoring.\n\nTek note, noah, that such resilience offers practical wisdom for today: di people dem cannot wait for kinder times but must answer any assertion that the archives cannot help with renewed educational and organizational labor. The evidence records how Garvey toured the United States north, south, east and west, spurring donations and establishing Liberty Hall as the hub where he operated as President-General, proving that dates or hostile atmospheres never reversed the African Diaspora\u2019s improvements when met with persistent institution-building.\n\nTo put this into action, first establish or strengthen a local discussion circle modeled directly on Liberty Hall at 114 West 138th Street, because the records show this step fosters transparent self-governance and counters infiltration by centering the political life of the community in one dedicated space. Second, commit to weekly circulation of community writings in the spirit of The Negro World, for the archives demonstrate how printed propaganda educated and mobilized millions even as the Bureau of Investigation gathered information from 1919 onward. Third, defend community interests through structured public addresses and enrollment drives akin to the 1916\u20131919 tours, since the evidence records that Garvey addressed church groups and street-corner gatherings until he mesmerized tens of thousands, turning unknown beginnings into worldwide renown through exactly such persistent labor.",
+  "citations": [
+    {
+      "excerpt": "Rights of the Negro Peoples of the World,\u201d he introduced the flag of the",
+      "loc": "pdf:page:0009:line:14",
+      "source_id": "marcus_garvey_selected_writings",
+      "score": 13,
+      "match_type": "partial_ngram"
+    },
+    {
+      "excerpt": "annual Convention of the Negro Peoples of the World.",
+      "loc": "pdf:page:0009:line:25",
+      "source_id": "marcus_garvey_selected_writings",
+      "score": 8,
+      "match_type": "partial_ngram"
+    },
+    {
+      "excerpt": "International Convention of the Negro Peoples of the World in New York",
+      "loc": "pdf:page:0006:line:28",
+      "source_id": "marcus_garvey_selected_writings",
+      "score": 8,
+      "match_type": "partial_ngram"
+    },
+    {
+      "excerpt": "Convention of the Negro Peoples of the World, in New York City:",
+      "loc": "pdf:page:0009:line:4",
+      "source_id": "marcus_garvey_selected_writings",
+      "score": 5,
+      "match_type": "partial_ngram"
+    },
+    {
+      "excerpt": "information about Garvey as a \u201cradical\u201d for the purpose of deporting him.",
+      "loc": "pdf:page:0008:line:30",
+      "source_id": "marcus_garvey_selected_writings",
+      "score": 5,
+      "match_type": "partial_ngram"
+    },
+    {
+      "excerpt": "Universal Negro Improvement Association is carrying out just what the Ku",
+      "loc": "pdf:page:0011:line:22",
+      "source_id": "marcus_garvey_selected_writings",
+      "score": 4,
+      "match_type": "partial_ngram"
+    },
+    {
+      "excerpt": "with the program of uniting the Negro peoples of the world into one great",
+      "loc": "pdf:page:0008:line:8",
+      "source_id": "marcus_garvey_selected_writings",
+      "score": 3,
+      "match_type": "partial_ngram"
+    },
+    {
+      "excerpt": "Garvey eventually directly addressed and mesmerized tens of thousands in",
+      "loc": "pdf:page:0008:line:16",
+      "source_id": "marcus_garvey_selected_writings",
+      "score": 1,
+      "match_type": "partial_ngram"
+    },
+    {
+      "excerpt": "Garvey toured the United States, speaking to audiences north, south, east",
+      "loc": "pdf:page:0008:line:31",
+      "source_id": "marcus_garvey_selected_writings",
+      "score": 1,
+      "match_type": "partial_ngram"
+    },
+    {
+      "excerpt": "the political center of the U.N.I.A., which he operated as President-General.",
+      "loc": "pdf:page:0008:line:37",
+      "source_id": "marcus_garvey_selected_writings",
+      "score": 1,
+      "match_type": "partial_ngram"
+    },
+    {
+      "excerpt": "he had soared to prominence and was renowned throughout the world for",
+      "loc": "pdf:page:0008:line:18",
+      "source_id": "marcus_garvey_selected_writings",
+      "score": 0,
+      "match_type": "partial_ngram"
+    },
+    {
+      "excerpt": "and challenges arose, and the Universal Negro Improvement Association\u2019s",
+      "loc": "pdf:page:0009:line:27",
+      "source_id": "marcus_garvey_selected_writings",
+      "score": -1,
+      "match_type": "partial_ngram"
+    },
+    {
+      "excerpt": "body to establish a country and government absolutely their own.\u201d11",
+      "loc": "pdf:page:0008:line:9",
+      "source_id": "marcus_garvey_selected_writings",
+      "score": -1,
+      "match_type": "partial_ngram"
+    },
+    {
+      "excerpt": ". The attitude of the Universal Negro Improvement Association is in a way",
+      "loc": "pdf:page:0011:line:14",
+      "source_id": "marcus_garvey_selected_writings",
+      "score": -1,
+      "match_type": "partial_ngram"
+    },
+    {
+      "excerpt": "believes tripped up the momentum of the Universal Negro Improvement",
+      "loc": "pdf:page:0011:line:27",
+      "source_id": "marcus_garvey_selected_writings",
+      "score": -1,
+      "match_type": "partial_ngram"
+    }
+  ],
+  "meta": {
+    "chunks_found": 25,
+    "citation_search_space": 330,
+    "timestamp": "2026-06-09T22:25:43.036410-05:00",
+    "latency_ms": 18196,
+    "model": "grok-3"
+  }
+}

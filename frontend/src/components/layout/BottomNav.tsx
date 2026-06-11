@@ -1,12 +1,12 @@
 import { NavLink } from 'react-router-dom';
-import { Home, Library, MessageSquare, Briefcase, User } from 'lucide-react';
+import { Home, Library, MessageSquare, Bot, User } from 'lucide-react';
 import { cn } from '../ui/index';
 
 const NAV_ITEMS = [
     { icon: Home, label: 'Home', path: '/home' },
+    { icon: Bot, label: 'Chat', path: '/chat' },
+    { icon: MessageSquare, label: 'Lens', path: '/wwmd' },
     { icon: Library, label: 'Library', path: '/library' },
-    { icon: MessageSquare, label: 'WWMD', path: '/wwmd' },
-    { icon: Briefcase, label: 'Toolkit', path: '/toolkit' },
     { icon: User, label: 'Profile', path: '/profile' },
 ];
 

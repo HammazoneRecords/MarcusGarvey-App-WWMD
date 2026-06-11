@@ -43,13 +43,13 @@ export const ArkService = {
         }
     },
 
-    askQuestion: async (query: string, apiConfig?: any): Promise<WwmdResponse | null> => {
+    askQuestion: async (query: string, apiConfig?: any, userName?: string, sessionId?: string): Promise<WwmdResponse | null> => {
         const url = withApi('/chat');
         try {
             const payload: any = { query };
-            if (apiConfig) {
-                payload.apiConfig = apiConfig;
-            }
+            if (apiConfig) payload.apiConfig = apiConfig;
+            if (userName) payload.user_name = userName;
+            if (sessionId) payload.session_id = sessionId;
             const response = await fetch(url, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },

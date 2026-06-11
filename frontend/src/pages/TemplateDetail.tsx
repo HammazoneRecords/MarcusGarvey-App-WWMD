@@ -7,7 +7,8 @@ import { Button, Skeleton, Card } from '../components/ui/index';
 import { MarkdownRenderer } from '../components/toolkit/MarkdownRenderer';
 import { useStore } from '../store/useStore';
 import { useAuth } from '../hooks/useAuth';
-import { upsertToolkitEdit } from '../services/supabaseUserData';
+import { upsertToolkitEdit } from '../services/userData';
+import { trackSync } from '../services/syncHelpers';
 
 export const TemplateDetail = () => {
     const { id } = useParams<{ id: string }>();
@@ -50,7 +51,9 @@ export const TemplateDetail = () => {
     const handleSave = () => {
         if (id) {
             saveToolkitEdit(id, editContent);
-            if (user?.id) upsertToolkitEdit(user.id, id, editContent);
+            if (user?.id) {
+                trackSync(`toolkit-${id}`, "Couldn't sync your edit — saved on this device only", () => upsertToolkitEdit(id, editContent));
+            }
             setIsEditing(false);
         }
     };

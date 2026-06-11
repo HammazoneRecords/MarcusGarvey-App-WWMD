@@ -1,0 +1,105 @@
+{
+  "query": "yo marcus wah gwan",
+  "mode": "garvey_lens",
+  "answer": "Wah gwan, noah? Di archives speak of a time when babylon\u2019s authorities, determined to fit a crime, introduced new laws to track and monitor Marcus Garvey\u2019s movements in the hope of reversing the African Diaspora\u2019s improvements. Yet through newspapers, property businesses, and an emerging shipping line, the principle of steadfast organization and self-reliance endured, proving that persecution signals the threat our unity poses to those in power. Wi must rise with the same unyielding determination that defined the movement, for the records show how J Edgar Hoover employed the FBI\u2019s first African American informant to infiltrate and spy, leading to a 1923 sentence of five years for suspected mail fraud.\n\nThat historical application reveals Garvey\u2019s will to deliver more than just hope remained unquestionable. After serving two years, he immediately returned to Jamaica to continue educating the people dem, an insistence that could not be silenced by propaganda claiming his methods were flawed. From there he created the People\u2019s Political Party in 1928\u2014the first political party to defend the interests of Jamaica\u2019s African Caribbean community\u2014before traveling to England, where he addressed crowds at Speaker\u2019s Corner without ever forgetting who he represented. The archives make clear that external pressures sharpened rather than halted the resolve to build institutions that educated and mobilized millions.\n\nTek note, noah, that such resilience offers practical wisdom for today: di people dem cannot wait for kinder times but must answer surveillance and adversity with renewed political and educational structures. The core principle of self-reliance teaches that any claim of impossibility echoes the doubts Garvey\u2019s enemies hoped to sow, yet those doubts were overcome by persistent labor in the face of imprisonment and monitoring. This layered truth\u2014principle forged in history, applied through organization\u2014empowers the African Diaspora to recognize that true advancement comes through transparent self-governance amid babylon\u2019s schemes.\n\nTo put this into action, first establish or strengthen a local discussion circle modeled on the People\u2019s Political Party\u2019s defense of community interests, because the records show this step counters infiltration by fostering transparent self-governance. Second, commit to weekly circulation of community writings in the spirit of the newspapers Garvey built, for the archives demonstrate how printed propaganda educated and mobilized despite official monitoring. Third, defend community interests through a structured political body akin to the 1928 party, since the evidence records that Garvey returned from imprisonment to found exactly such an instrument of lasting power.",
+  "citations": [
+    {
+      "excerpt": "Who he used to infiltrate and spy on Marcus Garvey\u2019s movement",
+      "loc": "pdf:page:0004:line:9",
+      "source_id": "marcus_garvey_teachers_notes",
+      "score": 16,
+      "match_type": "partial_ngram"
+    },
+    {
+      "excerpt": "Marcus garvey\u2019s will to deliver more than just hope for his people",
+      "loc": "pdf:page:0004:line:22",
+      "source_id": "marcus_garvey_teachers_notes",
+      "score": 16,
+      "match_type": "partial_ngram"
+    },
+    {
+      "excerpt": "New laws were introduced to track and monitor Marcus Garvey\u2019s",
+      "loc": "pdf:page:0004:line:4",
+      "source_id": "marcus_garvey_teachers_notes",
+      "score": 9,
+      "match_type": "partial_ngram"
+    },
+    {
+      "excerpt": "Marcus Garvey was released from prison after serving two years",
+      "loc": "pdf:page:0004:line:14",
+      "source_id": "marcus_garvey_teachers_notes",
+      "score": 9,
+      "match_type": "partial_ngram"
+    },
+    {
+      "excerpt": "In the hope of reversing his cause and the African Diaspora\u2019s",
+      "loc": "pdf:page:0004:line:6",
+      "source_id": "marcus_garvey_teachers_notes",
+      "score": 5,
+      "match_type": "partial_ngram"
+    },
+    {
+      "excerpt": "J Edgar Hoover employed the FBI\u2019s first African American informant",
+      "loc": "pdf:page:0004:line:8",
+      "source_id": "marcus_garvey_teachers_notes",
+      "score": 1,
+      "match_type": "exact"
+    },
+    {
+      "excerpt": "Immediately returning to Jamaica to continue educating people",
+      "loc": "pdf:page:0004:line:16",
+      "source_id": "marcus_garvey_teachers_notes",
+      "score": 1,
+      "match_type": "partial_ngram"
+    },
+    {
+      "excerpt": "Newspapers, property businesses and an emerging shipping line",
+      "loc": "pdf:page:0004:line:2",
+      "source_id": "marcus_garvey_teachers_notes",
+      "score": -3,
+      "match_type": "partial_ngram"
+    },
+    {
+      "excerpt": "Had the government and authorities determined to fit a crime",
+      "loc": "pdf:page:0004:line:3",
+      "source_id": "marcus_garvey_teachers_notes",
+      "score": -3,
+      "match_type": "partial_ngram"
+    },
+    {
+      "excerpt": "Which was the first political party\u00a0 to defend the interests of",
+      "loc": "pdf:page:0004:line:20",
+      "source_id": "marcus_garvey_teachers_notes",
+      "score": -3,
+      "match_type": "partial_ngram"
+    },
+    {
+      "excerpt": "Jamaica\u2019s African Caribbean community",
+      "loc": "pdf:page:0004:line:21",
+      "source_id": "marcus_garvey_teachers_notes",
+      "score": -5,
+      "match_type": "exact"
+    },
+    {
+      "excerpt": "the People\u2019s Political Party",
+      "loc": "pdf:page:0004:line:19",
+      "source_id": "marcus_garvey_teachers_notes",
+      "score": -10,
+      "match_type": "exact"
+    },
+    {
+      "excerpt": "that his methods were flawed",
+      "loc": "pdf:page:0004:line:13",
+      "source_id": "marcus_garvey_teachers_notes",
+      "score": -17,
+      "match_type": "partial_ngram"
+    }
+  ],
+  "meta": {
+    "chunks_found": 25,
+    "citation_search_space": 149,
+    "timestamp": "2026-06-09T22:25:02.555839-05:00",
+    "latency_ms": 11929,
+    "model": "grok-3"
+  }
+}

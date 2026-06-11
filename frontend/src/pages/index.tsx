@@ -11,3 +11,4 @@ export { Browse } from './Browse';
 export { Workflow } from './Workflow';
 export { Log } from './Log';
 export { DevOps } from './DevOps';
+export { AuthVerify } from './AuthVerify';

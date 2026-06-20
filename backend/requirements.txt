@@ -12,3 +12,4 @@ gunicorn>=21.2.0
 pymupdf>=1.22.0
 pytest>=7.4.0
 pytest-cov>=4.1.0
+PyJWT>=2.8.0

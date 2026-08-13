@@ -20,7 +20,7 @@ export function NameCaptureModal({ onConfirm }: Props) {
                 <div className="text-center mb-6">
                     <div className="text-4xl mb-3">✊🏾</div>
                     <h2 className="text-xl font-bold text-white mb-2">
-                        Hail, freedom fighter.
+                        Respect fi deh yah.
                     </h2>
                     <p className="text-zinc-400 text-sm leading-relaxed">
                         Before di ark speaks — what shall Marcus call you?

@@ -2,7 +2,7 @@ import { lazy, Suspense } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { Layout } from './components/layout/Layout';
 import { UserDataSync } from './components/UserDataSync';
-import { Home, Library, Profile, Browse, Workflow, Log, DevOps, AuthVerify } from './pages';
+import { Home, Library, Profile, AuthVerify } from './pages';
 import { useStore } from './store/useStore';
 import { useEffect } from 'react';
 import { useIdentity } from './hooks/useIdentity';
@@ -44,15 +44,15 @@ function App() {
                     <Route path="/auth/verify" element={<Layout title="Sign In"><AuthVerify /></Layout>} />
                     <Route path="/library" element={<Layout title="Knowledge Base"><Library /></Layout>} />
                     <Route path="/facts/:id" element={<Layout title="Fact Detail"><FactDetail /></Layout>} />
-                    <Route path="/wwmd" element={<Layout title="Garvey Lens"><WWMD /></Layout>} />
+                    <Route path="/wwmd" element={<Layout title="What Would Marcus Do?"><WWMD /></Layout>} />
                     <Route path="/chat" element={<Layout title="Ask Marcus"><Chat /></Layout>} />
                     <Route path="/toolkit" element={<Layout title="Toolkit"><Toolkit /></Layout>} />
                     <Route path="/toolkit/:id" element={<Layout title="Template Detail"><TemplateDetail /></Layout>} />
                     <Route path="/profile" element={<Layout title="Profile"><Profile /></Layout>} />
-                    <Route path="/browse" element={<Layout title="Browse"><Browse /></Layout>} />
-                    <Route path="/workflow" element={<Layout title="Workflow"><Workflow /></Layout>} />
-                    <Route path="/log" element={<Layout title="Log"><Log /></Layout>} />
-                    <Route path="/devops" element={<Layout title="DevOps"><DevOps /></Layout>} />
+                    <Route path="/browse" element={<Navigate to="/home" replace />} />
+                    <Route path="/workflow" element={<Navigate to="/home" replace />} />
+                    <Route path="/log" element={<Navigate to="/home" replace />} />
+                    <Route path="/devops" element={<Navigate to="/home" replace />} />
                     <Route path="/privacy" element={<Layout title="Privacy"><Privacy /></Layout>} />
                     <Route path="/terms" element={<Layout title="Terms of Use"><Terms /></Layout>} />
                 </Routes>

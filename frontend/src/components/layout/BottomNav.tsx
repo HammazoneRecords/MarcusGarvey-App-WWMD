@@ -5,7 +5,7 @@ import { cn } from '../ui/index';
 const NAV_ITEMS = [
     { icon: Home, label: 'Home', path: '/home' },
     { icon: Bot, label: 'Chat', path: '/chat' },
-    { icon: MessageSquare, label: 'Lens', path: '/wwmd' },
+    { icon: MessageSquare, label: 'WWMD?', path: '/wwmd' },
     { icon: Library, label: 'Library', path: '/library' },
     { icon: User, label: 'Profile', path: '/profile' },
 ];

@@ -5,7 +5,7 @@ import { cn } from '../ui/index';
 const NAV_ITEMS = [
     { icon: Home, label: 'Home', path: '/home' },
     { icon: Bot, label: 'Ask Marcus', path: '/chat' },
-    { icon: MessageSquare, label: 'Garvey Lens (WWMD)', path: '/wwmd' },
+    { icon: MessageSquare, label: 'What Would Marcus Do?', path: '/wwmd' },
     { icon: Library, label: 'Knowledge Base', path: '/library' },
     { icon: Briefcase, label: 'Toolkit', path: '/toolkit' },
     { icon: User, label: 'Profile', path: '/profile' },

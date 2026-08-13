@@ -4,7 +4,7 @@ import { useStore } from '../store/useStore';
 import { useAuth } from '../hooks/useAuth';
 import { Card, Button, ThemeToggle } from '../components/ui/index';
 import { LegalDisclaimer } from '../components/ui/LegalDisclaimer';
-import { Shield, Info, Settings2, Moon, Sun, Download, History, Server, ExternalLink, CheckSquare, Bookmark, Briefcase, LogIn, LogOut, User, Settings, Mail } from 'lucide-react';
+import { Shield, Info, Settings2, Moon, Sun, Download, History, Server, CheckSquare, Bookmark, Briefcase, User, MapPin, Edit3, Check, X } from 'lucide-react';
 
 export const Profile = () => {
     const [authEmail, setAuthEmail] = useState('');
@@ -28,7 +28,6 @@ export const Profile = () => {
         geminiApiKey: '',
     };
     const setApiConfig = useStore((s) => s.setApiConfig);
-    const clearUserData = useStore((s) => s.clearUserData);
 
     const toolkitEditsCount = Object.keys(toolkitEdits).length;
     const resultsWithCheckedActions = savedLensResults.filter((r) => {
@@ -102,103 +101,7 @@ export const Profile = () => {
                         </div>
                     </Card>
 
-                    <Link to="/devops">
-                        <Card className="p-4 flex items-center justify-between hover:border-primary/30 transition-colors cursor-pointer">
-                            <div className="flex items-center gap-3">
-                                <div className="p-2 bg-zinc-100 dark:bg-zinc-800 rounded-lg text-zinc-500">
-                                    <Settings className="w-5 h-5" />
-                                </div>
-                                <div>
-                                    <p className="text-sm font-bold">DevOps</p>
-                                    <p className="text-[10px] text-zinc-500 uppercase font-medium">System administration</p>
-                                </div>
-                            </div>
-                            <ExternalLink className="w-4 h-4 text-zinc-400" />
-                        </Card>
-                    </Link>
                 </div>
-            </section>
-
-            {/* Account */}
-            <section className="space-y-4">
-                <div className="flex items-center gap-2 text-zinc-500">
-                    <User className="w-5 h-5" />
-                    <h2 className="text-sm font-bold uppercase tracking-widest">Account</h2>
-                </div>
-                {!authConfigured ? (
-                    <Card className="p-4">
-                        <p className="text-sm text-zinc-500 dark:text-zinc-400">Sign-in is not available right now.</p>
-                    </Card>
-                ) : authLoading ? (
-                    <Card className="p-4">
-                        <p className="text-sm text-zinc-500">Loading…</p>
-                    </Card>
-                ) : user ? (
-                    <Card className="p-4 flex items-center justify-between">
-                        <div className="flex items-center gap-3">
-                            <div className="p-2 bg-primary/10 rounded-lg">
-                                <LogIn className="w-5 h-5 text-primary dark:text-secondary" />
-                            </div>
-                            <div>
-                                <p className="text-sm font-bold">Signed in</p>
-                                <p className="text-[10px] text-zinc-500 truncate max-w-[200px]" title={user.email ?? ''}>{user.email ?? 'Unknown'}</p>
-                            </div>
-                        </div>
-                        <Button variant="outline" size="sm" onClick={() => {
-                            clearUserData();
-                            signOut();
-                        }}>
-                            <LogOut className="w-4 h-4 mr-1 inline" /> Sign out
-                        </Button>
-                    </Card>
-                ) : linkSent ? (
-                    <Card className="p-4 space-y-2">
-                        <div className="flex items-center gap-3">
-                            <div className="p-2 bg-primary/10 rounded-lg">
-                                <Mail className="w-5 h-5 text-primary dark:text-secondary" />
-                            </div>
-                            <div>
-                                <p className="text-sm font-bold">Check your email</p>
-                                <p className="text-[10px] text-zinc-500">We sent a sign-in link to {authEmail}.</p>
-                            </div>
-                        </div>
-                        <button
-                            type="button"
-                            className="text-xs text-primary dark:text-secondary hover:underline"
-                            onClick={() => { setLinkSent(false); setAuthError(null); }}
-                        >
-                            Use a different email
-                        </button>
-                    </Card>
-                ) : (
-                    <Card className="p-4 space-y-3">
-                        <p className="text-[11px] text-zinc-500 uppercase font-medium">Sign in with email</p>
-                        <p className="text-[10px] text-zinc-500">We'll send you a one-time link — no password needed.</p>
-                        {authError && <p className="text-xs text-red-600 dark:text-red-400">{authError}</p>}
-                        <input
-                            type="email"
-                            placeholder="Email"
-                            value={authEmail}
-                            onChange={(e) => { setAuthEmail(e.target.value); setAuthError(null); }}
-                            className="w-full px-3 py-2 text-sm rounded-lg border border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-900"
-                            autoComplete="email"
-                        />
-                        <Button
-                            size="sm"
-                            disabled={authBusy || !authEmail}
-                            onClick={async () => {
-                                setAuthBusy(true);
-                                setAuthError(null);
-                                const { error } = await requestMagicLink(authEmail);
-                                setAuthBusy(false);
-                                if (error) setAuthError(error.message);
-                                else setLinkSent(true);
-                            }}
-                        >
-                            {authBusy ? '…' : 'Send sign-in link'}
-                        </Button>
-                    </Card>
-                )}
             </section>
 
             {/* AI Configuration */}
@@ -282,7 +185,7 @@ export const Profile = () => {
                         })}
                     </div>
                 ) : (
-                    <p className="text-sm text-zinc-400 italic">No saved action steps yet. Use Garvey Lens and check the actions you plan to take.</p>
+                    <p className="text-sm text-zinc-400 italic">No saved action steps yet. Use What Would Marcus Do? and check the actions you plan to take.</p>
                 )}
             </section>
 
@@ -321,7 +224,7 @@ export const Profile = () => {
                         <div>
                             <p className="text-xs font-bold text-primary dark:text-secondary mb-1">Data Disclaimer</p>
                             <p className="text-[11px] text-zinc-600 dark:text-zinc-400 leading-relaxed">
-                                Garvey Lens is a source-grounded counsel assistant, not a personal impersonation. All responses are derived from documented speeches, books, and archival records.
+                                What Would Marcus Do? is a source-grounded counsel assistant, not a personal impersonation. All responses are derived from documented speeches, books, and archival records.
                             </p>
                         </div>
                     </div>
